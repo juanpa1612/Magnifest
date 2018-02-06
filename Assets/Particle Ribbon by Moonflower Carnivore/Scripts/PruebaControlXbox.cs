@@ -40,6 +40,7 @@ public class PruebaControlXbox : MonoBehaviour {
         if (Input.GetAxis("AnalogoDXbox") == 1 && r <= 4 && !singlePulsePad)
         {
             r += 2;
+            //r=Mathf.SmoothStep(r,r+2,0.5f);
             singlePulsePad = true;
         }
         if (Input.GetAxis("AnalogoDXbox") == -1 && r >= 4 && !singlePulsePad)
