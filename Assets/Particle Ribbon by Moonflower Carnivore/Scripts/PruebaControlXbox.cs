@@ -6,15 +6,23 @@ public class PruebaControlXbox : MonoBehaviour {
     float r;
     float t;
     float w;
+    float rDest;
     bool singlePulsePad;
     bool direccion;
+    bool changeRingPos;
+    bool changeRingNeg;
+    float timeRingChange;
 	// Use this for initialization
 	void Start () {
+        timeRingChange = 0.3f;
         t = 0;
         r = 2;
         w = 2f;
         singlePulsePad = false;
         direccion = true;
+        changeRingNeg = false;
+        changeRingPos = false;
+        rDest = 0;
         
 	}
 	
@@ -29,6 +37,31 @@ public class PruebaControlXbox : MonoBehaviour {
         {
             t -= Time.deltaTime;
         }
+        
+        if (changeRingPos&&!changeRingNeg)
+        {
+            timeRingChange -= Time.deltaTime;
+            r = Mathf.Lerp(r, rDest, timeRingChange);
+            if (timeRingChange<=0)
+            {
+                changeRingPos = false;
+                timeRingChange=0.3f;
+                singlePulsePad = false;
+                r=Mathf.Round(r);
+            }
+        }
+        if (!changeRingPos && changeRingNeg)
+        {
+            timeRingChange -= Time.deltaTime;
+            r = Mathf.Lerp(r, rDest, timeRingChange);
+            if (timeRingChange <= 0)
+            {
+                changeRingNeg = false;
+                timeRingChange = 0.3f;
+                singlePulsePad = false;
+                r = Mathf.Round(r);
+            }
+        }
         if (Input.GetAxis("AnalogoIXbox") == 1)
         {
             direccion = true;
@@ -37,21 +70,17 @@ public class PruebaControlXbox : MonoBehaviour {
         {
             direccion = false;
         }
-        if (Input.GetAxis("AnalogoDXbox") == 1 && r <= 4 && !singlePulsePad)
+        if (Input.GetAxis("AnalogoDXbox") == 1 && r <= 4 && !singlePulsePad &&(!changeRingPos&&!changeRingNeg))
         {
-            r += 2;
-            //r=Mathf.SmoothStep(r,r+2,0.5f);
+            rDest = r + 2;
+            changeRingPos = true;
             singlePulsePad = true;
         }
-        if (Input.GetAxis("AnalogoDXbox") == -1 && r >= 4 && !singlePulsePad)
+        if (Input.GetAxis("AnalogoDXbox") == -1 && r >= 4 && !singlePulsePad && (!changeRingPos && !changeRingNeg))
         {
-            r -= 2;
+            rDest = r - 2;
+            changeRingNeg = true;
             singlePulsePad = true;
         }
-        if (Input.GetAxis("AnalogoDXbox")==0)
-        {
-            singlePulsePad = false;
-        }
-        
     }
 }
