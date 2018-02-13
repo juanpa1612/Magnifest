@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PruebaControlXbox : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
+    [SerializeField]
+    float w;
     float r;
     float t;
-    float w;
     float rDest;
     bool singlePulsePad;
     bool direccion;
     bool changeRingPos;
     bool changeRingNeg;
     float timeRingChange;
-	// Use this for initialization
+
 	void Start () {
         timeRingChange = 0.3f;
         t = 0;
@@ -26,7 +28,7 @@ public class PruebaControlXbox : MonoBehaviour {
         
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
         transform.position = new Vector3(r * Mathf.Cos(w * t), r * Mathf.Sin(w * t), 0);
         if (!direccion)
