@@ -10,6 +10,8 @@ public class ChargingUI : MonoBehaviour
     GameObject center;
     [SerializeField]
     GameObject chargingArrow;
+    [SerializeField]
+    GameObject lastRing;
 
     public bool fullyCharged;
     float chargingTime;
@@ -40,11 +42,20 @@ public class ChargingUI : MonoBehaviour
                 player.transform.eulerAngles = joystickVector;
             }
         }
-
-        if (Input.GetButtonDown("AButton"))
+        Debug.Log(Input.GetAxis("RightTrigger"));
+        if (Input.GetAxis("RightTrigger") > 0 && !charging)
         {
             player.GetComponent<PlayerMovement>().enabled = false;
             charging = true;
+        }
+
+        else if (Input.GetAxis("RightTrigger") < 0.1f && charging)
+        {
+            charging = false;
+            GetComponent<PlayerMovement>().enabled = true;
+            GetComponent<PlayerMovement>().r = 65;
+            chargingArrow.SetActive(false);
+            //fullyCharged = false;
         }
 
         if (charging)

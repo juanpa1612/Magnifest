@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     float w;
-    float r;
+    [SerializeField]
+    public float r;
     float t;
     float rDest;
     bool singlePulsePad;
@@ -77,13 +78,13 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetAxis("RightJoystickVertical") == 1 && r <= 18 && !singlePulsePad && (!changeRingPos && !changeRingNeg))
         {
-            rDest = r + 18;
+            rDest = r + 19;
             changeRingPos = true;
             singlePulsePad = true;
         }
-        if (Input.GetAxis("RightJoystickVertical") == -1 && r >= 50 && !singlePulsePad && (!changeRingPos && !changeRingNeg))
+        if (Input.GetAxis("RightJoystickVertical") == -1 && r >= 90 && !singlePulsePad && (!changeRingPos && !changeRingNeg))
         {
-            rDest = r - 18;
+            rDest = r - 19;
             changeRingNeg = true;
             singlePulsePad = true;
         }

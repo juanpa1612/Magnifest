@@ -508,6 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   w: 0
+  r: 0
 --- !u!114 &1143071221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,6 +523,7 @@ MonoBehaviour:
   player: {fileID: 1143071219}
   center: {fileID: 1616263849}
   chargingArrow: {fileID: 117897983}
+  lastRing: {fileID: 2012719573}
   fullyCharged: 0
 --- !u!4 &1143071224 stripped
 Transform:
@@ -829,6 +831,10 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &2012719573 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100006, guid: c56029f88a15e044f95fe0d1c8831f08, type: 3}
+  m_PrefabInternal: {fileID: 2068850186}
 --- !u!1001 &2068850186
 Prefab:
   m_ObjectHideFlags: 0
