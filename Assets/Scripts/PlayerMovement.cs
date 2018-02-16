@@ -15,10 +15,11 @@ public class PlayerMovement : MonoBehaviour
     bool changeRingNeg;
     float timeRingChange;
 
-	void Start () {
+	void Start ()
+    {
         timeRingChange = 0.3f;
         t = 0;
-        r = 2;
+        r = 19;
         w = 2f;
         singlePulsePad = false;
         direccion = true;
@@ -29,8 +30,10 @@ public class PlayerMovement : MonoBehaviour
 	}
 	
 
-	void Update () {
-        transform.position = new Vector3(r * Mathf.Cos(w * t), r * Mathf.Sin(w * t), 0);
+	void Update ()
+    {
+        transform.position = new Vector3(r * Mathf.Cos(w * t), 0, r * Mathf.Sin(w * t));
+
         if (!direccion)
         {
             t += Time.deltaTime;
@@ -64,23 +67,23 @@ public class PlayerMovement : MonoBehaviour
                 r = Mathf.Round(r);
             }
         }
-        if (Input.GetAxis("AnalogoIXbox") == 1)
+        if (Input.GetAxis("LeftJoystickVertical") == 1)
         {
             direccion = true;
         }
-        if (Input.GetAxis("AnalogoIXbox") == -1)
+        if (Input.GetAxis("LeftJoystickVertical") == -1)
         {
             direccion = false;
         }
-        if (Input.GetAxis("AnalogoDXbox") == 1 && r <= 4 && !singlePulsePad &&(!changeRingPos&&!changeRingNeg))
+        if (Input.GetAxis("RightJoystickVertical") == 1 && r <= 18 && !singlePulsePad && (!changeRingPos && !changeRingNeg))
         {
-            rDest = r + 2;
+            rDest = r + 18;
             changeRingPos = true;
             singlePulsePad = true;
         }
-        if (Input.GetAxis("AnalogoDXbox") == -1 && r >= 4 && !singlePulsePad && (!changeRingPos && !changeRingNeg))
+        if (Input.GetAxis("RightJoystickVertical") == -1 && r >= 50 && !singlePulsePad && (!changeRingPos && !changeRingNeg))
         {
-            rDest = r - 2;
+            rDest = r - 18;
             changeRingNeg = true;
             singlePulsePad = true;
         }
