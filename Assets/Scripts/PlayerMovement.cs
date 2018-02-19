@@ -5,23 +5,24 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    float w;
+    public float w;
     [SerializeField]
     public float r;
-    float t;
+    public float t;
     float rDest;
     bool singlePulsePad;
     bool direccion;
     bool changeRingPos;
     bool changeRingNeg;
     float timeRingChange;
+    [SerializeField] float valorCrecRad;
 
 	void Start ()
     {
-        timeRingChange = 0.3f;
+        timeRingChange = 0.5f;
         t = 0;
-        r = 19;
-        w = 2f;
+        r = valorCrecRad;
+        w = 2;
         singlePulsePad = false;
         direccion = true;
         changeRingNeg = false;
@@ -34,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
 	void Update ()
     {
         transform.position = new Vector3(r * Mathf.Cos(w * t), 0, r * Mathf.Sin(w * t));
-
         if (!direccion)
         {
             t += Time.deltaTime;
@@ -51,8 +51,9 @@ public class PlayerMovement : MonoBehaviour
             if (timeRingChange<=0)
             {
                 changeRingPos = false;
-                timeRingChange=0.3f;
+                timeRingChange=0.5f;
                 singlePulsePad = false;
+                //r += 1;
                 r=Mathf.Round(r);
             }
         }
@@ -63,8 +64,9 @@ public class PlayerMovement : MonoBehaviour
             if (timeRingChange <= 0)
             {
                 changeRingNeg = false;
-                timeRingChange = 0.3f;
+                timeRingChange = 0.5f;
                 singlePulsePad = false;
+                //r -= 1;
                 r = Mathf.Round(r);
             }
         }
@@ -76,15 +78,16 @@ public class PlayerMovement : MonoBehaviour
         {
             direccion = false;
         }
-        if (Input.GetAxis("RightJoystickVertical") == 1 && r <= 18 && !singlePulsePad && (!changeRingPos && !changeRingNeg))
+        Debug.Log(Input.GetButton("Fire1"));
+        if (Input.GetAxis("RightJoystickVertical")== 1 && r < 65 && !singlePulsePad && (!changeRingPos && !changeRingNeg))
         {
-            rDest = r + 19;
+            rDest = r + valorCrecRad;
             changeRingPos = true;
             singlePulsePad = true;
         }
-        if (Input.GetAxis("RightJoystickVertical") == -1 && r >= 90 && !singlePulsePad && (!changeRingPos && !changeRingNeg))
+        if (Input.GetAxis("RightJoystickVertical") == -1 && r > 18 && !singlePulsePad && (!changeRingPos && !changeRingNeg))
         {
-            rDest = r - 19;
+            rDest = r - valorCrecRad;
             changeRingNeg = true;
             singlePulsePad = true;
         }

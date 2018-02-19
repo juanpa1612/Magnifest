@@ -18,13 +18,33 @@ public class ChargingUI : MonoBehaviour
     bool charging;
     bool pressingJoystick;
     Vector3 joystickVector;
+    float tiempoCastigo;
+    bool castigo;
+    float tiempoDisparo;
+    bool once;
+    PlayerMovement playerMove;
+    Shoot playerShoot;
 
     private void Start()
     {
+        once = false;
+        castigo = false;
         joystickVector = new Vector3(-90,0,0);
+        tiempoCastigo = 0;
+        tiempoDisparo = 2f;
+        playerMove = GetComponent<PlayerMovement>();
+        playerShoot = GetComponent<Shoot>();
     }
     private void Update()
     {
+        if (castigo)
+        {
+            tiempoCastigo -= Time.deltaTime;
+            if (tiempoCastigo <= 0)
+            {
+                castigo = false;
+            }
+        }
         if (fullyCharged)
         {
             
@@ -38,23 +58,27 @@ public class ChargingUI : MonoBehaviour
             {
                 float angulo = Mathf.Atan2(x, y) * Mathf.Rad2Deg;
                 joystickVector.z = angulo;
-                Debug.Log(angulo);
+                //Debug.Log(angulo);
                 player.transform.eulerAngles = joystickVector;
             }
         }
-        Debug.Log(Input.GetAxis("RightTrigger"));
-        if (Input.GetAxis("RightTrigger") > 0 && !charging)
+        //Debug.Log(Input.GetAxis("RightTrigger"));
+        if (Input.GetAxis("RightTrigger") > 0 && !charging &&!castigo)
         {
-            player.GetComponent<PlayerMovement>().enabled = false;
+            playerMove.enabled = false;
             charging = true;
         }
 
         else if (Input.GetAxis("RightTrigger") < 0.1f && charging)
         {
             charging = false;
-            GetComponent<PlayerMovement>().enabled = true;
-            GetComponent<PlayerMovement>().r = 65;
+            //GetComponent<PlayerMovement>().enabled = true;
+            //GetComponent<PlayerMovement>().r = 65;
+            tiempoCastigo = 4f;
+            castigo = true;
             chargingArrow.SetActive(false);
+            playerShoot.enabled = true;
+            playerShoot.PasarEstadoDisparo();
             //fullyCharged = false;
         }
 
@@ -70,8 +94,8 @@ public class ChargingUI : MonoBehaviour
 
             if (chargingTime < 5)
                 chargingTime += Time.deltaTime;
-            Debug.Log(chargingTime);
+            //Debug.Log(chargingTime);
         }
-        Debug.Log(Input.GetAxis("RightJoystickVertical"));
+        //Debug.Log(Input.GetAxis("RightJoystickVertical"));
     }
 }
