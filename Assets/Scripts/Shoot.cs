@@ -8,7 +8,7 @@ public class Shoot : MonoBehaviour {
     float r;
     float rDest;
     float tiempoDisparo;
-	// Use this for initialization
+
 	void Start () {
         playerMove = GetComponent<PlayerMovement>();
         chargePlay = GetComponent<ChargingUI>();
@@ -16,7 +16,7 @@ public class Shoot : MonoBehaviour {
         this.enabled = false;
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
         transform.position = new Vector3(r * Mathf.Cos(playerMove.w*playerMove.t), 0, r * Mathf.Sin(playerMove.w * playerMove.t));
         if (tiempoDisparo>0)

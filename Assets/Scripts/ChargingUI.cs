@@ -12,11 +12,12 @@ public class ChargingUI : MonoBehaviour
     GameObject chargingArrow;
     [SerializeField]
     GameObject lastRing;
-
+    [SerializeField] float fireSpeed;
     public bool fullyCharged;
     float chargingTime;
     bool charging;
     bool pressingJoystick;
+    bool isFiring;
     Vector3 joystickVector;
     float tiempoCastigo;
     bool castigo;
@@ -29,7 +30,7 @@ public class ChargingUI : MonoBehaviour
     {
         once = false;
         castigo = false;
-        joystickVector = new Vector3(-90,0,0);
+        joystickVector = Vector3.zero;
         tiempoCastigo = 0;
         tiempoDisparo = 2f;
         playerMove = GetComponent<PlayerMovement>();
@@ -45,36 +46,18 @@ public class ChargingUI : MonoBehaviour
                 castigo = false;
             }
         }
-        if (fullyCharged)
-        {
-            
-            float x = Input.GetAxis("LeftJoystickHorizontal")*-1;
-            float y = Input.GetAxis("LeftJoystickVertical");
-            if (x == 0 && y ==0)
-            {
-                pressingJoystick = false;
-            }
-            if (x != 0 || y != 0)
-            {
-                float angulo = Mathf.Atan2(x, y) * Mathf.Rad2Deg;
-                joystickVector.z = angulo;
-                //Debug.Log(angulo);
-                player.transform.eulerAngles = joystickVector;
-            }
-        }
-        //Debug.Log(Input.GetAxis("RightTrigger"));
-        if (Input.GetAxis("RightTrigger") > 0 && !charging &&!castigo)
+        if (Input.GetAxis("RightTrigger") > 0 && !charging &&!castigo && !isFiring)
         {
             playerMove.enabled = false;
             charging = true;
         }
 
-        else if (Input.GetAxis("RightTrigger") < 0.1f && charging)
+        else if (Input.GetAxis("RightTrigger") < 0.1f && charging && !fullyCharged)
         {
             charging = false;
             //GetComponent<PlayerMovement>().enabled = true;
             //GetComponent<PlayerMovement>().r = 65;
-            tiempoCastigo = 4f;
+            tiempoCastigo = 3f;
             castigo = true;
             chargingArrow.SetActive(false);
             playerShoot.enabled = true;
@@ -86,16 +69,52 @@ public class ChargingUI : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, center.transform.position, 0.5f);
         }
-
+        //Carga Completa
         if (player.transform.position == center.transform.position)
         {
+            transform.eulerAngles = Vector3.zero;
+            charging = false;
             fullyCharged = true;
             chargingArrow.SetActive(true);
 
             if (chargingTime < 5)
                 chargingTime += Time.deltaTime;
-            //Debug.Log(chargingTime);
         }
-        //Debug.Log(Input.GetAxis("RightJoystickVertical"));
+        if (fullyCharged && !isFiring)
+        {
+            //Apuntar
+            float x = Input.GetAxis("LeftJoystickHorizontal") * -1;
+            float y = Input.GetAxis("LeftJoystickVertical");
+                if (x == 0 && y == 0)
+                {
+                    pressingJoystick = false;
+                }
+                if (x != 0 || y != 0)
+                {
+                    float angulo = Mathf.Atan2(x, y) * Mathf.Rad2Deg;
+                    joystickVector.y = angulo;
+                    player.transform.eulerAngles = joystickVector;
+                }
+        }
+        //Lanzar
+        if (fullyCharged && Input.GetAxis("RightTrigger") < 0.1f)
+        {
+            isFiring = true;
+            chargingArrow.SetActive(false);
+            transform.Translate(-Vector3.forward * Time.deltaTime * fireSpeed);
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isFiring && collision.gameObject == lastRing)
+        {
+            Debug.Log("LastRing Detected");
+            fullyCharged = false;
+            isFiring = false;
+            playerMove.enabled = true;
+            playerMove.r = 68;
+            tiempoCastigo = 3f;
+            castigo = true;
+        }
     }
 }

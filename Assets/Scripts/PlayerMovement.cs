@@ -70,26 +70,26 @@ public class PlayerMovement : MonoBehaviour
                 r = Mathf.Round(r);
             }
         }
-        if (Input.GetAxis("LeftJoystickVertical") == 1)
+        if (Input.GetAxis("LeftJoystickHorizontal") == 1)
         {
             direccion = true;
         }
-        if (Input.GetAxis("LeftJoystickVertical") == -1)
+        if (Input.GetAxis("LeftJoystickHorizontal") == -1)
         {
             direccion = false;
         }
         Debug.Log(Input.GetButton("Fire1"));
-        if (Input.GetAxis("RightJoystickVertical")== 1 && r < 65 && !singlePulsePad && (!changeRingPos && !changeRingNeg))
+        if (Input.GetButtonDown("Right Bumper") && r < 65 /*&& !singlePulsePad*/ && (!changeRingPos && !changeRingNeg))
         {
             rDest = r + valorCrecRad;
             changeRingPos = true;
-            singlePulsePad = true;
+            //singlePulsePad = true;
         }
-        if (Input.GetAxis("RightJoystickVertical") == -1 && r > 18 && !singlePulsePad && (!changeRingPos && !changeRingNeg))
+        if (Input.GetButtonDown("Left Bumper") && r > 18 /*&& !singlePulsePad*/ && (!changeRingPos && !changeRingNeg))
         {
             rDest = r - valorCrecRad;
             changeRingNeg = true;
-            singlePulsePad = true;
+            //singlePulsePad = true;
         }
     }
 }

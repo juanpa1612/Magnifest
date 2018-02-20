@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     {
         vidasPlayer1 = 3;
         txtLifes.text = "Lifes: " + 3;
-        posB = youLost.transform.localPosition;
+        posB = youLost.transform.localPosition;       
     }
     private void Update()
     {
