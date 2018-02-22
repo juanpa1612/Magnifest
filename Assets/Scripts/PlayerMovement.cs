@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
     public float w;
-    [SerializeField]
     public float r;
     public float t;
+
     float rDest;
     bool singlePulsePad;
     bool direccion;
     bool changeRingPos;
     bool changeRingNeg;
     float timeRingChange;
+
     [SerializeField] float valorCrecRad;
 
 	void Start ()
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         r = valorCrecRad;
         w = 2;
         singlePulsePad = false;
-        direccion = true;
+        direccion = false;
         changeRingNeg = false;
         changeRingPos = false;
         rDest = 0;
@@ -34,7 +34,9 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update ()
     {
-        transform.position = new Vector3(r * Mathf.Cos(w * t), 0, r * Mathf.Sin(w * t));
+        
+        transform.position = new Vector3(Mathf.Cos(w * t), 0, Mathf.Sin(w * t)) * r;
+        Debug.Log("X = " + transform.position.x + " Z = " + transform.position.z + " t = " + t);
         if (!direccion)
         {
             t += Time.deltaTime;
@@ -70,11 +72,11 @@ public class PlayerMovement : MonoBehaviour
                 r = Mathf.Round(r);
             }
         }
-        if (Input.GetAxis("LeftJoystickHorizontal") == 1)
+        if (Input.GetAxis("LeftJoystickHorizontal") > 0.8f)
         {
             direccion = true;
         }
-        if (Input.GetAxis("LeftJoystickHorizontal") == -1)
+        if (Input.GetAxis("LeftJoystickHorizontal") < -0.8f)
         {
             direccion = false;
         }
