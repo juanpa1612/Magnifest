@@ -53,11 +53,12 @@ public class AI : MonoBehaviour {
         if (collision.CompareTag("Player")&&!choque&&(!collision.GetComponent<PlayerMovement>().enabled))
         {
             choque = true;
-            float division = Mathf.Round(collision.gameObject.GetComponent<ChargingUI>().GetChargingTime()) / 2;
+            float division = Mathf.Round(collision.gameObject.GetComponent<ChargingUI>().GetChargingTime()/2);
             if (division < 1)
             {
                 division = 1;
             }
+            Debug.Log(division * 17);
             r +=(division*17);
             transform.rotation = collision.gameObject.transform.rotation;
             if (r > 68)

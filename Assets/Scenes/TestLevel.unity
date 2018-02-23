@@ -613,7 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   t: 0
-  r: 51
+  r: 17
   w: 0
 --- !u!54 &908986797
 Rigidbody:
