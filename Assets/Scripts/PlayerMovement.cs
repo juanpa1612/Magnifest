@@ -34,7 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update ()
     {
-        
+        Debug.Log(Mathf.Atan(1.1363f) * Mathf.Rad2Deg);
+        Debug.Log(Mathf.Acos(0.5f));
         transform.position = new Vector3(Mathf.Cos(w * t), 0, Mathf.Sin(w * t)) * r;
         Debug.Log("X = " + transform.position.x + " Z = " + transform.position.z + " t = " + t);
         if (!direccion)

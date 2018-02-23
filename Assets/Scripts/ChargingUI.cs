@@ -113,17 +113,9 @@ public class ChargingUI : MonoBehaviour
             Debug.Log("Impactó en " + transform.position.x);
             playerMove.enabled = true;
             playerMove.r = 68;
-            if (transform.position.z > 0)
-                playerMove.t = (Mathf.Acos(transform.position.x / 68) * Mathf.Rad2Deg) / (2 * Mathf.Rad2Deg);
-            else if (transform.position.z < 0)
-            {
-                playerMove.t = (Mathf.Acos(transform.position.x / 68) * Mathf.Rad2Deg) / (2 * Mathf.Rad2Deg);
-                Vector3 nuevaPos = transform.position;
-                nuevaPos.z = nuevaPos.z * -1;
-                transform.position = nuevaPos;
-            }
 
-            
+            //playerMove.t = (Mathf.Acos(transform.position.x / 68) * Mathf.Rad2Deg) / (2 * Mathf.Rad2Deg);
+            playerMove.t = (Mathf.Atan2(transform.position.z, transform.position.x) / 2);
             tiempoCastigo = 3f;
             castigo = true;
         }
