@@ -54,10 +54,13 @@
      <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\randomParticleRotation.cs" />
      <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\ReverseNormals.cs" />
      <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\rotation.cs" />
+     <Compile Include="Assets\Scripts\AI.cs" />
      <Compile Include="Assets\Scripts\ChargingUI.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
-     <Compile Include="Assets\Shoot.cs" />
+     <Compile Include="Assets\Scripts\Shoot.cs" />
+     <Compile Include="Assets\Scripts\Trail System\Path.cs" />
+     <Compile Include="Assets\Scripts\Trail System\Sphere.cs" />
      <None Include="Assets\Particle Ribbon by Moonflower Carnivore\Shaders\Particle Alpha Blend HDR.shader" />
      <None Include="Assets\Particle Ribbon by Moonflower Carnivore\readme_Simple_Particle_Ribbon.txt" />
  <Reference Include="UnityEngine.UI">

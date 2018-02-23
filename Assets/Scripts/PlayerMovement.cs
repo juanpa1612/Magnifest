@@ -34,10 +34,10 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update ()
     {
-        Debug.Log(Mathf.Atan(1.1363f) * Mathf.Rad2Deg);
-        Debug.Log(Mathf.Acos(0.5f));
+        //Debug.Log(Mathf.Atan(1.1363f) * Mathf.Rad2Deg);
+        //Debug.Log(Mathf.Acos(0.5f));
         transform.position = new Vector3(Mathf.Cos(w * t), 0, Mathf.Sin(w * t)) * r;
-        Debug.Log("X = " + transform.position.x + " Z = " + transform.position.z + " t = " + t);
+        //Debug.Log("X = " + transform.position.x + " Z = " + transform.position.z + " t = " + t);
         if (!direccion)
         {
             t += Time.deltaTime;
@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         {
             direccion = false;
         }
-        Debug.Log(Input.GetButton("Fire1"));
+        //Debug.Log(Input.GetButton("Fire1"));
         if (Input.GetButtonDown("Right Bumper") && r < 65 /*&& !singlePulsePad*/ && (!changeRingPos && !changeRingNeg))
         {
             rDest = r + valorCrecRad;
@@ -95,4 +95,5 @@ public class PlayerMovement : MonoBehaviour
             //singlePulsePad = true;
         }
     }
+
 }

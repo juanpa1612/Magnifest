@@ -21,21 +21,24 @@ public class ChargingUI : MonoBehaviour
     Vector3 joystickVector;
     float tiempoCastigo;
     bool castigo;
-    float tiempoDisparo;
-    bool once;
     PlayerMovement playerMove;
     Shoot playerShoot;
 
     private void Start()
     {
-        once = false;
+        chargingTime = 0;
         castigo = false;
         joystickVector = Vector3.zero;
         tiempoCastigo = 0;
-        tiempoDisparo = 2f;
         playerMove = GetComponent<PlayerMovement>();
         playerShoot = GetComponent<Shoot>();
     }
+
+    public float GetChargingTime()
+    {
+        return Mathf.Round(chargingTime);
+    }
+
     private void Update()
     {
         if (castigo)
@@ -68,6 +71,8 @@ public class ChargingUI : MonoBehaviour
         if (charging)
         {
             transform.position = Vector3.MoveTowards(transform.position, center.transform.position, 0.5f);
+            if (chargingTime < 10)
+                chargingTime += Time.deltaTime;
         }
         //Carga Completa
         if (player.transform.position == center.transform.position)
@@ -77,7 +82,7 @@ public class ChargingUI : MonoBehaviour
             fullyCharged = true;
             chargingArrow.SetActive(true);
 
-            if (chargingTime < 5)
+            if (chargingTime < 10)
                 chargingTime += Time.deltaTime;
         }
         if (fullyCharged && !isFiring)
@@ -104,16 +109,16 @@ public class ChargingUI : MonoBehaviour
             transform.Translate(-Vector3.forward * Time.deltaTime * fireSpeed);
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (isFiring && collision.gameObject == lastRing)
         {
             fullyCharged = false;
             isFiring = false;
-            Debug.Log("Impactó en " + transform.position.x);
+            //Debug.Log("Impactó en " + transform.position.x);
             playerMove.enabled = true;
             playerMove.r = 68;
-
+            chargingTime = 0;
             //playerMove.t = (Mathf.Acos(transform.position.x / 68) * Mathf.Rad2Deg) / (2 * Mathf.Rad2Deg);
             playerMove.t = (Mathf.Atan2(transform.position.z, transform.position.x) / 2);
             tiempoCastigo = 3f;
