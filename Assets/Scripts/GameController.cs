@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -24,6 +25,10 @@ public class GameController : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+        }
         youLost.transform.localPosition = Vector3.Lerp(youLost.transform.localPosition, posB, 0.05f);
 
         if (Input.GetKeyDown(KeyCode.H))

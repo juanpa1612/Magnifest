@@ -5,8 +5,6 @@ using UnityEngine;
 public class ChargingUI : MonoBehaviour
 {
     [SerializeField]
-    GameObject player;
-    [SerializeField]
     GameObject center;
     [SerializeField]
     GameObject chargingArrow;
@@ -18,11 +16,21 @@ public class ChargingUI : MonoBehaviour
     bool charging;
     bool pressingJoystick;
     bool isFiring;
+    bool backToPos;
     Vector3 joystickVector;
+    Vector3 lastPos;
     float tiempoCastigo;
     bool castigo;
     PlayerMovement playerMove;
     Shoot playerShoot;
+
+    public bool Charging
+    {
+        get
+        {
+            return charging;
+        }
+    }
 
     private void Start()
     {
@@ -53,29 +61,38 @@ public class ChargingUI : MonoBehaviour
         {
             playerMove.enabled = false;
             charging = true;
+            lastPos = transform.position;
         }
-
+        //Dejo de Cargar
         else if (Input.GetAxis("RightTrigger") < 0.1f && charging && !fullyCharged)
         {
+            backToPos = true;
             charging = false;
-            //GetComponent<PlayerMovement>().enabled = true;
-            //GetComponent<PlayerMovement>().r = 65;
             tiempoCastigo = 3f;
             castigo = true;
             chargingArrow.SetActive(false);
-            playerShoot.enabled = true;
-            playerShoot.PasarEstadoDisparo();
-            //fullyCharged = false;
         }
-
+        
+        if (backToPos)
+        {
+            if (transform.position != lastPos)
+            {
+                transform.LookAt(lastPos);
+                transform.Translate(Vector3.forward * Time.deltaTime * fireSpeed);
+            }
+            if (Vector3.Distance(transform.position, lastPos) < 0.5f)
+            {
+                transform.position = lastPos;
+                playerMove.enabled = true;
+                backToPos = false;
+            }
+        }
         if (charging)
         {
-            transform.position = Vector3.MoveTowards(transform.position, center.transform.position, 0.5f);
-            if (chargingTime < 10)
-                chargingTime += Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, center.transform.position, 1.5f);
         }
         //Carga Completa
-        if (player.transform.position == center.transform.position)
+        if (gameObject.transform.position == center.transform.position)
         {
             transform.eulerAngles = Vector3.zero;
             charging = false;
@@ -98,7 +115,7 @@ public class ChargingUI : MonoBehaviour
                 {
                     float angulo = Mathf.Atan2(x, y) * Mathf.Rad2Deg;
                     joystickVector.y = angulo;
-                    player.transform.eulerAngles = joystickVector;
+                    gameObject.transform.eulerAngles = joystickVector;
                 }
         }
         //Lanzar
@@ -115,7 +132,6 @@ public class ChargingUI : MonoBehaviour
         {
             fullyCharged = false;
             isFiring = false;
-            //Debug.Log("Impactó en " + transform.position.x);
             playerMove.enabled = true;
             playerMove.r = 68;
             chargingTime = 0;

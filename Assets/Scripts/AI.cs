@@ -9,24 +9,41 @@ public class AI : MonoBehaviour {
     int estado;
     bool choque;
     float tiempoRecuperacion;
-	// Use this for initialization
-	void Start () {
+    private bool changeRingPos;
+    private float timeRingChange;
+    float rDest;
+
+    // Use this for initialization
+    void Start () {
         //r = 68;
         estado = 1;
         choque = false;
         tiempoRecuperacion = 2f;
+        timeRingChange = 0.5f;
+        changeRingPos = false;
 	}
 	
-	// Update is called once per frame
 	void Update () {
         if (estado == 1)
         {
             transform.position = new Vector3(Mathf.Cos(w * t), 0, Mathf.Sin(w * t)) * r;
             t += Time.deltaTime;
+            if (changeRingPos)
+            {
+                timeRingChange -= Time.deltaTime;
+                r = Mathf.Lerp(r, rDest, timeRingChange);
+                if (timeRingChange <= 0)
+                {
+                    changeRingPos = false;
+                    rDest = 0;
+                    timeRingChange = 0.5f;
+                    r = Mathf.Round(r);
+                }
+            }
         }
         else if(estado==2)
         {
-            transform.Translate(-Vector3.forward*10);
+            transform.Translate(-Vector3.forward*5);
         }
         else if (estado == 3)
         {
@@ -50,21 +67,17 @@ public class AI : MonoBehaviour {
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Player")&&!choque&&(!collision.GetComponent<PlayerMovement>().enabled))
+        if (collision.CompareTag("Player")&&!choque&&(!collision.GetComponent<PlayerMovement>().enabled) && collision.GetComponent<ChargingUI>().Charging == false)
         {
             choque = true;
-            float division = Mathf.Round(collision.gameObject.GetComponent<ChargingUI>().GetChargingTime()/2);
-            if (division < 1)
-            {
-                division = 1;
-            }
-            Debug.Log(division * 17);
-            r +=(division*17);
+            rDest += collision.gameObject.GetComponent<PlayerMovement>().r + r;
+            changeRingPos = true;
             transform.rotation = collision.gameObject.transform.rotation;
-            if (r > 68)
+            if (rDest > 68)
             {
                 estado = 2;
             }
         }
     }
+
 }
