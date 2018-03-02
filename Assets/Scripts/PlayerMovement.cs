@@ -24,9 +24,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float timeRingMax;
 
+    int vidas;
+
     void Start ()
     {
-
+        vidas = 3;
         timeRingChange = timeRingMax;
         t = 0;
         r = valorCrecRad;
@@ -38,9 +40,27 @@ public class PlayerMovement : MonoBehaviour
         rDest = 0;
         
 	}
-	
 
-	void Update ()
+    public int GetVidas()
+    {
+        return vidas;
+    }
+
+    public void RestarVidas()
+    {
+        vidas--;
+    }
+
+    public void Reset()
+    {
+        r = 17;
+        t = 0;
+        changeRingNeg = false;
+        changeRingPos = false;
+        rDest = 0;
+    }
+
+    void Update ()
     {
         transform.position = new Vector3(Mathf.Cos(w * t), 0, Mathf.Sin(w * t)) * r;
         //Collision
@@ -107,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !choque && (!collision.GetComponent<PlayerMovement2>().enabled))
         {
-            if (collision.GetComponent<ChargingUI2>().Charging == false && !collision.GetComponent<DeathScript>().enabled && !GetComponent<ChargingUI>().Charging)
+            if (collision.GetComponent<ChargingUI2>().Charging == false && !collision.GetComponent<DeathScript2>().enabled && !GetComponent<ChargingUI>().Charging)
             {
                 choque = true;
                 rDest += collision.gameObject.GetComponent<PlayerMovement2>().r;

@@ -13,6 +13,14 @@ public class GameController : MonoBehaviour
     [SerializeField]
     Vector3 posFinal;
 
+    [SerializeField]
+    Image final;
+
+    [SerializeField]
+    Text textofinal;
+
+    GameObject [] players;
+
     int vidasPlayer1;
 
     Vector3 posB;
@@ -21,7 +29,8 @@ public class GameController : MonoBehaviour
     {
         vidasPlayer1 = 3;
         txtLifes.text = "Lifes: " + 3;
-        posB = youLost.transform.localPosition;       
+        posB = youLost.transform.localPosition;
+        players = GameObject.FindGameObjectsWithTag("Player");
     }
     private void Update()
     {
@@ -33,6 +42,27 @@ public class GameController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.H))
             PlayerOut();
+
+        for(int i = 0; i<players.Length; i++)
+        {
+            if (players[i].GetComponent<PlayerMovement>() != null)
+            {
+                if (players[i].GetComponent<PlayerMovement>().GetVidas()<=0)
+                {
+                    final.gameObject.SetActive(true);
+                    textofinal.text = "Player 2 Wins!";
+                    Time.timeScale = 0;
+                }
+            }else if(players[i].GetComponent<PlayerMovement2>() != null)
+            {
+                if (players[i].GetComponent<PlayerMovement2>().GetVidas() <= 0)
+                {
+                    final.gameObject.SetActive(true);
+                    textofinal.text = "Player 1 Wins!";
+                    Time.timeScale = 0;
+                }
+            }
+        }
     }
     public void LoseLife (int playerLifes)
     {

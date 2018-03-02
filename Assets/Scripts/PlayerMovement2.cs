@@ -21,8 +21,11 @@ public class PlayerMovement2 : MonoBehaviour
     private bool choque;
     private float tiempoRecuperacion;
 
+    int vidas;
+
     void Start ()
     {
+        vidas = 3;
         timeRingChange = timeRingMax;
         t = 0;
         r = valorCrecRad;
@@ -34,6 +37,25 @@ public class PlayerMovement2 : MonoBehaviour
         rDest = 0;
         
 	}
+
+    public void Reset()
+    {
+        r = 17;
+        t = 0;
+        changeRingNeg = false;
+        changeRingPos = false;
+        rDest = 0;
+    }
+
+    public int GetVidas()
+    {
+        return vidas;
+    }
+
+    public void RestarVidas()
+    {
+        vidas--;
+    }
 	
 
 	void Update ()
@@ -102,7 +124,7 @@ public class PlayerMovement2 : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !choque && (!collision.GetComponent<PlayerMovement>().enabled))
         {
-            if (collision.GetComponent<ChargingUI>().Charging == false && !collision.GetComponent<DeathScript>().enabled && !GetComponent<ChargingUI>().Charging)
+            if (collision.GetComponent<ChargingUI>().Charging == false && !collision.GetComponent<DeathScript>().enabled && !GetComponent<ChargingUI2>().Charging)
             {
                 choque = true;
                 rDest += collision.gameObject.GetComponent<PlayerMovement>().r;
@@ -110,7 +132,7 @@ public class PlayerMovement2 : MonoBehaviour
                 transform.rotation = collision.gameObject.transform.rotation;
                 if (rDest > 68)
                 {
-                    GetComponent<DeathScript>().enabled = true;
+                    GetComponent<DeathScript2>().enabled = true;
                     GetComponent<ChargingUI2>().enabled = false;
                     this.enabled = false;
                 }
