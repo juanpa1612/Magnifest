@@ -11,7 +11,8 @@ public class ChargingUI : MonoBehaviour
     [SerializeField]
     GameObject lastRing;
     [SerializeField] float fireSpeed;
-    public bool fullyCharged;
+
+    bool fullyCharged;
     float chargingTime;
     bool charging;
     bool pressingJoystick;
@@ -20,15 +21,23 @@ public class ChargingUI : MonoBehaviour
     Vector3 joystickVector;
     Vector3 lastPos;
     float tiempoCastigo;
+    float arrowDirectX;
+    float arrowDirectY;
     bool castigo;
     PlayerMovement playerMove;
-    Shoot playerShoot;
 
     public bool Charging
     {
         get
         {
             return charging;
+        }
+    }
+    public float TiempoCastigo
+    {
+        get
+        {
+            return tiempoCastigo;
         }
     }
 
@@ -39,14 +48,34 @@ public class ChargingUI : MonoBehaviour
         joystickVector = Vector3.zero;
         tiempoCastigo = 0;
         playerMove = GetComponent<PlayerMovement>();
-        playerShoot = GetComponent<Shoot>();
+        charging = false;
+        fullyCharged = false;
     }
 
     public float GetChargingTime()
     {
         return Mathf.Round(chargingTime);
     }
-
+    public void StarCharging ()
+    {
+        if (!charging && !castigo && !isFiring)
+        {
+            playerMove.enabled = false;
+            charging = true;
+            lastPos = transform.position;
+        }
+    }
+    public void StopCharging ()
+    {
+        if (charging && !fullyCharged)
+        {
+            backToPos = true;
+            charging = false;
+            tiempoCastigo = 3f;
+            castigo = true;
+            chargingArrow.SetActive(false);
+        }
+    }
     private void Update()
     {
         if (castigo)
@@ -57,22 +86,8 @@ public class ChargingUI : MonoBehaviour
                 castigo = false;
             }
         }
-        if (Input.GetAxis("RightTrigger") > 0 && !charging &&!castigo && !isFiring)
-        {
-            playerMove.enabled = false;
-            charging = true;
-            lastPos = transform.position;
-        }
-        //Dejo de Cargar
-        else if (Input.GetAxis("RightTrigger") < 0.1f && charging && !fullyCharged)
-        {
-            backToPos = true;
-            charging = false;
-            tiempoCastigo = 3f;
-            castigo = true;
-            chargingArrow.SetActive(false);
-        }
-        
+
+        //Carga Incompleta
         if (backToPos)
         {
             if (transform.position != lastPos)
@@ -105,26 +120,31 @@ public class ChargingUI : MonoBehaviour
         if (fullyCharged && !isFiring)
         {
             //Apuntar
-            float x = Input.GetAxis("LeftJoystickHorizontal") * -1;
-            float y = Input.GetAxis("LeftJoystickVertical");
-                if (x == 0 && y == 0)
+                if (arrowDirectX == 0 && arrowDirectY == 0)
                 {
                     pressingJoystick = false;
                 }
-                if (x != 0 || y != 0)
+                if (arrowDirectX != 0 || arrowDirectY != 0)
                 {
-                    float angulo = Mathf.Atan2(x, y) * Mathf.Rad2Deg;
+                    float angulo = Mathf.Atan2(arrowDirectX, arrowDirectY) * Mathf.Rad2Deg;
                     joystickVector.y = angulo;
                     gameObject.transform.eulerAngles = joystickVector;
                 }
         }
-        //Lanzar
-        if (fullyCharged && Input.GetAxis("RightTrigger") < 0.1f)
+    }
+    public void Fire ()
+    {
+        if (fullyCharged)
         {
             isFiring = true;
             chargingArrow.SetActive(false);
             transform.Translate(-Vector3.forward * Time.deltaTime * fireSpeed);
         }
+    }
+    public void ArrowDirection (float x, float y)
+    {
+        arrowDirectX = x * -1;
+        arrowDirectY = y;
     }
     private void OnTriggerEnter(Collider collision)
     {
@@ -135,7 +155,6 @@ public class ChargingUI : MonoBehaviour
             playerMove.enabled = true;
             playerMove.r = 68;
             chargingTime = 0;
-            //playerMove.t = (Mathf.Acos(transform.position.x / 68) * Mathf.Rad2Deg) / (2 * Mathf.Rad2Deg);
             playerMove.t = (Mathf.Atan2(transform.position.z, transform.position.x) / 2);
             tiempoCastigo = 3f;
             castigo = true;

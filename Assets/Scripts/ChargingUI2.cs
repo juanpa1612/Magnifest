@@ -22,7 +22,6 @@ public class ChargingUI2 : MonoBehaviour
     float tiempoCastigo;
     bool castigo;
     PlayerMovement2 playerMove;
-    Shoot playerShoot;
 
     public bool Charging
     {

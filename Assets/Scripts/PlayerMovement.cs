@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class PlayerMovement : MonoBehaviour
 {
     public float w;
@@ -12,8 +11,7 @@ public class PlayerMovement : MonoBehaviour
     float rDest;
     bool singlePulsePad;
     bool direccion;
-    bool changeRingPos;
-    bool changeRingNeg;
+    bool changeRing;
     float timeRingChange;
 
     [SerializeField] float valorCrecRad;
@@ -35,8 +33,7 @@ public class PlayerMovement : MonoBehaviour
         w = 2;
         singlePulsePad = false;
         direccion = false;
-        changeRingNeg = false;
-        changeRingPos = false;
+        changeRing = false;
         rDest = 0;
         
 	}
@@ -55,8 +52,7 @@ public class PlayerMovement : MonoBehaviour
     {
         r = 17;
         t = 0;
-        changeRingNeg = false;
-        changeRingPos = false;
+        changeRing = false;
         rDest = 0;
     }
 
@@ -82,56 +78,50 @@ public class PlayerMovement : MonoBehaviour
             t -= Time.deltaTime;
         }
         
-        if (changeRingPos&&!changeRingNeg)
+        if (changeRing)
         {
             timeRingChange -= Time.deltaTime;
             r = Mathf.Lerp(r, rDest, timeRingChange);
             if (timeRingChange<=0)
             {
-                changeRingPos = false;
+                changeRing = false;
                 timeRingChange=timeRingMax;
                 r=Mathf.Round(r);
             }
         }
-        if (!changeRingPos && changeRingNeg)
-        {
-            timeRingChange -= Time.deltaTime;
-            r = Mathf.Lerp(r, rDest, timeRingChange);
-            if (timeRingChange <= 0)
-            {
-                changeRingNeg = false;
-                timeRingChange = timeRingMax;
-                r = Mathf.Round(r);
-            }
-        }
-        if (Input.GetAxis("LeftJoystickHorizontal") > 0.8f)
-        {
-            direccion = true;
-        }
-        if (Input.GetAxis("LeftJoystickHorizontal") < -0.8f)
-        {
-            direccion = false;
-        }
-        if (Input.GetButtonDown("Right Bumper") && r < 65 && (!changeRingPos && !changeRingNeg))
+        
+       
+    }
+    public void ChangeRing (bool addOrSub)
+    {
+        if (addOrSub && r < 65 && !changeRing)
         {
             rDest = r + valorCrecRad;
-            changeRingPos = true;
+            changeRing = true;
         }
-        if (Input.GetButtonDown("Left Bumper") && r > 18  && (!changeRingPos && !changeRingNeg))
+        if (!addOrSub && r > 18 && !changeRing)
         {
             rDest = r - valorCrecRad;
-            changeRingNeg = true;
+            changeRing = true;
         }
+    }
+    public void ChangeDirection (bool right)
+    {
+        if (right)
+            direccion = true;
+        else
+            direccion = false;
     }
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Player") && !choque && (!collision.GetComponent<PlayerMovement2>().enabled))
+        if (collision.CompareTag("Player") && !choque && (!collision.GetComponent<PlayerMovement>().enabled))
         {
-            if (collision.GetComponent<ChargingUI2>().Charging == false && !collision.GetComponent<DeathScript2>().enabled && !GetComponent<ChargingUI>().Charging)
+            if (collision.GetComponent<ChargingUI>().Charging == false && !collision.GetComponent<DeathScript>().enabled && !GetComponent<ChargingUI>().Charging)
             {
+                Debug.Log("Me Chocaron");
                 choque = true;
-                rDest += collision.gameObject.GetComponent<PlayerMovement2>().r;
-                changeRingPos = true;
+                rDest += collision.gameObject.GetComponent<PlayerMovement>().r;
+                changeRing = true;
                 transform.rotation = collision.gameObject.transform.rotation;
                 if (rDest > 68)
                 {

@@ -15,10 +15,12 @@ public class DeathScript : MonoBehaviour
 
     void Update ()
     {
+        //Salir del Ring
         if (estado == 2)
         {
             transform.Translate(-Vector3.forward * 5);
         }
+        //Situar Player
         else if (estado == 3)
         {
             transform.position = new Vector3(1000, 1000, 1000);

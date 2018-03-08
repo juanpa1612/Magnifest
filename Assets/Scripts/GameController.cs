@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(0);
         }
         youLost.transform.localPosition = Vector3.Lerp(youLost.transform.localPosition, posB, 0.05f);
@@ -53,7 +54,8 @@ public class GameController : MonoBehaviour
                     textofinal.text = "Player 2 Wins!";
                     Time.timeScale = 0;
                 }
-            }else if(players[i].GetComponent<PlayerMovement2>() != null)
+            }
+            else if(players[i].GetComponent<PlayerMovement2>() != null)
             {
                 if (players[i].GetComponent<PlayerMovement2>().GetVidas() <= 0)
                 {
