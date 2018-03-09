@@ -230,7 +230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {fileID: 1616263849}
   chargingArrow: {fileID: 1612624685}
-  lastRing: {fileID: 1744330390}
   fireSpeed: 90
 --- !u!114 &37763064
 MonoBehaviour:
@@ -243,10 +242,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce91935b445d39c47b3226f03e402155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  w: 0
-  r: 17
-  t: 0
-  valorCrecRad: 17
+  angularVelocity: 0
+  radius: 0
+  time: 0
+  valueIncRad: 0
   timeRingMax: 0.5
 --- !u!54 &37763065
 Rigidbody:
@@ -19084,7 +19083,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1406752088
+  randomSeed: -159361160
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -22479,10 +22478,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce91935b445d39c47b3226f03e402155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  w: 0
-  r: 0
-  t: 0
-  valorCrecRad: 17
+  angularVelocity: 0
+  radius: 0
+  time: 0
+  valueIncRad: 0
   timeRingMax: 0.5
 --- !u!114 &1143071221
 MonoBehaviour:
@@ -22497,7 +22496,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {fileID: 1616263849}
   chargingArrow: {fileID: 117897983}
-  lastRing: {fileID: 1744330390}
   fireSpeed: 90
 --- !u!114 &1143071222
 MonoBehaviour:
@@ -36981,7 +36979,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {fileID: 1616263849}
   chargingArrow: {fileID: 1103907487}
-  lastRing: {fileID: 1744330390}
   fireSpeed: 90
 --- !u!114 &1682011411
 MonoBehaviour:
@@ -36994,10 +36991,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce91935b445d39c47b3226f03e402155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  w: 2
-  r: 17
-  t: 0
-  valorCrecRad: 17
+  angularVelocity: 0
+  radius: 0
+  time: 0
+  valueIncRad: 0
   timeRingMax: 0.5
 --- !u!135 &1682011412
 SphereCollider:
@@ -37157,7 +37154,7 @@ GameObject:
   - component: {fileID: 1744330394}
   m_Layer: 0
   m_Name: Ring4 (1)
-  m_TagString: Untagged
+  m_TagString: LastRing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

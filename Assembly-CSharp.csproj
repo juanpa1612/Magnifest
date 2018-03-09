@@ -63,7 +63,8 @@
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement2.cs" />
-     <Compile Include="Assets\Scripts\Shoot.cs" />
+     <Compile Include="Assets\Scripts\Players.cs" />
+     <Compile Include="Assets\Scripts\PlayersUI.cs" />
      <Compile Include="Assets\Scripts\Trail System\Path.cs" />
      <Compile Include="Assets\Scripts\Trail System\Sphere.cs" />
      <Compile Include="Assets\Shaders&amp;Particles\Cheider.cs" />

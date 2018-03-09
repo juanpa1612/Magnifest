@@ -70,7 +70,7 @@ public class AI : MonoBehaviour {
         if (collision.CompareTag("Player")&&!choque&&(!collision.GetComponent<PlayerMovement>().enabled) && collision.GetComponent<ChargingUI>().Charging == false)
         {
             choque = true;
-            rDest += collision.gameObject.GetComponent<PlayerMovement>().r + r;
+            rDest += collision.gameObject.GetComponent<PlayerMovement>().radius + r;
             changeRingPos = true;
             transform.rotation = collision.gameObject.transform.rotation;
             if (rDest > 68)

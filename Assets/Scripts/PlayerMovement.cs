@@ -1,92 +1,89 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
-    public float w;
-    public float r;
-    public float t;
+    public float angularVelocity;
+    public float radius;
+    public float time;
 
-    float rDest;
+    float radiusDestiny;
     bool singlePulsePad;
-    bool direccion;
+    bool direction;
     bool changeRing;
     float timeRingChange;
 
-    [SerializeField] float valorCrecRad;
+    [SerializeField] float valueIncRad;
     
-    private bool choque;
-    private float tiempoRecuperacion;
+    private bool collided;
+    private float recoveryTime;
 
     [SerializeField]
     float timeRingMax;
 
-    int vidas;
+    int lives;
 
     void Start ()
     {
-        vidas = 3;
+        lives = 3;
         timeRingChange = timeRingMax;
-        t = 0;
-        r = valorCrecRad;
-        w = 2;
+        time = 0;
+        radius = valueIncRad;
+        angularVelocity = 2;
         singlePulsePad = false;
-        direccion = false;
+        direction = false;
         changeRing = false;
-        rDest = 0;
+        radiusDestiny = 0;
         
 	}
 
-    public int GetVidas()
+    public int GetLives()
     {
-        return vidas;
+        return lives;
     }
 
-    public void RestarVidas()
+    public void subLives()
     {
-        vidas--;
+        lives--;
     }
 
     public void Reset()
     {
-        r = 17;
-        t = 0;
+        radius = 17;
+        time = 0;
         changeRing = false;
-        rDest = 0;
+        radiusDestiny = 0;
     }
 
     void Update ()
     {
-        transform.position = new Vector3(Mathf.Cos(w * t), 0, Mathf.Sin(w * t)) * r;
+        transform.position = new Vector3(Mathf.Cos(angularVelocity * time), 0, Mathf.Sin(angularVelocity * time)) * radius;
         //Collision
-        if (choque)
+        if (collided)
         {
-            tiempoRecuperacion -= Time.deltaTime;
-            if (tiempoRecuperacion <= 0)
+            recoveryTime -= Time.deltaTime;
+            if (recoveryTime <= 0)
             {
-                choque = false;
-                tiempoRecuperacion = 2f;
+                collided = false;
+                recoveryTime = 2f;
             }
         }
-        if (!direccion)
+        if (!direction)
         {
-            t += Time.deltaTime;
+            time += Time.deltaTime;
         }
         else
         {
-            t -= Time.deltaTime;
+            time -= Time.deltaTime;
         }
         
         if (changeRing)
         {
             timeRingChange -= Time.deltaTime;
-            r = Mathf.Lerp(r, rDest, timeRingChange);
+            radius = Mathf.Lerp(radius, radiusDestiny, timeRingChange);
             if (timeRingChange<=0)
             {
                 changeRing = false;
                 timeRingChange=timeRingMax;
-                r=Mathf.Round(r);
+                radius=Mathf.Round(radius);
             }
         }
         
@@ -94,36 +91,36 @@ public class PlayerMovement : MonoBehaviour
     }
     public void ChangeRing (bool addOrSub)
     {
-        if (addOrSub && r < 65 && !changeRing)
+        if (addOrSub && radius < 65 && !changeRing)
         {
-            rDest = r + valorCrecRad;
+            radiusDestiny = radius + valueIncRad;
             changeRing = true;
         }
-        if (!addOrSub && r > 18 && !changeRing)
+        if (!addOrSub && radius > 18 && !changeRing)
         {
-            rDest = r - valorCrecRad;
+            radiusDestiny = radius - valueIncRad;
             changeRing = true;
         }
     }
     public void ChangeDirection (bool right)
     {
         if (right)
-            direccion = true;
+            direction = true;
         else
-            direccion = false;
+            direction = false;
     }
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Player") && !choque && (!collision.GetComponent<PlayerMovement>().enabled))
+        if (collision.CompareTag("Player") && !collided && (!collision.GetComponent<PlayerMovement>().enabled))
         {
             if (collision.GetComponent<ChargingUI>().Charging == false && !collision.GetComponent<DeathScript>().enabled && !GetComponent<ChargingUI>().Charging)
             {
                 Debug.Log("Me Chocaron");
-                choque = true;
-                rDest += collision.gameObject.GetComponent<PlayerMovement>().r;
+                collided = true;
+                radiusDestiny += collision.gameObject.GetComponent<PlayerMovement>().radius;
                 changeRing = true;
                 transform.rotation = collision.gameObject.transform.rotation;
-                if (rDest > 68)
+                if (radiusDestiny > 68)
                 {
                     GetComponent<DeathScript>().enabled = true;
                     GetComponent<ChargingUI>().enabled = false;

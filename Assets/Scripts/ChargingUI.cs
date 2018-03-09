@@ -8,8 +8,6 @@ public class ChargingUI : MonoBehaviour
     GameObject center;
     [SerializeField]
     GameObject chargingArrow;
-    [SerializeField]
-    GameObject lastRing;
     [SerializeField] float fireSpeed;
 
     bool fullyCharged;
@@ -148,14 +146,14 @@ public class ChargingUI : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {
-        if (isFiring && collision.gameObject == lastRing)
+        if (isFiring && collision.gameObject.CompareTag("LastRing"))
         {
             fullyCharged = false;
             isFiring = false;
             playerMove.enabled = true;
-            playerMove.r = 68;
+            playerMove.radius = 68;
             chargingTime = 0;
-            playerMove.t = (Mathf.Atan2(transform.position.z, transform.position.x) / 2);
+            playerMove.time = (Mathf.Atan2(transform.position.z, transform.position.x) / 2);
             tiempoCastigo = 3f;
             castigo = true;
         }

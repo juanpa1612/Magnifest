@@ -127,7 +127,7 @@ public class PlayerMovement2 : MonoBehaviour
             if (collision.GetComponent<ChargingUI>().Charging == false && !collision.GetComponent<DeathScript>().enabled && !GetComponent<ChargingUI2>().Charging)
             {
                 choque = true;
-                rDest += collision.gameObject.GetComponent<PlayerMovement>().r;
+                rDest += collision.gameObject.GetComponent<PlayerMovement>().radius;
                 changeRingPos = true;
                 transform.rotation = collision.gameObject.transform.rotation;
                 if (rDest > 68)

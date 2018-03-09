@@ -48,16 +48,16 @@ public class GameController : MonoBehaviour
         {
             if (players[i].GetComponent<PlayerMovement>() != null)
             {
-                if (players[i].GetComponent<PlayerMovement>().GetVidas()<=0)
+                if (players[i].GetComponent<PlayerMovement>().GetLives()<=0)
                 {
                     final.gameObject.SetActive(true);
                     textofinal.text = "Player 2 Wins!";
                     Time.timeScale = 0;
                 }
             }
-            else if(players[i].GetComponent<PlayerMovement2>() != null)
+            else if(players[i].GetComponent<PlayerMovement>() != null)
             {
-                if (players[i].GetComponent<PlayerMovement2>().GetVidas() <= 0)
+                if (players[i].GetComponent<PlayerMovement>().GetLives() <= 0)
                 {
                     final.gameObject.SetActive(true);
                     textofinal.text = "Player 1 Wins!";
