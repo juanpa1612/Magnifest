@@ -49,8 +49,8 @@ Shader "Custom/MovTex" {
 		void surf(Input IN, inout SurfaceOutputStandard o) {
 		float2 UVmov = IN.uv_MovTex;
 		float2 UVnormal = IN.uv_BumpMap;
-		float xdis = sin(_VelAng1*_Time.y)*_Lambda1;
-		float ydis = sin(_VelAng2*_Time.y)*_Lambda2;
+		float xdis = _VelAng1*_Time.y*_Lambda1;
+		float ydis = _VelAng2*_Time.y*_Lambda2;
 		UVmov += float2(xdis, ydis);
 		UVnormal += float2(xdis, ydis);
 
