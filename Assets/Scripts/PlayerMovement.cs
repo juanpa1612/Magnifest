@@ -6,10 +6,11 @@ public class PlayerMovement : MonoBehaviour
     public float time;
 
     float radiusDestiny;
+    float radiusOrigin;
     bool singlePulsePad;
     bool direction;
     bool changeRing;
-    float timeRingChange;
+    float percentageRingChange;
 
     [SerializeField] float valueIncRad;
     
@@ -21,12 +22,17 @@ public class PlayerMovement : MonoBehaviour
 
     int lives;
 
+    float startTime;
+    float timeOnTransition;
+
     void Start ()
     {
+        timeOnTransition = 0;
+        percentageRingChange = 0;
         lives = 3;
-        timeRingChange = timeRingMax;
+        percentageRingChange = timeRingMax;
         time = 0;
-        radius = valueIncRad;
+        //radius = valueIncRad;
         angularVelocity = 2;
         singlePulsePad = false;
         direction = false;
@@ -77,12 +83,14 @@ public class PlayerMovement : MonoBehaviour
         
         if (changeRing)
         {
-            timeRingChange -= Time.deltaTime;
-            radius = Mathf.Lerp(radius, radiusDestiny, timeRingChange);
-            if (timeRingChange<=0)
+            timeOnTransition = Time.time - startTime;
+            percentageRingChange = timeOnTransition / timeRingMax; 
+            radius = Mathf.Lerp(radiusOrigin, radiusDestiny, percentageRingChange);
+            if (timeOnTransition>=timeRingMax)
             {
                 changeRing = false;
-                timeRingChange=timeRingMax;
+                percentageRingChange=0;
+                timeOnTransition = 0;
                 radius=Mathf.Round(radius);
             }
         }
@@ -94,11 +102,15 @@ public class PlayerMovement : MonoBehaviour
         if (addOrSub && radius < 65 && !changeRing)
         {
             radiusDestiny = radius + valueIncRad;
+            radiusOrigin = radius;
+            startTime = Time.time;
             changeRing = true;
         }
         if (!addOrSub && radius > 18 && !changeRing)
         {
             radiusDestiny = radius - valueIncRad;
+            radiusOrigin = radius;
+            startTime = Time.time;
             changeRing = true;
         }
     }
@@ -118,6 +130,8 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("Me Chocaron");
                 collided = true;
                 radiusDestiny += collision.gameObject.GetComponent<PlayerMovement>().radius;
+                radiusOrigin = radius;
+                startTime = Time.time;
                 changeRing = true;
                 transform.rotation = collision.gameObject.transform.rotation;
                 if (radiusDestiny > 68)

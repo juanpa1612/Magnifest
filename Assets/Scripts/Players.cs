@@ -101,6 +101,76 @@ public class Players : MonoBehaviour
                 chargingUI.ArrowDirection(Input.GetAxis("LeftJoystick2Horizontal"), Input.GetAxis("LeftJoystick2Vertical"));
                 #endregion
                 break;
+
+            case PlayerNumber.Player3:
+                #region Inputs Player3
+                if (Input.GetAxis("LeftJoystick3Horizontal") > 0.8f)
+                {
+                    playerMove.ChangeDirection(true);
+                }
+                if (Input.GetAxis("LeftJoystick3Horizontal") < -0.8f)
+                {
+                    playerMove.ChangeDirection(false);
+                }
+                if (Input.GetButtonDown("Right Bumper 3"))
+                {
+                    playerMove.ChangeRing(true);
+                }
+                if (Input.GetButtonDown("Left Bumper 3"))
+                {
+                    playerMove.ChangeRing(false);
+                }
+                //Charging UI
+                if (Input.GetAxis("RightTrigger3") > 0)
+                {
+                    chargingUI.StarCharging();
+                }
+                else if (Input.GetAxis("RightTrigger3") < 0.1f)
+                {
+                    chargingUI.StopCharging();
+                }
+                if (Input.GetAxis("RightTrigger3") < 0.1f)
+                {
+                    chargingUI.Fire();
+                }
+                chargingUI.ArrowDirection(Input.GetAxis("LeftJoystick3Horizontal"), Input.GetAxis("LeftJoystick3Vertical"));
+                #endregion
+                break;
+
+            case PlayerNumber.Player4:
+                #region Inputs Player4
+                if (Input.GetAxis("LeftJoystick4Horizontal") > 0.8f)
+                {
+                    playerMove.ChangeDirection(true);
+                }
+                if (Input.GetAxis("LeftJoystick4Horizontal") < -0.8f)
+                {
+                    playerMove.ChangeDirection(false);
+                }
+                if (Input.GetButtonDown("Right Bumper 4"))
+                {
+                    playerMove.ChangeRing(true);
+                }
+                if (Input.GetButtonDown("Left Bumper 4"))
+                {
+                    playerMove.ChangeRing(false);
+                }
+                //Charging UI
+                if (Input.GetAxis("RightTrigger4") > 0)
+                {
+                    chargingUI.StarCharging();
+                }
+                else if (Input.GetAxis("RightTrigger4") < 0.1f)
+                {
+                    chargingUI.StopCharging();
+                }
+                if (Input.GetAxis("RightTrigger4") < 0.1f)
+                {
+                    chargingUI.Fire();
+                }
+                chargingUI.ArrowDirection(Input.GetAxis("LeftJoystick4Horizontal"), Input.GetAxis("LeftJoystick4Vertical"));
+                #endregion
+                break;
         }
         
     }
