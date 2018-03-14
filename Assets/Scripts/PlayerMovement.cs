@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     float startTime;
     float timeOnTransition;
+    ChargingUI chargingUI;
 
     void Start ()
     {
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         direction = false;
         changeRing = false;
         radiusDestiny = 0;
-        
+        chargingUI = GetComponent<ChargingUI>();
 	}
 
     public int GetLives()
@@ -57,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         time = 0;
         changeRing = false;
         radiusDestiny = 0;
+        chargingUI.enabled = true;
     }
 
     void Update ()
@@ -125,7 +127,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !collided && (!collision.GetComponent<PlayerMovement>().enabled))
         {
-            if (collision.GetComponent<ChargingUI>().Charging == false && !collision.GetComponent<DeathScript>().enabled && !GetComponent<ChargingUI>().Charging)
+            if (collision.GetComponent<ChargingUI>().Charging == false && !collision.GetComponent<DeathScript>().enabled 
+                && !chargingUI.Charging)
             {
                 Debug.Log("Me Chocaron");
                 collided = true;
@@ -137,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
                 if (radiusDestiny > 68)
                 {
                     GetComponent<DeathScript>().enabled = true;
-                    GetComponent<ChargingUI>().enabled = false;
+                    chargingUI.enabled = false;
                     this.enabled = false;
                 }
             }

@@ -48,4 +48,8 @@ public class Path : MonoBehaviour
                 Handles.DrawDottedLine(nodes[i].position, nodes[0].position, 3.0f);
         }
     }
+    public static string GetFileName (string path)
+    {
+        return path;
+    }
 }
