@@ -12,7 +12,7 @@ public class Players : MonoBehaviour
     DeathScript deathScript;
     public enum PlayerNumber
     {
-        player1,
+        Player1,
         Player2,
         Player3,
         Player4
@@ -32,7 +32,7 @@ public class Players : MonoBehaviour
         {
             default:
                 break;
-            case PlayerNumber.player1:
+            case PlayerNumber.Player1:
                 #region Inputs PLayer1
                 if (Input.GetAxis("LeftJoystickHorizontal") > 0.8f)
                 {

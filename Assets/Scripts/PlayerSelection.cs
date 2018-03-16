@@ -12,6 +12,7 @@ public class PlayerSelection : MonoBehaviour
 
     bool[] skinPreview;
     bool singlePulse1, singlePulse2;
+    bool player1Ready, player2Ready;
     public int arrowPos1, arrowPos2;
     Vector3 offset;
 
@@ -28,7 +29,6 @@ public class PlayerSelection : MonoBehaviour
         arrow2.transform.position = players[arrowPos2].transform.position + offset;
     }
 	
-
 	void Update ()
     {
         bool add;
@@ -81,7 +81,53 @@ public class PlayerSelection : MonoBehaviour
         if (Input.GetAxis("LeftJoystick2Horizontal") == 0)
             singlePulse2 = false;
         #endregion
+        if (Input.GetButtonDown("AButton1"))
+            Player1Ready();
+        if (Input.GetButtonDown("AButton2"))
+            Player2Ready();
+    }
 
+    void Player1Ready ()
+    {
+        player1Ready = true;
+        switch (arrowPos1)
+        {
+            default:
+                break;
+            case 0:
+                players[0].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player1;
+                break;
+            case 1:
+                players[1].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player1;
+                break;
+            case 2:
+                players[2].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player1;
+                break;
+            case 3:
+                players[3].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player1;
+                break;
+        }
+    }
+    void Player2Ready ()
+    {
+        player2Ready = true;
+        switch (arrowPos2)
+        {
+            default:
+                break;
+            case 0:
+                players[0].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player2;
+                break;
+            case 1:
+                players[1].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player2;
+                break;
+            case 2:
+                players[2].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player2;
+                break;
+            case 3:
+                players[3].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player2;
+                break;
+        }
     }
     public void ChangeSelection (bool add)
     {
