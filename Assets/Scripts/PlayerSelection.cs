@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerSelection : MonoBehaviour
 {
@@ -9,10 +10,11 @@ public class PlayerSelection : MonoBehaviour
     GameObject[] players;
     [SerializeField]
     GameObject arrow1, arrow2;
-
+    [SerializeField]
+    ScriptablePlayer player1, player2, player3, player4;
     bool[] skinPreview;
     bool singlePulse1, singlePulse2;
-    bool player1Ready, player2Ready;
+    public bool player1Ready, player2Ready;
     public int arrowPos1, arrowPos2;
     Vector3 offset;
 
@@ -22,7 +24,7 @@ public class PlayerSelection : MonoBehaviour
         {
             DontDestroyOnLoad(players[i]);
         }
-        offset = new Vector3(0, 10, 0);
+        offset = new Vector3(0, -6, 0);
         arrowPos1 = 0;
         arrowPos2 = 1;
         arrow1.transform.position = players[arrowPos1].transform.position + offset;
@@ -33,10 +35,15 @@ public class PlayerSelection : MonoBehaviour
     {
         bool add;
         bool add2;
+        Debug.Log("A 1" + Input.GetButtonDown("AButton1"));
+        Debug.Log("A 2" + Input.GetButtonDown("AButton2"));
+        Debug.Log("B 1" + Input.GetButtonDown("BButton1"));
+        Debug.Log("B 2" + Input.GetButtonDown("BButton1"));
+
         #region Joystick_1
         if (arrowPos1 >=0 && arrowPos1 <3)
         {
-            if (Input.GetAxis("LeftJoystickHorizontal") >= 0.8 && !singlePulse1)
+            if (Input.GetAxis("LeftJoystickHorizontal") >= 0.8 && !singlePulse1 && !player1Ready)
             {
                 arrowPos1++;
                 singlePulse1 = true;
@@ -46,7 +53,7 @@ public class PlayerSelection : MonoBehaviour
         }
         if (arrowPos1 >0 && arrowPos1 <=3)
         {
-            if (Input.GetAxis("LeftJoystickHorizontal") <= -0.8 && !singlePulse1)
+            if (Input.GetAxis("LeftJoystickHorizontal") <= -0.8 && !singlePulse1 && !player1Ready)
             {
                 arrowPos1--;
                 singlePulse1 = true;
@@ -54,13 +61,13 @@ public class PlayerSelection : MonoBehaviour
                 ChangeSelection(add);
             }
         }
-        if (Input.GetAxis("LeftJoystickHorizontal") == 0)
+        if (Input.GetAxis("LeftJoystickHorizontal") <= 0.7f && Input.GetAxis("LeftJoystickHorizontal") >= -0.7f)
             singlePulse1 = false;
         #endregion
         #region Joystick_2
         if (arrowPos2 >= 0 && arrowPos2 < 3)
         {
-            if (Input.GetAxis("LeftJoystick2Horizontal") >= 0.8 && !singlePulse2)
+            if (Input.GetAxis("LeftJoystick2Horizontal") >= 0.8 && !singlePulse2 && !player2Ready)
             {
                 arrowPos2++;
                 singlePulse2 = true;
@@ -70,7 +77,7 @@ public class PlayerSelection : MonoBehaviour
         }
         if (arrowPos2 > 0 && arrowPos2 <= 3)
         {
-            if (Input.GetAxis("LeftJoystick2Horizontal") <= -0.8 && !singlePulse2)
+            if (Input.GetAxis("LeftJoystick2Horizontal") <= -0.8 && !singlePulse2 && !player2Ready)
             {
                 arrowPos2--;
                 singlePulse2 = true;
@@ -78,56 +85,72 @@ public class PlayerSelection : MonoBehaviour
                 ChangeSelection2(add2);
             }
         }
-        if (Input.GetAxis("LeftJoystick2Horizontal") == 0)
+        if (Input.GetAxis("LeftJoystick2Horizontal") <= 0.7f && Input.GetAxis("LeftJoystick2Horizontal") >= -0.7f)
             singlePulse2 = false;
+
         #endregion
+
         if (Input.GetButtonDown("AButton1"))
             Player1Ready();
         if (Input.GetButtonDown("AButton2"))
             Player2Ready();
+
+        if (Input.GetButtonDown("BButton1"))
+            player1Ready = false;
+        if (Input.GetButtonDown("BButton2"))
+            player2Ready = false;
+
+        if (player1Ready && player2Ready)
+        {
+            SceneManager.LoadScene("TestLevel");
+        }
     }
 
     void Player1Ready ()
     {
+        /*
         player1Ready = true;
         switch (arrowPos1)
         {
             default:
                 break;
             case 0:
-                players[0].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player1;
+                player1.player.playerNumber;
                 break;
             case 1:
-                players[1].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player1;
+                player1.inGameNumber = ScriptablePlayer.InGameNumber.Player2;
                 break;
             case 2:
-                players[2].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player1;
+                player1.inGameNumber = ScriptablePlayer.InGameNumber.Player3;
                 break;
             case 3:
-                players[3].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player1;
+                player1.inGameNumber = ScriptablePlayer.InGameNumber.Player4;
                 break;
         }
+       */
     }
     void Player2Ready ()
     {
+        /*
         player2Ready = true;
         switch (arrowPos2)
         {
             default:
                 break;
             case 0:
-                players[0].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player2;
+                player2.inGameNumber = ScriptablePlayer.InGameNumber.Player1;
                 break;
             case 1:
-                players[1].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player2;
+                player2.inGameNumber = ScriptablePlayer.InGameNumber.Player2;
                 break;
             case 2:
-                players[2].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player2;
+                player2.inGameNumber = ScriptablePlayer.InGameNumber.Player3;
                 break;
             case 3:
-                players[3].GetComponent<Players>().playerNumber = Players.PlayerNumber.Player2;
+                player2.inGameNumber = ScriptablePlayer.InGameNumber.Player4;
                 break;
         }
+        */
     }
     public void ChangeSelection (bool add)
     {
@@ -135,15 +158,32 @@ public class PlayerSelection : MonoBehaviour
         if (arrowPos2 != arrowPos1)
             arrow1.transform.position = players[arrowPos1].transform.position + offset;
         //Si Está ocupado
-        else if (arrowPos2 == arrowPos1 && add && arrowPos1 <2)
+        else if (arrowPos2 == arrowPos1 && add)
         {
-            arrowPos1++;
-            arrow1.transform.position = players[arrowPos1].transform.position + offset;
+            if (arrowPos2 == 3)
+            {
+                arrowPos1 = 0;
+                arrow1.transform.position = players[arrowPos1].transform.position + offset;
+            }
+            else
+            {
+                arrowPos1++;
+                arrow1.transform.position = players[arrowPos1].transform.position + offset;
+            }
+
         }
-        else if (arrowPos2 == arrowPos1 && !add && arrowPos1 >0)
+        else if (arrowPos2 == arrowPos1 && !add)
         {
-            arrowPos1--;
-            arrow1.transform.position = players[arrowPos1].transform.position + offset;
+            if (arrowPos2 == 0)
+            {
+                arrowPos1 = 3;
+                arrow1.transform.position = players[arrowPos1].transform.position + offset;
+            }
+            else
+            {
+                arrowPos1--;
+                arrow1.transform.position = players[arrowPos1].transform.position + offset;
+            }
         }
     }
     public void ChangeSelection2 (bool add)
@@ -152,15 +192,32 @@ public class PlayerSelection : MonoBehaviour
         if (arrowPos1 != arrowPos2)
             arrow2.transform.position = players[arrowPos2].transform.position + offset;
         //Si Está ocupado
-        else if (arrowPos1 == arrowPos2 && add && arrowPos2 < 2)
+        else if (arrowPos2 == arrowPos1 && add)
         {
-            arrowPos2++;
-            arrow2.transform.position = players[arrowPos2].transform.position + offset;
+            if (arrowPos1 == 3)
+            {
+                arrowPos2 = 0;
+                arrow2.transform.position = players[arrowPos2].transform.position + offset;
+            }
+            else
+            {
+                arrowPos2++;
+                arrow2.transform.position = players[arrowPos2].transform.position + offset;
+            }
+
         }
-        else if (arrowPos1 == arrowPos2 && !add && arrowPos2 > 0)
+        else if (arrowPos2 == arrowPos1 && !add)
         {
-            arrowPos2--;
-            arrow2.transform.position = players[arrowPos2].transform.position + offset;
+            if (arrowPos1 == 0)
+            {
+                arrowPos2 = 3;
+                arrow2.transform.position = players[arrowPos2].transform.position + offset;
+            }
+            else
+            {
+                arrowPos2--;
+                arrow2.transform.position = players[arrowPos2].transform.position + offset;
+            }
         }
     }
 }

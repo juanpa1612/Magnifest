@@ -10,6 +10,7 @@ public class Players : MonoBehaviour
     PlayerMovement playerMove;
     ChargingUI chargingUI;
     DeathScript deathScript;
+
     public enum PlayerNumber
     {
         Player1,
@@ -18,7 +19,6 @@ public class Players : MonoBehaviour
         Player4
     }
     public PlayerNumber playerNumber;
-
 	void Start ()
     {
         playerMove = GetComponent<PlayerMovement>();
@@ -53,7 +53,7 @@ public class Players : MonoBehaviour
                 //Charging UI
                 if (Input.GetAxis("RightTrigger") > 0)
                 {
-                    chargingUI.StarCharging();
+                    chargingUI.StartCharging();
                 }
                 else if (Input.GetAxis("RightTrigger") < 0.1f)
                 {
@@ -88,7 +88,7 @@ public class Players : MonoBehaviour
                 //Charging UI
                 if (Input.GetAxis("RightTrigger2") > 0)
                 {
-                    chargingUI.StarCharging();
+                    chargingUI.StartCharging();
                 }
                 else if (Input.GetAxis("RightTrigger2") < 0.1f)
                 {
@@ -123,7 +123,7 @@ public class Players : MonoBehaviour
                 //Charging UI
                 if (Input.GetAxis("RightTrigger3") > 0)
                 {
-                    chargingUI.StarCharging();
+                    chargingUI.StartCharging();
                 }
                 else if (Input.GetAxis("RightTrigger3") < 0.1f)
                 {
@@ -158,7 +158,7 @@ public class Players : MonoBehaviour
                 //Charging UI
                 if (Input.GetAxis("RightTrigger4") > 0)
                 {
-                    chargingUI.StarCharging();
+                    chargingUI.StartCharging();
                 }
                 else if (Input.GetAxis("RightTrigger4") < 0.1f)
                 {

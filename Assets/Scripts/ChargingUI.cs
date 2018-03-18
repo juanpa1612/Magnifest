@@ -18,10 +18,10 @@ public class ChargingUI : MonoBehaviour
     bool backToPos;
     Vector3 joystickVector;
     Vector3 lastPos;
-    float tiempoCastigo;
+    float penaltyTime;
     float arrowDirectX;
     float arrowDirectY;
-    bool castigo;
+    bool penalized;
     PlayerMovement playerMove;
 
     public bool Charging
@@ -35,16 +35,16 @@ public class ChargingUI : MonoBehaviour
     {
         get
         {
-            return tiempoCastigo;
+            return penaltyTime;
         }
     }
 
     private void Start()
     {
         chargingTime = 0;
-        castigo = false;
+        penalized = false;
         joystickVector = Vector3.zero;
-        tiempoCastigo = 0;
+        penaltyTime = 0;
         playerMove = GetComponent<PlayerMovement>();
         charging = false;
         fullyCharged = false;
@@ -54,9 +54,9 @@ public class ChargingUI : MonoBehaviour
     {
         return Mathf.Round(chargingTime);
     }
-    public void StarCharging ()
+    public void StartCharging ()
     {
-        if (!charging && !castigo && !isFiring)
+        if (!charging && !penalized && !isFiring)
         {
             playerMove.enabled = false;
             charging = true;
@@ -69,19 +69,19 @@ public class ChargingUI : MonoBehaviour
         {
             backToPos = true;
             charging = false;
-            tiempoCastigo = 3f;
-            castigo = true;
+            penaltyTime = 3f;
+            penalized = true;
             chargingArrow.SetActive(false);
         }
     }
     private void Update()
     {
-        if (castigo)
+        if (penalized)
         {
-            tiempoCastigo -= Time.deltaTime;
-            if (tiempoCastigo <= 0)
+            penaltyTime -= Time.deltaTime;
+            if (penaltyTime <= 0)
             {
-                castigo = false;
+                penalized = false;
             }
         }
 
@@ -154,8 +154,8 @@ public class ChargingUI : MonoBehaviour
             playerMove.radius = 68;
             chargingTime = 0;
             playerMove.time = (Mathf.Atan2(transform.position.z, transform.position.x) / 2);
-            tiempoCastigo = 3f;
-            castigo = true;
+            penaltyTime = 3f;
+            penalized = true;
         }
     }
 }

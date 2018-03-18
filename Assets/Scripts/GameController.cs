@@ -9,27 +9,24 @@ public class GameController : MonoBehaviour
     [SerializeField]
     Text txtLifes;
     [SerializeField]
-    Text youLost;
+    Text onLostText;
     [SerializeField]
-    Vector3 posFinal;
+    Vector3 finalPos;
 
     [SerializeField]
-    Image final;
+    Image endGameImage;
 
     [SerializeField]
-    Text textofinal;
+    Text finalText;
 
     GameObject [] players;
-
-    int vidasPlayer1;
 
     Vector3 posB;
 
 	void Start ()
     {
-        vidasPlayer1 = 3;
         txtLifes.text = "Lifes: " + 3;
-        posB = youLost.transform.localPosition;
+        posB = onLostText.transform.localPosition;
         players = GameObject.FindGameObjectsWithTag("Player");
     }
     private void Update()
@@ -39,7 +36,7 @@ public class GameController : MonoBehaviour
             Time.timeScale = 1;
             SceneManager.LoadScene(0);
         }
-        youLost.transform.localPosition = Vector3.Lerp(youLost.transform.localPosition, posB, 0.05f);
+        onLostText.transform.localPosition = Vector3.Lerp(onLostText.transform.localPosition, posB, 0.05f);
 
         if (Input.GetKeyDown(KeyCode.H))
             PlayerOut();
@@ -50,8 +47,8 @@ public class GameController : MonoBehaviour
             {
                 if (players[i].GetComponent<PlayerMovement>().GetLives()<=0)
                 {
-                    final.gameObject.SetActive(true);
-                    textofinal.text = "Player 2 Wins!";
+                    endGameImage.gameObject.SetActive(true);
+                    finalText.text = "Player 2 Wins!";
                     Time.timeScale = 0;
                 }
             }
@@ -59,8 +56,8 @@ public class GameController : MonoBehaviour
             {
                 if (players[i].GetComponent<PlayerMovement>().GetLives() <= 0)
                 {
-                    final.gameObject.SetActive(true);
-                    textofinal.text = "Player 1 Wins!";
+                    endGameImage.gameObject.SetActive(true);
+                    finalText.text = "Player 1 Wins!";
                     Time.timeScale = 0;
                 }
             }
@@ -78,7 +75,7 @@ public class GameController : MonoBehaviour
     
     public void PlayerOut ()
     {
-        posB = posFinal;
+        posB = finalPos;
     }
 
     #region Singleton
