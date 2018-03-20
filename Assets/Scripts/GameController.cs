@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     [SerializeField]
-    Text txtLifes;
-    [SerializeField]
     Text onLostText;
     [SerializeField]
     Vector3 finalPos;
@@ -25,7 +23,6 @@ public class GameController : MonoBehaviour
 
 	void Start ()
     {
-        txtLifes.text = "Lifes: " + 3;
         posB = onLostText.transform.localPosition;
         players = GameObject.FindGameObjectsWithTag("Player");
     }
@@ -36,7 +33,7 @@ public class GameController : MonoBehaviour
             Time.timeScale = 1;
             SceneManager.LoadScene(0);
         }
-        onLostText.transform.localPosition = Vector3.Lerp(onLostText.transform.localPosition, posB, 0.05f);
+       
 
         if (Input.GetKeyDown(KeyCode.H))
             PlayerOut();
@@ -69,8 +66,6 @@ public class GameController : MonoBehaviour
             playerLifes--;
         if (playerLifes == 0)
             PlayerOut();
-
-        txtLifes.text = "Lifes: " + playerLifes;
     }
     
     public void PlayerOut ()

@@ -11,4 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16dc2b19c109dad439fb95ee3a12a6b6, type: 3}
   m_Name: Player 2
   m_EditorClassIdentifier: 
-  playerNumber: 0
+  skins:
+  - {fileID: 1695074152087390, guid: e46f4ecda076b8443bacad66c9ec3129, type: 2}
+  - {fileID: 1951565187462476, guid: 6119b14f5f730104ca4c0c280cc9bd0a, type: 2}
+  actualSkin: {fileID: 1951565187462476, guid: 6119b14f5f730104ca4c0c280cc9bd0a, type: 2}

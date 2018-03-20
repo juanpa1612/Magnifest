@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     float timeOnTransition;
     ChargingUI chargingUI;
 
+    public delegate void HitAction();
+    public static event HitAction onHit;
+
     void Start ()
     {
         timeOnTransition = 0;
@@ -143,6 +146,8 @@ public class PlayerMovement : MonoBehaviour
                     chargingUI.enabled = false;
                     this.enabled = false;
                 }
+                if (onHit != null)
+                    onHit();
             }
         }
     }

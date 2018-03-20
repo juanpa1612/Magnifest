@@ -7,7 +7,7 @@ public class PlayerSelection : MonoBehaviour
 {
 
     [SerializeField]
-    GameObject[] players;
+    GameObject[] skins;
     [SerializeField]
     GameObject arrow1, arrow2;
     [SerializeField]
@@ -20,15 +20,15 @@ public class PlayerSelection : MonoBehaviour
 
 	void Start ()
     {
-        for (int i = 0; i < players.Length; i++)
+        for (int i = 0; i < skins.Length; i++)
         {
-            DontDestroyOnLoad(players[i]);
+            DontDestroyOnLoad(skins[i]);
         }
         offset = new Vector3(0, -6, 0);
         arrowPos1 = 0;
         arrowPos2 = 1;
-        arrow1.transform.position = players[arrowPos1].transform.position + offset;
-        arrow2.transform.position = players[arrowPos2].transform.position + offset;
+        arrow1.transform.position = skins[arrowPos1].transform.position + offset;
+        arrow2.transform.position = skins[arrowPos2].transform.position + offset;
     }
 	
 	void Update ()
@@ -108,67 +108,65 @@ public class PlayerSelection : MonoBehaviour
 
     void Player1Ready ()
     {
-        /*
+        
         player1Ready = true;
         switch (arrowPos1)
         {
             default:
                 break;
             case 0:
-                player1.player.playerNumber;
+                player1.actualSkin = player1.skins[0];
                 break;
             case 1:
-                player1.inGameNumber = ScriptablePlayer.InGameNumber.Player2;
+                player1.actualSkin = player1.skins[1];
                 break;
             case 2:
-                player1.inGameNumber = ScriptablePlayer.InGameNumber.Player3;
+                player1.actualSkin = player1.skins[0];
                 break;
             case 3:
-                player1.inGameNumber = ScriptablePlayer.InGameNumber.Player4;
+                player1.actualSkin = player1.skins[1];
                 break;
         }
-       */
+       
     }
     void Player2Ready ()
     {
-        /*
         player2Ready = true;
         switch (arrowPos2)
         {
             default:
                 break;
             case 0:
-                player2.inGameNumber = ScriptablePlayer.InGameNumber.Player1;
+                player2.actualSkin = player2.skins[0];
                 break;
             case 1:
-                player2.inGameNumber = ScriptablePlayer.InGameNumber.Player2;
+                player2.actualSkin = player2.skins[1];
                 break;
             case 2:
-                player2.inGameNumber = ScriptablePlayer.InGameNumber.Player3;
+                player2.actualSkin = player2.skins[0];
                 break;
             case 3:
-                player2.inGameNumber = ScriptablePlayer.InGameNumber.Player4;
+                player2.actualSkin = player2.skins[1];
                 break;
         }
-        */
     }
     public void ChangeSelection (bool add)
     {
         //Está disponible?
         if (arrowPos2 != arrowPos1)
-            arrow1.transform.position = players[arrowPos1].transform.position + offset;
+            arrow1.transform.position = skins[arrowPos1].transform.position + offset;
         //Si Está ocupado
         else if (arrowPos2 == arrowPos1 && add)
         {
             if (arrowPos2 == 3)
             {
                 arrowPos1 = 0;
-                arrow1.transform.position = players[arrowPos1].transform.position + offset;
+                arrow1.transform.position = skins[arrowPos1].transform.position + offset;
             }
             else
             {
                 arrowPos1++;
-                arrow1.transform.position = players[arrowPos1].transform.position + offset;
+                arrow1.transform.position = skins[arrowPos1].transform.position + offset;
             }
 
         }
@@ -177,12 +175,12 @@ public class PlayerSelection : MonoBehaviour
             if (arrowPos2 == 0)
             {
                 arrowPos1 = 3;
-                arrow1.transform.position = players[arrowPos1].transform.position + offset;
+                arrow1.transform.position = skins[arrowPos1].transform.position + offset;
             }
             else
             {
                 arrowPos1--;
-                arrow1.transform.position = players[arrowPos1].transform.position + offset;
+                arrow1.transform.position = skins[arrowPos1].transform.position + offset;
             }
         }
     }
@@ -190,19 +188,19 @@ public class PlayerSelection : MonoBehaviour
     {
         //Está disponible?
         if (arrowPos1 != arrowPos2)
-            arrow2.transform.position = players[arrowPos2].transform.position + offset;
+            arrow2.transform.position = skins[arrowPos2].transform.position + offset;
         //Si Está ocupado
         else if (arrowPos2 == arrowPos1 && add)
         {
             if (arrowPos1 == 3)
             {
                 arrowPos2 = 0;
-                arrow2.transform.position = players[arrowPos2].transform.position + offset;
+                arrow2.transform.position = skins[arrowPos2].transform.position + offset;
             }
             else
             {
                 arrowPos2++;
-                arrow2.transform.position = players[arrowPos2].transform.position + offset;
+                arrow2.transform.position = skins[arrowPos2].transform.position + offset;
             }
 
         }
@@ -211,12 +209,12 @@ public class PlayerSelection : MonoBehaviour
             if (arrowPos1 == 0)
             {
                 arrowPos2 = 3;
-                arrow2.transform.position = players[arrowPos2].transform.position + offset;
+                arrow2.transform.position = skins[arrowPos2].transform.position + offset;
             }
             else
             {
                 arrowPos2--;
-                arrow2.transform.position = players[arrowPos2].transform.position + offset;
+                arrow2.transform.position = skins[arrowPos2].transform.position + offset;
             }
         }
     }

@@ -11,28 +11,33 @@ public class Players : MonoBehaviour
     ChargingUI chargingUI;
     DeathScript deathScript;
 
-    public enum PlayerNumber
+    [SerializeField]
+    ScriptablePlayer player;
+    
+    public enum InputNumber
     {
         Player1,
         Player2,
         Player3,
         Player4
     }
-    public PlayerNumber playerNumber;
+    public InputNumber inputNumber;
+    
 	void Start ()
     {
         playerMove = GetComponent<PlayerMovement>();
         chargingUI = GetComponent<ChargingUI>();
         deathScript = GetComponent<DeathScript>();
+        GameObject.Instantiate(player.actualSkin,transform.position,transform.rotation,gameObject.transform);
 	}
 	
 	void Update ()
     {
-        switch (playerNumber)
+        switch (inputNumber)
         {
             default:
                 break;
-            case PlayerNumber.Player1:
+            case InputNumber.Player1:
                 #region Inputs PLayer1
                 if (Input.GetAxis("LeftJoystickHorizontal") > 0.8f)
                 {
@@ -67,7 +72,7 @@ public class Players : MonoBehaviour
                 #endregion
                 break;
 
-            case PlayerNumber.Player2:
+            case InputNumber.Player2:
                 #region Inputs Player2
                 if (Input.GetAxis("LeftJoystick2Horizontal") > 0.8f)
                 {
@@ -102,7 +107,7 @@ public class Players : MonoBehaviour
                 #endregion
                 break;
 
-            case PlayerNumber.Player3:
+            case InputNumber.Player3:
                 #region Inputs Player3
                 if (Input.GetAxis("LeftJoystick3Horizontal") > 0.8f)
                 {
@@ -137,7 +142,7 @@ public class Players : MonoBehaviour
                 #endregion
                 break;
 
-            case PlayerNumber.Player4:
+            case InputNumber.Player4:
                 #region Inputs Player4
                 if (Input.GetAxis("LeftJoystick4Horizontal") > 0.8f)
                 {
