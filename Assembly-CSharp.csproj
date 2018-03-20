@@ -51,7 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Effects\EffectScripts\DeathShakerTrigger.cs" />
      <Compile Include="Assets\Effects\EffectScripts\ParticleRotation.cs" />
      <Compile Include="Assets\Effects\EZ Camera Shake\Demo\Sample Scripts\ShakeByDistance.cs" />
      <Compile Include="Assets\Effects\EZ Camera Shake\Demo\Sample Scripts\ShakeOnKeyPress.cs" />
@@ -111,16 +110,17 @@
      <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
      <Compile Include="Assets\Scripts\AI.cs" />
      <Compile Include="Assets\Scripts\ChargingUI.cs" />
-     <Compile Include="Assets\Scripts\ChargingUI2.cs" />
      <Compile Include="Assets\Scripts\DeathScript.cs" />
-     <Compile Include="Assets\Scripts\DeathScript2.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
-     <Compile Include="Assets\Scripts\PlayerMovement2.cs" />
      <Compile Include="Assets\Scripts\Players.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelection.cs" />
      <Compile Include="Assets\Scripts\PlayersUI.cs" />
+     <Compile Include="Assets\Scripts\ScriptablePlayer.cs" />
      <Compile Include="Assets\Scripts\Trail System\Path.cs" />
      <Compile Include="Assets\Scripts\Trail System\Sphere.cs" />
+     <Compile Include="Assets\Scripts\VFX.cs" />
      <Compile Include="Assets\Shaders&amp;Particles\Cheider.cs" />
      <Compile Include="Assets\Shaders&amp;Particles\NormalCamera.cs" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
