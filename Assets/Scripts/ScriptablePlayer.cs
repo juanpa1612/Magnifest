@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScriptablePlayer : ScriptableObject
 {
 
-    public GameObject[] skins;
+    //public GameObject[] skins;
+    public Skins skinsReference;
     public GameObject actualSkin;
 }

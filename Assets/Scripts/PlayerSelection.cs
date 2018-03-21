@@ -12,6 +12,8 @@ public class PlayerSelection : MonoBehaviour
     GameObject arrow1, arrow2;
     [SerializeField]
     ScriptablePlayer player1, player2, player3, player4;
+    [SerializeField]
+    Skins skinsReference;
     bool[] skinPreview;
     bool singlePulse1, singlePulse2;
     public bool player1Ready, player2Ready;
@@ -115,16 +117,16 @@ public class PlayerSelection : MonoBehaviour
             default:
                 break;
             case 0:
-                player1.actualSkin = player1.skins[0];
+                player1.actualSkin = skinsReference.skins[0];
                 break;
             case 1:
-                player1.actualSkin = player1.skins[1];
+                player1.actualSkin = skinsReference.skins[1];
                 break;
             case 2:
-                player1.actualSkin = player1.skins[0];
+                player1.actualSkin = skinsReference.skins[2];
                 break;
             case 3:
-                player1.actualSkin = player1.skins[1];
+                player1.actualSkin = skinsReference.skins[3];
                 break;
         }
        
@@ -137,16 +139,16 @@ public class PlayerSelection : MonoBehaviour
             default:
                 break;
             case 0:
-                player2.actualSkin = player2.skins[0];
+                player2.actualSkin = skinsReference.skins[0];
                 break;
             case 1:
-                player2.actualSkin = player2.skins[1];
+                player2.actualSkin = skinsReference.skins[1];
                 break;
             case 2:
-                player2.actualSkin = player2.skins[0];
+                player2.actualSkin = skinsReference.skins[2];
                 break;
             case 3:
-                player2.actualSkin = player2.skins[1];
+                player2.actualSkin = skinsReference.skins[3];
                 break;
         }
     }

@@ -6,6 +6,7 @@ public class DeathScript : MonoBehaviour
 {
     private int state;
     PlayerMovement playerMove;
+    [SerializeField] Transform Center;
 
     private void Start()
     {
@@ -34,7 +35,7 @@ public class DeathScript : MonoBehaviour
             }
         }
 
-        if(Vector3.Distance(transform.position, new Vector3(0, 0, 0))>1000)
+        if(Vector3.Distance(transform.position, Center.position)>1000)
         {
             state = 3;
         }
