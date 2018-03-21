@@ -14,28 +14,29 @@ public class DeathScript : MonoBehaviour
         playerMove=gameObject.GetComponent<PlayerMovement>();
     }
 
-    void Update ()
+    void Update()
     {
         //Salir del Ring
         if (state == 2)
         {
-            transform.Translate(-Vector3.forward * 5);
+            transform.Translate(Vector3.forward * 5);
         }
         //Situar Player
         else if (state == 3)
         {
             transform.position = new Vector3(1000, 1000, 1000);
-            if (playerMove.GetLives()>0)
+            if (playerMove.GetLives() > 0)
             {
                 transform.position = new Vector3(17, 0, 0);
                 playerMove.enabled = true;
                 playerMove.Reset();
                 playerMove.subLives();
+                state = 2;
                 this.enabled = false;
             }
         }
 
-        if(Vector3.Distance(transform.position, Center.position)>1000)
+        if(Vector3.Distance(transform.position, Center.position)>1500)
         {
             state = 3;
         }

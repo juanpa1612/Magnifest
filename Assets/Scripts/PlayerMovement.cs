@@ -29,11 +29,12 @@ public class PlayerMovement : MonoBehaviour
     public delegate void HitAction();
     public static event HitAction onHit;
 
-    void Start ()
+    void Start()
     {
+        
         timeOnTransition = 0;
         percentageRingChange = 0;
-        lives = 3;
+        lives = 1;
         percentageRingChange = timeRingMax;
         time = 0;
         //radius = valueIncRad;
@@ -66,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update ()
     {
+        transform.LookAt(2 * transform.position - Vector3.zero);
         transform.position = new Vector3(Mathf.Cos(angularVelocity * time), 0, Mathf.Sin(angularVelocity * time)) * radius;
         //Collision
         if (collided)
@@ -133,13 +135,12 @@ public class PlayerMovement : MonoBehaviour
             if (collision.GetComponent<ChargingUI>().Charging == false && !collision.GetComponent<DeathScript>().enabled 
                 && !chargingUI.Charging)
             {
-                Debug.Log("Me Chocaron");
                 collided = true;
                 radiusDestiny += collision.gameObject.GetComponent<PlayerMovement>().radius;
                 radiusOrigin = radius;
                 startTime = Time.time;
                 changeRing = true;
-                transform.rotation = collision.gameObject.transform.rotation;
+                //transform.rotation = collision.gameObject.transform.rotation;
                 if (radiusDestiny > 68)
                 {
                     GetComponent<DeathScript>().enabled = true;

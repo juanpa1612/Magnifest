@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     [SerializeField]
-    Text onLostText;
-    [SerializeField]
     Vector3 finalPos;
 
     [SerializeField]
@@ -17,14 +15,17 @@ public class GameController : MonoBehaviour
     [SerializeField]
     Text finalText;
 
-    GameObject [] players;
-
+    public GameObject [] players;
+    public List<GameObject> playersList;
     Vector3 posB;
 
 	void Start ()
     {
-        posB = onLostText.transform.localPosition;
         players = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < players.Length; i++)
+        {
+            playersList.Add(players[i]);
+        }
     }
     private void Update()
     {
@@ -44,20 +45,15 @@ public class GameController : MonoBehaviour
             {
                 if (players[i].GetComponent<PlayerMovement>().GetLives()<=0)
                 {
-                    endGameImage.gameObject.SetActive(true);
-                    finalText.text = "Player 2 Wins!";
-                    Time.timeScale = 0;
+                    playersList.RemoveAt(i);
                 }
             }
-            else if(players[i].GetComponent<PlayerMovement>() != null)
-            {
-                if (players[i].GetComponent<PlayerMovement>().GetLives() <= 0)
-                {
-                    endGameImage.gameObject.SetActive(true);
-                    finalText.text = "Player 1 Wins!";
-                    Time.timeScale = 0;
-                }
-            }
+        }
+        if (playersList.Count == 1)
+        {
+            endGameImage.gameObject.SetActive(true);
+            finalText.text = playersList[0].GetComponent<Players>().inputNumber.ToString();
+            Time.timeScale = 0;
         }
     }
     public void LoseLife (int playerLifes)
