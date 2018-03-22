@@ -23,6 +23,7 @@ public class ChargingUI : MonoBehaviour
     float arrowDirectY;
     bool penalized;
     PlayerMovement playerMove;
+    VFX vfxReference;
 
     public bool Charging
     {
@@ -31,7 +32,7 @@ public class ChargingUI : MonoBehaviour
             return charging;
         }
     }
-    public float TiempoCastigo
+    public float PenaltyTime
     {
         get
         {
@@ -46,6 +47,7 @@ public class ChargingUI : MonoBehaviour
         joystickVector = Vector3.zero;
         penaltyTime = 0;
         playerMove = GetComponent<PlayerMovement>();
+        vfxReference = GetComponentInChildren<VFX>();
         charging = false;
         fullyCharged = false;
     }
@@ -61,6 +63,7 @@ public class ChargingUI : MonoBehaviour
             playerMove.enabled = false;
             charging = true;
             lastPos = transform.position;
+            vfxReference.StartChargingParticle(true);
         }
     }
     public void StopCharging ()
@@ -72,6 +75,7 @@ public class ChargingUI : MonoBehaviour
             penaltyTime = 3f;
             penalized = true;
             chargingArrow.SetActive(false);
+            vfxReference.StartChargingParticle(false);
         }
     }
     private void Update()
@@ -137,6 +141,7 @@ public class ChargingUI : MonoBehaviour
             isFiring = true;
             chargingArrow.SetActive(false);
             transform.Translate(-Vector3.forward * Time.deltaTime * fireSpeed);
+            vfxReference.StartChargingParticle(false);
         }
     }
     public void ArrowDirection (float x, float y)

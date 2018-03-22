@@ -145,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     GetComponent<DeathScript>().enabled = true;
                     chargingUI.enabled = false;
+                    collision.GetComponentInChildren<VFX>().Score();
                     this.enabled = false;
                 }
                 if (onHit != null)

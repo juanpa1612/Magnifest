@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Sphere : MonoBehaviour
 {
-    public Path actualPath;
-    public Path outsidePath;
-    public Path insidePath;
+    public PathTrail actualPath;
+    public PathTrail outsidePath;
+    public PathTrail insidePath;
     public float speed;
 
 

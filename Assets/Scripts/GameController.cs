@@ -35,11 +35,7 @@ public class GameController : MonoBehaviour
             SceneManager.LoadScene(0);
         }
        
-
-        if (Input.GetKeyDown(KeyCode.H))
-            PlayerOut();
-
-        for(int i = 0; i<players.Length; i++)
+        for(int i = 0; i < players.Length - 1; i++)
         {
             if (players[i].GetComponent<PlayerMovement>() != null)
             {
@@ -56,18 +52,7 @@ public class GameController : MonoBehaviour
             Time.timeScale = 0;
         }
     }
-    public void LoseLife (int playerLifes)
-    {
-        if (playerLifes > 0)
-            playerLifes--;
-        if (playerLifes == 0)
-            PlayerOut();
-    }
     
-    public void PlayerOut ()
-    {
-        posB = finalPos;
-    }
 
     #region Singleton
 

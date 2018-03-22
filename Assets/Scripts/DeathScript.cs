@@ -6,7 +6,11 @@ public class DeathScript : MonoBehaviour
 {
     private int state;
     PlayerMovement playerMove;
+
     [SerializeField] Transform Center;
+
+    public delegate void RingOut();
+    public static event RingOut isOut;
 
     private void Start()
     {
@@ -20,6 +24,8 @@ public class DeathScript : MonoBehaviour
         if (state == 2)
         {
             transform.Translate(Vector3.forward * 5);
+            if (isOut != null)
+                isOut();
         }
         //Situar Player
         else if (state == 3)

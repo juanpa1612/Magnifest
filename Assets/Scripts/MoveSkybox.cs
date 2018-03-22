@@ -10,7 +10,7 @@ public class MoveSkybox : MonoBehaviour {
 	{
 
 		RenderSettings.skybox.SetFloat ("_Rotation", rotateSpeed * Time.time);
-		Debug.Log (RenderSettings.skybox.GetFloat("_Rotation"));
+		//Debug.Log (RenderSettings.skybox.GetFloat("_Rotation"));
 	}
 
 
