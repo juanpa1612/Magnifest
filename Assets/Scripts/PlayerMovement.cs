@@ -148,6 +148,7 @@ public class PlayerMovement : MonoBehaviour
                     collision.GetComponentInChildren<VFX>().Score();
                     this.enabled = false;
                 }
+                //Camera Shake
                 if (onHit != null)
                     onHit();
             }

@@ -18,7 +18,8 @@ public class GameController : MonoBehaviour
     public GameObject [] players;
     public List<GameObject> playersList;
     Vector3 posB;
-
+    public int activePlayersNumber;
+    bool remove;
 	void Start ()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour
         {
             playersList.Add(players[i]);
         }
+        activePlayersNumber = players.Length;
     }
     private void Update()
     {
@@ -34,21 +36,19 @@ public class GameController : MonoBehaviour
             Time.timeScale = 1;
             SceneManager.LoadScene(0);
         }
-       
-        for(int i = 0; i < players.Length - 1; i++)
+
+        for (int i = 0; i < playersList.Count; i++)
         {
-            if (players[i].GetComponent<PlayerMovement>() != null)
+            if (playersList[i].GetComponent<PlayerMovement>().GetLives() <= 0)
             {
-                if (players[i].GetComponent<PlayerMovement>().GetLives()<=0)
-                {
-                    playersList.RemoveAt(i);
-                }
+                playersList.RemoveAt(i);
             }
         }
+
         if (playersList.Count == 1)
         {
             endGameImage.gameObject.SetActive(true);
-            finalText.text = playersList[0].GetComponent<Players>().inputNumber.ToString();
+            finalText.text = playersList[0].GetComponent<Players>().inputNumber.ToString() + " Wins!";
             Time.timeScale = 0;
         }
     }

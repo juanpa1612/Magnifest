@@ -11,7 +11,7 @@ public class DeathScript : MonoBehaviour
 
     public delegate void RingOut();
     public static event RingOut isOut;
-
+    bool subLive;
     private void Start()
     {
         state = 2;
@@ -31,13 +31,18 @@ public class DeathScript : MonoBehaviour
         else if (state == 3)
         {
             transform.position = new Vector3(1000, 1000, 1000);
+            if (!subLive)
+            {
+                playerMove.subLives();
+                subLive = true;
+            }
             if (playerMove.GetLives() > 0)
             {
                 transform.position = new Vector3(17, 0, 0);
                 playerMove.enabled = true;
                 playerMove.Reset();
-                playerMove.subLives();
                 state = 2;
+                subLive = false;
                 this.enabled = false;
             }
         }
