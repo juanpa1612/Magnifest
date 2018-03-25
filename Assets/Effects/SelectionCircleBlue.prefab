@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 198709237113409272}
   - component: {fileID: 199047424179914666}
   m_Layer: 0
-  m_Name: SelectionAuraBlue
+  m_Name: SelectionAuraPink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,8 +64,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1019659654129810}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -13.93, y: 0, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 17.4, y: -9.4, z: 47.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4031949950759062}
@@ -132,7 +132,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1348454396
+  randomSeed: 1813190471
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -1034,9 +1034,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.5661765, g: 0.98204863, b: 1, a: 1}
-        key1: {r: 0.5647059, g: 0.9803922, b: 1, a: 0.95776397}
-        key2: {r: 0.70069206, g: 0.87417006, b: 0.88235295, a: 0}
+        key0: {r: 1, g: 0.5661765, b: 0.7367139, a: 1}
+        key1: {r: 0.99264705, g: 0.233564, b: 0.5386158, a: 0.95776397}
+        key2: {r: 1, g: 0.8308824, b: 0.90006685, a: 0}
         key3: {r: 0.5647059, g: 0.9803922, b: 1, a: 0}
         key4: {r: 0, g: 0.46274513, b: 0.78823537, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -1059,7 +1059,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_NumColorKeys: 4
+        m_NumColorKeys: 3
         m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
@@ -3493,7 +3493,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -906432063
+  randomSeed: -26348749
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6012,7 +6012,7 @@ ParticleSystem:
       type: 0
       properties: 0
   LightsModule:
-    enabled: 1
+    enabled: 0
     ratio: 0
     light: {fileID: 0}
     randomDistribution: 1
