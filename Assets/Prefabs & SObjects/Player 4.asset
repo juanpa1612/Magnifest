@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: Player 4
   m_EditorClassIdentifier: 
   skinsReference: {fileID: 11400000, guid: fdc3de55e9aa88f43ba5b548e85e273f, type: 2}
-  actualSkin: {fileID: 1470723258050390, guid: 3851e6430cf9fa7458755041a6301355, type: 2}
+  actualSkin: {fileID: 1114295875582282, guid: 3851e6430cf9fa7458755041a6301355, type: 2}

@@ -7,6 +7,7 @@ public class VFX : MonoBehaviour
 {
     ParticleSystem scoreParticle;
     ParticleSystem chargeParticle;
+    ParticleSystem shootTrail;
     ParticleSystem[] particles;
 
 	void Start ()
@@ -20,6 +21,8 @@ public class VFX : MonoBehaviour
                 scoreParticle = item;
             if (item.name == "Charge")
                 chargeParticle = item;
+            if (item.name == "ShootTrail")
+                shootTrail = item;
         }
 	}
 	
@@ -33,6 +36,15 @@ public class VFX : MonoBehaviour
             chargeParticle.Play();
         if (!state)
             chargeParticle.Stop();
+    }
+
+    public void StartShootingParticle (bool state)
+    {
+        if (state)
+            shootTrail.Play();
+        if (!state)
+            shootTrail.Stop();
+
     }
     public void Score ()
     {

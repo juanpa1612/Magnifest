@@ -64,6 +64,7 @@ public class ChargingUI : MonoBehaviour
             charging = true;
             lastPos = transform.position;
             vfxReference.StartChargingParticle(true);
+            vfxReference.StartShootingParticle(false);
         }
     }
     public void StopCharging ()
@@ -142,6 +143,7 @@ public class ChargingUI : MonoBehaviour
             chargingArrow.SetActive(false);
             transform.Translate(-Vector3.forward * Time.deltaTime * fireSpeed);
             vfxReference.StartChargingParticle(false);
+            vfxReference.StartShootingParticle(true);
         }
     }
     public void ArrowDirection (float x, float y)
@@ -161,6 +163,7 @@ public class ChargingUI : MonoBehaviour
             playerMove.time = (Mathf.Atan2(transform.position.z, transform.position.x) / 2);
             penaltyTime = 3f;
             penalized = true;
+            vfxReference.StartShootingParticle(false);
         }
     }
 }
