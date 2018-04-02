@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     float startTime;
     float timeOnTransition;
     ChargingUI chargingUI;
+    PlayerAudio playerAudio;
 
     public delegate void HitAction();
     public static event HitAction onHit;
@@ -106,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void ChangeRing (bool addOrSub)
     {
+        playerAudio.RingChangeSound();
         if (addOrSub && radius < 65 && !changeRing)
         {
             radiusDestiny = radius + valueIncRad;
@@ -136,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
                 && !chargingUI.Charging)
             {
                 collided = true;
+                playerAudio.CollisionSound();
                 radiusDestiny += collision.gameObject.GetComponent<PlayerMovement>().radius;
                 radiusOrigin = radius;
                 startTime = Time.time;

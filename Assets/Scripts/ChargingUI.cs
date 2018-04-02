@@ -23,6 +23,7 @@ public class ChargingUI : MonoBehaviour
     float arrowDirectY;
     bool penalized;
     PlayerMovement playerMove;
+    PlayerAudio playerAudio;
     VFX vfxReference;
 
     public bool Charging
@@ -42,6 +43,7 @@ public class ChargingUI : MonoBehaviour
 
     private void Start()
     {
+        playerAudio = GetComponent<PlayerAudio>();
         chargingTime = 0;
         penalized = false;
         joystickVector = Vector3.zero;
@@ -60,6 +62,7 @@ public class ChargingUI : MonoBehaviour
     {
         if (!charging && !penalized && !isFiring)
         {
+            playerAudio.ChannelingSound();
             playerMove.enabled = false;
             charging = true;
             lastPos = transform.position;
@@ -71,6 +74,7 @@ public class ChargingUI : MonoBehaviour
     {
         if (charging && !fullyCharged)
         {
+            playerAudio.StopSounds();
             backToPos = true;
             charging = false;
             penaltyTime = 3f;
@@ -139,6 +143,7 @@ public class ChargingUI : MonoBehaviour
     {
         if (fullyCharged)
         {
+            playerAudio.StopSounds();
             isFiring = true;
             chargingArrow.SetActive(false);
             transform.Translate(-Vector3.forward * Time.deltaTime * fireSpeed);
