@@ -6,29 +6,37 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField]
     CanvasGroup main;
-    [SerializeField]
-    CanvasGroup skinSelection;
+    public CanvasGroup skinSelection;
     [SerializeField]
     GameObject playersSkins;
 
-    bool start;
+    bool startReady;
     Vector3 posB;
 
-	void Start ()
+    public bool StartReady
+    {
+        get
+        {
+            return startReady;
+        }
+    }
+
+    void Start ()
     {
         posB = new Vector3(0, 0, -60);
         skinSelection.alpha = 0;
+        main.alpha = 1;
 	}
 	
 
 	void Update ()
     {
-        if (!start)
+        if (!startReady)
         {
             if (Input.anyKeyDown)
-                start = true;
+                startReady = true;
         }
-        if (start)
+        if (startReady)
         {
             main.alpha -= Time.deltaTime;
             skinSelection.alpha += Time.deltaTime;

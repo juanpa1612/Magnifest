@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSelection : MonoBehaviour
 {
-
+    [SerializeField]
+    MainMenu mainMenu;
     [SerializeField]
     GameObject[] skins;
     [SerializeField]
@@ -92,15 +93,18 @@ public class PlayerSelection : MonoBehaviour
 
         #endregion
 
-        if (Input.GetButtonDown("AButton1"))
-            Player1Ready();
-        if (Input.GetButtonDown("AButton2"))
-            Player2Ready();
+        if (mainMenu.skinSelection.alpha == 1)
+        {
+            if (Input.GetButtonDown("AButton1"))
+                Player1Ready();
+            if (Input.GetButtonDown("AButton2"))
+                Player2Ready();
 
-        if (Input.GetButtonDown("BButton1"))
-            player1Ready = false;
-        if (Input.GetButtonDown("BButton2"))
-            player2Ready = false;
+            if (Input.GetButtonDown("BButton1"))
+                player1Ready = false;
+            if (Input.GetButtonDown("BButton2"))
+                player2Ready = false;
+        }
 
         if (player1Ready && player2Ready)
         {
@@ -152,6 +156,7 @@ public class PlayerSelection : MonoBehaviour
                 break;
         }
     }
+    
     public void ChangeSelection (bool add)
     {
         //Está disponible?
@@ -185,7 +190,7 @@ public class PlayerSelection : MonoBehaviour
                 arrow1.transform.position = skins[arrowPos1].transform.position + offset;
             }
         }
-    }
+    } 
     public void ChangeSelection2 (bool add)
     {
         //Está disponible?
@@ -220,4 +225,5 @@ public class PlayerSelection : MonoBehaviour
             }
         }
     }
+    
 }
