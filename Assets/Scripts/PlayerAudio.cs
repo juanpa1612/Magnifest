@@ -18,7 +18,7 @@ public class PlayerAudio : MonoBehaviour {
         int indexChanneling;
         indexChanneling = Random.Range(0, channelingSound.Length);
         source.clip = channelingSound[indexChanneling];
-        source.loop = true;
+        //source.loop = true;
         source.Play();
     }
 

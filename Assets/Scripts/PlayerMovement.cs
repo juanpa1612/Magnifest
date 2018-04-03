@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
         changeRing = false;
         radiusDestiny = 0;
         chargingUI = GetComponent<ChargingUI>();
+
+		playerAudio = GetComponent<PlayerAudio> ();
 	}
 
     public int GetLives()
@@ -107,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void ChangeRing (bool addOrSub)
     {
-        playerAudio.RingChangeSound();
+		playerAudio.RingChangeSound ();
         if (addOrSub && radius < 65 && !changeRing)
         {
             radiusDestiny = radius + valueIncRad;
