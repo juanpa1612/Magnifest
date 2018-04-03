@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 4582502867175224}
   - component: {fileID: 33575821322104328}
   - component: {fileID: 23494014641591608}
-  - component: {fileID: 114518226619792630}
+  - component: {fileID: 114143390780481946}
   m_Layer: 0
   m_Name: Skin_Fire
   m_TagString: Untagged
@@ -332,7 +332,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1903269219852052}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.1, y: 0, z: 49}
+  m_LocalPosition: {x: -18, y: 9.8, z: 49}
   m_LocalScale: {x: -8, y: -8, z: -8}
   m_Children:
   - {fileID: 4517209629033000}
@@ -465,7 +465,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1903269219852052}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114518226619792630
+--- !u!114 &114143390780481946
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -536,7 +536,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1358667614
+  randomSeed: -1809501762
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7258,7 +7258,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1596996041
+  randomSeed: -1992899903
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10619,7 +10619,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1352023186
+  randomSeed: 1914587452
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13980,7 +13980,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1322739284
+  randomSeed: 2105215140
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -17341,7 +17341,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -267717053
+  randomSeed: -759760545
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -27424,7 +27424,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 310496734
+  randomSeed: -1583891322
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -30785,7 +30785,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 733143097
+  randomSeed: -1727890371
   InitialModule:
     serializedVersion: 3
     enabled: 1

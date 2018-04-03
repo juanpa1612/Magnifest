@@ -48,7 +48,8 @@ public class VFX : MonoBehaviour
     }
     public void Score ()
     {
-        scoreParticle.Play();
+        if (scoreParticle)
+            scoreParticle.Play();
     }
     public void ShakeCamera ()
     {

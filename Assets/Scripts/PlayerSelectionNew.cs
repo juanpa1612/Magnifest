@@ -15,8 +15,6 @@ public class PlayerSelectionNew : MonoBehaviour
     [SerializeField]
     GameObject[] skinsPlayers;
     [SerializeField]
-    GameObject[] availableSkins;
-    [SerializeField]
     Text[] txtsToJoin;
     [SerializeField]
     bool[] playerJoined;
@@ -24,6 +22,7 @@ public class PlayerSelectionNew : MonoBehaviour
     int[] actualSkin;
 
     bool singlePulse1, singlePulse2, singlePulse3, singlePulse4;
+    bool[] playerReady;
     Vector3[] initialPos;
 
 	void Start ()
@@ -34,8 +33,10 @@ public class PlayerSelectionNew : MonoBehaviour
         actualSkin[2] = 0;
         actualSkin[3] = 0;
 
+        playerReady = new bool[4];
+
         initialPos = new Vector3[4];
-        for (int i = 0; i < initialPos.Length -1; i++)
+        for (int i = 0; i < initialPos.Length; i++)
         {
             initialPos[i] = skinsPlayers[i].transform.position;
         }
@@ -81,15 +82,15 @@ public class PlayerSelectionNew : MonoBehaviour
             singlePulse1 = false;
         #endregion
         #region Inputs Joystick 2
-        if (Input.GetAxis("LeftJoystick2Horizontal") >= 0.7f && !singlePulse1)
+        if (Input.GetAxis("LeftJoystick2Horizontal") >= 0.7f && !singlePulse2)
         {
             Joystick2(true);
-            singlePulse1 = true;
+            singlePulse2 = true;
         }
-        if (Input.GetAxis("LeftJoystick2Horizontal") <= -0.7f && !singlePulse1)
+        if (Input.GetAxis("LeftJoystick2Horizontal") <= -0.7f && !singlePulse2)
         {
             Joystick2(false);
-            singlePulse1 = true;
+            singlePulse2 = true;
         }
         if (Input.GetAxis("LeftJoystick2Horizontal") == 0)
             singlePulse2 = false;
@@ -97,12 +98,22 @@ public class PlayerSelectionNew : MonoBehaviour
         #region Players Are Ready
         if (Input.GetButtonDown("AButton1") && playerJoined[0])
             PlayersReady(0);
-        if (Input.GetButtonDown("AButton1") && playerJoined[0])
+        if (Input.GetButtonDown("AButton2") && playerJoined[1])
             PlayersReady(1);
-        if (Input.GetButtonDown("AButton1") && playerJoined[0])
+        if (Input.GetButtonDown("AButton3") && playerJoined[2])
             PlayersReady(2);
-        if (Input.GetButtonDown("AButton1") && playerJoined[0])
+        if (Input.GetButtonDown("AButton4") && playerJoined[3])
             PlayersReady(3);
+        #endregion
+        #region Players Cancel
+        if (Input.GetButtonDown("BButton1") && playerJoined[0])
+            PlayersCancel(0);
+        if (Input.GetButtonDown("BButton2") && playerJoined[1])
+            PlayersCancel(1);
+        if (Input.GetButtonDown("BButton3") && playerJoined[2])
+            PlayersCancel(2);
+        if (Input.GetButtonDown("BButton4") && playerJoined[3])
+            PlayersCancel(3);
         #endregion
         if (Input.GetButtonDown("StartButton"))
             SceneManager.LoadScene("TestLevel");
@@ -110,6 +121,15 @@ public class PlayerSelectionNew : MonoBehaviour
     public void PlayersReady (int playerNumber)
     {
         scriptablePlayers[playerNumber].actualSkin = skinsReference.skins[actualSkin[playerNumber]];
+        playerReady[playerNumber] = true;
+        skinsPlayers[playerNumber].GetComponent<VFX>().Score();
+    }
+    public void PlayersCancel (int playerNumber)
+    {
+        playerReady[playerNumber] = false;
+        txtsToJoin[playerNumber].CrossFadeAlpha(1, 1, true);
+        skinsPlayers[playerNumber].SetActive(false);
+        playerJoined[playerNumber] = false;
     }
     public void PlayerJoin (int playerNumber)
     {
@@ -122,19 +142,19 @@ public class PlayerSelectionNew : MonoBehaviour
                 break;
             case 1:
                 skinsPlayers[1].SetActive(true);
-                //GameObject.Instantiate(availableSkins[0], Camera.main.ScreenToWorldPoint(txtsToJoin[1].transform.position), Quaternion.identity);
                 txtsToJoin[1].CrossFadeAlpha(0, 1, true);
                 break;
             case 2:
-                GameObject.Instantiate(availableSkins[0], skinsPlayers[2].transform);
+                skinsPlayers[2].SetActive(true);
                 txtsToJoin[2].CrossFadeAlpha(0, 1, true);
                 break;
             case 3:
-                GameObject.Instantiate(availableSkins[0], skinsPlayers[3].transform);
+                skinsPlayers[3].SetActive(true);
                 txtsToJoin[3].CrossFadeAlpha(0, 1, true);
                 break;
         }
     }
+    //Desplazamiento de Skins:
     public void Joystick1 (bool right)
     {
         if (playerJoined[0])
@@ -161,7 +181,7 @@ public class PlayerSelectionNew : MonoBehaviour
 
             GameObject lastSkin = skinsPlayers[1];
             lastSkin.SetActive(false);
-            skinsPlayers[1] = Instantiate(availableSkins[actualSkin[1]], initialPos[1], Quaternion.identity);
+            skinsPlayers[1] = Instantiate(skinsReference.skins[actualSkin[1]], initialPos[1], Quaternion.identity);
             skinsPlayers[1].SetActive(true);
         }
     }
