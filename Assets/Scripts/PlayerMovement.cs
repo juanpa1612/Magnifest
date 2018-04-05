@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         
         timeOnTransition = 0;
         percentageRingChange = 0;
-        lives = 1;
+        lives = 3;
         percentageRingChange = timeRingMax;
         time = 0;
         //radius = valueIncRad;
@@ -151,6 +151,8 @@ public class PlayerMovement : MonoBehaviour
                     GetComponent<DeathScript>().enabled = true;
                     chargingUI.enabled = false;
                     collision.GetComponentInChildren<VFX>().Score();
+                    collision.GetComponent<PlayerAudio>().ScoreSound();
+                    //playerAudio.LostSound();
                     this.enabled = false;
                 }
                 //Camera Shake

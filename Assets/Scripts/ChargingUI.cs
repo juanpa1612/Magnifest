@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class ChargingUI : MonoBehaviour
 {
-    [SerializeField]
-    GameObject center;
-    [SerializeField]
-    GameObject chargingArrow;
+    [SerializeField] GameObject center;
+    [SerializeField] GameObject chargingArrow;
     [SerializeField] float fireSpeed;
 
-    bool fullyCharged;
-    float chargingTime;
-    bool charging;
-    bool pressingJoystick;
-    bool isFiring;
-    bool backToPos;
-    Vector3 joystickVector;
-    Vector3 lastPos;
     float penaltyTime;
     float arrowDirectX;
     float arrowDirectY;
+    float chargingTime;
     bool penalized;
+    bool charging;
+    bool fullyCharged;
+    bool pressingJoystick;
+    bool isFiring;
+    bool backToPos;
+
+    Vector3 joystickVector;
+    Vector3 lastPos;
     PlayerMovement playerMove;
     PlayerAudio playerAudio;
     VFX vfxReference;
@@ -44,12 +43,12 @@ public class ChargingUI : MonoBehaviour
     private void Start()
     {
         playerAudio = GetComponent<PlayerAudio>();
+        playerMove = GetComponent<PlayerMovement>();
+        vfxReference = GetComponentInChildren<VFX>();
         chargingTime = 0;
         penalized = false;
         joystickVector = Vector3.zero;
         penaltyTime = 0;
-        playerMove = GetComponent<PlayerMovement>();
-        vfxReference = GetComponentInChildren<VFX>();
         charging = false;
         fullyCharged = false;
     }
@@ -60,12 +59,12 @@ public class ChargingUI : MonoBehaviour
     }
     public void StartCharging ()
     {
-        if (!charging && !penalized && !isFiring)
+        if (!charging && !penalized && !isFiring && !fullyCharged)
         {
-            playerAudio.ChannelingSound();
             playerMove.enabled = false;
             charging = true;
             lastPos = transform.position;
+            playerAudio.ChannelingSound();
             vfxReference.StartChargingParticle(true);
             vfxReference.StartShootingParticle(false);
         }
@@ -74,12 +73,12 @@ public class ChargingUI : MonoBehaviour
     {
         if (charging && !fullyCharged)
         {
-            playerAudio.StopSounds();
             backToPos = true;
             charging = false;
             penaltyTime = 3f;
             penalized = true;
             chargingArrow.SetActive(false);
+            playerAudio.StopSounds();
             vfxReference.StartChargingParticle(false);
         }
     }
@@ -108,6 +107,7 @@ public class ChargingUI : MonoBehaviour
                 playerMove.enabled = true;
                 backToPos = false;
             }
+            playerAudio.FireSound();
         }
         if (charging)
         {
@@ -138,18 +138,20 @@ public class ChargingUI : MonoBehaviour
                     gameObject.transform.eulerAngles = joystickVector;
                 }
         }
-    }
-    public void Fire ()
-    {
-        if (fullyCharged)
+        //Fire
+        if (isFiring)
         {
-            playerAudio.StopSounds();
-            isFiring = true;
             chargingArrow.SetActive(false);
             transform.Translate(-Vector3.forward * Time.deltaTime * fireSpeed);
             vfxReference.StartChargingParticle(false);
             vfxReference.StartShootingParticle(true);
+            playerAudio.FireSound();
         }
+    }
+    public void Fire ()
+    {
+        if (fullyCharged)
+            isFiring = true;
     }
     public void ArrowDirection (float x, float y)
     {

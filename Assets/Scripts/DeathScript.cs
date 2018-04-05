@@ -12,10 +12,12 @@ public class DeathScript : MonoBehaviour
     public delegate void RingOut();
     public static event RingOut isOut;
     bool subLive;
+    PlayerAudio playerAudio;
     private void Start()
     {
         state = 2;
         playerMove=gameObject.GetComponent<PlayerMovement>();
+        playerAudio = GetComponent<PlayerAudio>();
     }
 
     void Update()
@@ -23,6 +25,7 @@ public class DeathScript : MonoBehaviour
         //Salir del Ring
         if (state == 2)
         {
+            playerAudio.LostSound();
             transform.Translate(Vector3.forward * 5);
             if (isOut != null)
                 isOut();

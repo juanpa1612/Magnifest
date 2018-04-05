@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField]
-    CanvasGroup main;
+    [SerializeField] CanvasGroup main;
+    
     public CanvasGroup skinSelection;
-    [SerializeField]
-    GameObject playersSkins;
-
     bool startReady;
     Vector3 posB;
 
@@ -40,7 +37,6 @@ public class MainMenu : MonoBehaviour
         {
             main.alpha -= Time.deltaTime;
             skinSelection.alpha += Time.deltaTime;
-            playersSkins.transform.position = Vector3.Lerp(playersSkins.transform.position, posB, 0.05f);
         }
 	}
 }

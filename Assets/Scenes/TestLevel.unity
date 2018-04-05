@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.19818467, g: 0.3407873, b: 0.4095999, a: 1}
+  m_IndirectSpecularColor: {r: 0.22332615, g: 0.37610108, b: 0.4497757, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -420,6 +420,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 91ceb03d0898f754e89c98e8a93c33b8, type: 3}
   - {fileID: 8300000, guid: 5717eea9d10cc8047a6743585f1f83ef, type: 3}
   - {fileID: 8300000, guid: 3744631ee136b4345b36c7e1b61acf81, type: 3}
+  fireSound:
+  - {fileID: 8300000, guid: d0f21f91b88473648af4a2b3355da05e, type: 3}
+  - {fileID: 8300000, guid: d7edf3a7ad2b2644b877cc458482e99a, type: 3}
+  - {fileID: 8300000, guid: 29da027aa28a21d4887ae6b81c03a1eb, type: 3}
+  scoreSound: {fileID: 8300000, guid: cebbe80e78ede3949a4f54112e0a5cd6, type: 3}
+  lostSound: {fileID: 8300000, guid: 70bc4c4997af7e047a889163b5c7dabb, type: 3}
 --- !u!82 &75750490
 AudioSource:
   m_ObjectHideFlags: 0
@@ -475,7 +481,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -499,7 +505,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!1 &85738250
 GameObject:
   m_ObjectHideFlags: 0
@@ -21873,6 +21879,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 91ceb03d0898f754e89c98e8a93c33b8, type: 3}
   - {fileID: 8300000, guid: 5717eea9d10cc8047a6743585f1f83ef, type: 3}
   - {fileID: 8300000, guid: 3744631ee136b4345b36c7e1b61acf81, type: 3}
+  fireSound:
+  - {fileID: 8300000, guid: d0f21f91b88473648af4a2b3355da05e, type: 3}
+  - {fileID: 8300000, guid: d7edf3a7ad2b2644b877cc458482e99a, type: 3}
+  - {fileID: 8300000, guid: 29da027aa28a21d4887ae6b81c03a1eb, type: 3}
+  scoreSound: {fileID: 8300000, guid: cebbe80e78ede3949a4f54112e0a5cd6, type: 3}
+  lostSound: {fileID: 8300000, guid: 70bc4c4997af7e047a889163b5c7dabb, type: 3}
 --- !u!82 &671369808
 AudioSource:
   m_ObjectHideFlags: 0
@@ -32562,6 +32574,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 91ceb03d0898f754e89c98e8a93c33b8, type: 3}
   - {fileID: 8300000, guid: 5717eea9d10cc8047a6743585f1f83ef, type: 3}
   - {fileID: 8300000, guid: 3744631ee136b4345b36c7e1b61acf81, type: 3}
+  fireSound:
+  - {fileID: 8300000, guid: d0f21f91b88473648af4a2b3355da05e, type: 3}
+  - {fileID: 8300000, guid: d7edf3a7ad2b2644b877cc458482e99a, type: 3}
+  - {fileID: 8300000, guid: 29da027aa28a21d4887ae6b81c03a1eb, type: 3}
+  scoreSound: {fileID: 8300000, guid: cebbe80e78ede3949a4f54112e0a5cd6, type: 3}
+  lostSound: {fileID: 8300000, guid: 70bc4c4997af7e047a889163b5c7dabb, type: 3}
 --- !u!82 &806433483
 AudioSource:
   m_ObjectHideFlags: 0
@@ -32617,7 +32635,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -32641,7 +32659,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!1 &828529250
 GameObject:
   m_ObjectHideFlags: 0
@@ -61208,7 +61226,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1810214412
+  randomSeed: -574368462
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -68089,7 +68107,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1465177654
+  randomSeed: 2050128890
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -71551,7 +71569,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1052883406
+  randomSeed: 854026065
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -74983,7 +75001,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1949319248
+  randomSeed: 1640500556
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -81994,7 +82012,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1469684689
+  randomSeed: -345899076
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -92438,7 +92456,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4533509011454970, guid: 369b6fc52e2217149b751efc1c3d558e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -51
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4533509011454970, guid: 369b6fc52e2217149b751efc1c3d558e, type: 2}
       propertyPath: m_LocalPosition.y
@@ -92470,15 +92488,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4533509011454970, guid: 369b6fc52e2217149b751efc1c3d558e, type: 2}
       propertyPath: m_LocalScale.x
-      value: 300.00024
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4533509011454970, guid: 369b6fc52e2217149b751efc1c3d558e, type: 2}
       propertyPath: m_LocalScale.y
-      value: 300.00012
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4533509011454970, guid: 369b6fc52e2217149b751efc1c3d558e, type: 2}
       propertyPath: m_LocalScale.z
-      value: 300.00012
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1122604616813836, guid: 369b6fc52e2217149b751efc1c3d558e, type: 2}
       propertyPath: m_IsActive
@@ -106587,6 +106605,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 91ceb03d0898f754e89c98e8a93c33b8, type: 3}
   - {fileID: 8300000, guid: 5717eea9d10cc8047a6743585f1f83ef, type: 3}
   - {fileID: 8300000, guid: 3744631ee136b4345b36c7e1b61acf81, type: 3}
+  fireSound:
+  - {fileID: 8300000, guid: d0f21f91b88473648af4a2b3355da05e, type: 3}
+  - {fileID: 8300000, guid: d7edf3a7ad2b2644b877cc458482e99a, type: 3}
+  - {fileID: 8300000, guid: 29da027aa28a21d4887ae6b81c03a1eb, type: 3}
+  scoreSound: {fileID: 8300000, guid: cebbe80e78ede3949a4f54112e0a5cd6, type: 3}
+  lostSound: {fileID: 8300000, guid: 70bc4c4997af7e047a889163b5c7dabb, type: 3}
 --- !u!82 &1600645191
 AudioSource:
   m_ObjectHideFlags: 0
@@ -106642,7 +106666,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -106666,7 +106690,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!1 &1614558833
 GameObject:
   m_ObjectHideFlags: 0

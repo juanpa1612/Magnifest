@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(ChargingUI))]
@@ -11,8 +12,11 @@ public class Players : MonoBehaviour
     ChargingUI chargingUI;
     DeathScript deathScript;
 
-    [SerializeField]
-    ScriptablePlayer player;
+    [SerializeField] ScriptablePlayer player;
+
+    PlayerIndex index1, index2, index3, index4;
+    GamePadState prevState1, prevState2, prevState3, prevState4;
+    GamePadState state1, state2, state3, state4;
     
     public enum InputNumber
     {
@@ -29,6 +33,10 @@ public class Players : MonoBehaviour
         chargingUI = GetComponent<ChargingUI>();
         deathScript = GetComponent<DeathScript>();
         GameObject.Instantiate(player.actualSkin,transform.position,transform.rotation,gameObject.transform);
+        index1 = PlayerIndex.One;
+        index2 = PlayerIndex.Two;
+        index3 = PlayerIndex.Three;
+        index4 = PlayerIndex.Four;
 	}
 	
 	void Update ()
@@ -39,144 +47,185 @@ public class Players : MonoBehaviour
                 break;
             case InputNumber.Player1:
                 #region Inputs PLayer1
-                if (Input.GetAxis("LeftJoystickHorizontal") > 0.8f)
+                if (state1.ThumbSticks.Left.X > 0.8f)
                 {
                     playerMove.ChangeDirection(true);
                 }
-                if (Input.GetAxis("LeftJoystickHorizontal") < -0.8f)
+                if (state1.ThumbSticks.Left.X < -0.8f)
                 {
                     playerMove.ChangeDirection(false);
                 }
-                if (Input.GetButtonDown("Right Bumper"))
+                if (prevState1.Buttons.RightShoulder == ButtonState.Released && state1.Buttons.RightShoulder == ButtonState.Pressed)
                 {
                     playerMove.ChangeRing(true);
                 }
-                if (Input.GetButtonDown("Left Bumper"))
+                if (prevState1.Buttons.LeftShoulder == ButtonState.Released && state1.Buttons.LeftShoulder == ButtonState.Pressed)
                 {
                     playerMove.ChangeRing(false);
                 }
                 //Charging UI
-                if (Input.GetAxis("RightTrigger") > 0)
+                if (state1.Triggers.Right > 0)
                 {
                     chargingUI.StartCharging();
                 }
-                else if (Input.GetAxis("RightTrigger") < 0.1f)
+                else if (state1.Triggers.Right < 0.1f)
                 {
                     chargingUI.StopCharging();
                 }
-                if (Input.GetAxis("RightTrigger") < 0.1f)
+                if (state1.Triggers.Right < 0.1f)
                 {
                     chargingUI.Fire();
                 }
-                chargingUI.ArrowDirection(Input.GetAxis("LeftJoystickHorizontal"), Input.GetAxis("LeftJoystickVertical"));
+                chargingUI.ArrowDirection(state1.ThumbSticks.Left.X, state1.ThumbSticks.Left.Y);
                 #endregion
                 break;
 
             case InputNumber.Player2:
                 #region Inputs Player2
-                if (Input.GetAxis("LeftJoystick2Horizontal") > 0.8f)
+                if (state2.ThumbSticks.Left.X > 0.8f)
                 {
                     playerMove.ChangeDirection(true);
                 }
-                if (Input.GetAxis("LeftJoystick2Horizontal") < -0.8f)
+                if (state2.ThumbSticks.Left.X < -0.8f)
                 {
                     playerMove.ChangeDirection(false);
                 }
-                if (Input.GetButtonDown("Right Bumper 2"))
+                if (prevState2.Buttons.RightShoulder == ButtonState.Released && state2.Buttons.RightShoulder == ButtonState.Pressed)
                 {
                     playerMove.ChangeRing(true);
                 }
-                if (Input.GetButtonDown("Left Bumper 2"))
+                if (prevState2.Buttons.LeftShoulder == ButtonState.Released && state2.Buttons.LeftShoulder == ButtonState.Pressed)
                 {
                     playerMove.ChangeRing(false);
                 }
                 //Charging UI
-                if (Input.GetAxis("RightTrigger2") > 0)
+                if (state2.Triggers.Right > 0)
                 {
                     chargingUI.StartCharging();
                 }
-                else if (Input.GetAxis("RightTrigger2") < 0.1f)
+                else if (state2.Triggers.Right < 0.1f)
                 {
                     chargingUI.StopCharging();
                 }
-                if (Input.GetAxis("RightTrigger2") < 0.1f)
+                if (state2.Triggers.Right < 0.1f)
                 {
                     chargingUI.Fire();
                 }
-                chargingUI.ArrowDirection(Input.GetAxis("LeftJoystick2Horizontal"), Input.GetAxis("LeftJoystick2Vertical"));
+                chargingUI.ArrowDirection(state2.ThumbSticks.Left.X, state2.ThumbSticks.Left.Y);
                 #endregion
                 break;
 
             case InputNumber.Player3:
                 #region Inputs Player3
-                if (Input.GetAxis("LeftJoystick3Horizontal") > 0.8f)
+                if (state3.ThumbSticks.Left.X > 0.8f)
                 {
                     playerMove.ChangeDirection(true);
                 }
-                if (Input.GetAxis("LeftJoystick3Horizontal") < -0.8f)
+                if (state3.ThumbSticks.Left.X < -0.8f)
                 {
                     playerMove.ChangeDirection(false);
                 }
-                if (Input.GetButtonDown("Right Bumper 3"))
+                if (prevState3.Buttons.RightShoulder == ButtonState.Released && state3.Buttons.RightShoulder == ButtonState.Pressed)
                 {
                     playerMove.ChangeRing(true);
                 }
-                if (Input.GetButtonDown("Left Bumper 3"))
+                if (prevState3.Buttons.LeftShoulder == ButtonState.Released && state3.Buttons.LeftShoulder == ButtonState.Pressed)
                 {
                     playerMove.ChangeRing(false);
                 }
                 //Charging UI
-                if (Input.GetAxis("RightTrigger3") > 0)
+                if (state3.Triggers.Right > 0)
                 {
                     chargingUI.StartCharging();
                 }
-                else if (Input.GetAxis("RightTrigger3") < 0.1f)
+                else if (state3.Triggers.Right < 0.1f)
                 {
                     chargingUI.StopCharging();
                 }
-                if (Input.GetAxis("RightTrigger3") < 0.1f)
+                if (state3.Triggers.Right < 0.1f)
                 {
                     chargingUI.Fire();
                 }
-                chargingUI.ArrowDirection(Input.GetAxis("LeftJoystick3Horizontal"), Input.GetAxis("LeftJoystick3Vertical"));
+                chargingUI.ArrowDirection(state3.ThumbSticks.Left.X, state3.ThumbSticks.Left.Y);
                 #endregion
                 break;
 
             case InputNumber.Player4:
                 #region Inputs Player4
-                if (Input.GetAxis("LeftJoystick4Horizontal") > 0.8f)
+                if (state4.ThumbSticks.Left.X > 0.8f)
                 {
                     playerMove.ChangeDirection(true);
                 }
-                if (Input.GetAxis("LeftJoystick4Horizontal") < -0.8f)
+                if (state4.ThumbSticks.Left.X < -0.8f)
                 {
                     playerMove.ChangeDirection(false);
                 }
-                if (Input.GetButtonDown("Right Bumper 4"))
+                if (prevState4.Buttons.RightShoulder == ButtonState.Released && state4.Buttons.RightShoulder == ButtonState.Pressed)
                 {
                     playerMove.ChangeRing(true);
                 }
-                if (Input.GetButtonDown("Left Bumper 4"))
+                if (prevState4.Buttons.LeftShoulder == ButtonState.Released && state4.Buttons.LeftShoulder == ButtonState.Pressed)
                 {
                     playerMove.ChangeRing(false);
                 }
                 //Charging UI
-                if (Input.GetAxis("RightTrigger4") > 0)
+                if (state4.Triggers.Right > 0)
                 {
                     chargingUI.StartCharging();
                 }
-                else if (Input.GetAxis("RightTrigger4") < 0.1f)
+                else if (state4.Triggers.Right < 0.1f)
                 {
                     chargingUI.StopCharging();
                 }
-                if (Input.GetAxis("RightTrigger4") < 0.1f)
+                if (state4.Triggers.Right < 0.1f)
                 {
                     chargingUI.Fire();
                 }
-                chargingUI.ArrowDirection(Input.GetAxis("LeftJoystick4Horizontal"), Input.GetAxis("LeftJoystick4Vertical"));
+                chargingUI.ArrowDirection(state4.ThumbSticks.Left.X, state4.ThumbSticks.Left.Y);
                 #endregion
                 break;
         }
-        
+        prevState1 = state1;
+        prevState2 = state2;
+        prevState3 = state3;
+        prevState4 = state4;
+        state1 = GamePad.GetState(index1);
+        state2 = GamePad.GetState(index2);
+        state3 = GamePad.GetState(index3);
+        state4 = GamePad.GetState(index4);
+        #region Inputs Player2
+        /* Version Anterior
+        if (Input.GetAxis("LeftJoystick2Horizontal") > 0.8f)
+        {
+            playerMove.ChangeDirection(true);
+        }
+        if (Input.GetAxis("LeftJoystick2Horizontal") < -0.8f)
+        {
+            playerMove.ChangeDirection(false);
+        }
+        if (Input.GetButtonDown("Right Bumper 2"))
+        {
+            playerMove.ChangeRing(true);
+        }
+        if (Input.GetButtonDown("Left Bumper 2"))
+        {
+            playerMove.ChangeRing(false);
+        }
+        //Charging UI
+        if (Input.GetAxis("RightTrigger2") > 0)
+        {
+            chargingUI.StartCharging();
+        }
+        else if (Input.GetAxis("RightTrigger2") < 0.1f)
+        {
+            chargingUI.StopCharging();
+        }
+        if (Input.GetAxis("RightTrigger2") < 0.1f)
+        {
+            chargingUI.Fire();
+        }
+        chargingUI.ArrowDirection(Input.GetAxis("LeftJoystick2Horizontal"), Input.GetAxis("LeftJoystick2Vertical"));
+        */
+        #endregion
     }
 }
