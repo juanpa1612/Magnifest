@@ -17,30 +17,59 @@ public class PlayerAudio : MonoBehaviour {
 	
     public void ChannelingSound()
     {
-        if (!source.isPlaying)
+        bool isChanneling = false;
+        for (int i = 0; i < channelingSound.Length; i++)
+        {
+            if (source.clip == channelingSound[i])
+            {
+                isChanneling = true;
+            }
+        }
+        if (!isChanneling)
         {
             int indexChanneling;
             indexChanneling = Random.Range(0, channelingSound.Length);
             source.clip = channelingSound[indexChanneling];
-            //source.loop = true;
+            source.Play();
+        }
+    }   
+
+    public void CollisionSound()
+    {
+        bool collidingSound = false;
+        for (int i = 0; i < collisionSound.Length; i++)
+        {
+            if (source.clip == collisionSound[i])
+            {
+                collidingSound = true;
+            }
+        }
+        if (!collidingSound)
+        {
+            int indexCollision;
+            indexCollision = Random.Range(0, collisionSound.Length);
+            source.clip = collisionSound[indexCollision];
             source.Play();
         }
     }
 
-    public void CollisionSound()
-    {
-        int indexCollision;
-        indexCollision = Random.Range(0, collisionSound.Length);
-        source.clip = collisionSound[indexCollision];
-        source.Play();
-    }
-
     public void RingChangeSound()
     {
-        int indexRingChange;
-        indexRingChange = Random.Range(0, ringChangeSound.Length);
-        source.clip = ringChangeSound[indexRingChange];
-        source.Play();
+        bool ringChanging = false;
+        for (int i = 0; i<ringChangeSound.Length; i++)
+        {
+            if(source.clip == ringChangeSound[i])
+            {
+                ringChanging = true;
+            }
+        }
+        if (!ringChanging)
+        {
+            int indexRingChange;
+            indexRingChange = Random.Range(0, ringChangeSound.Length);
+            source.clip = ringChangeSound[indexRingChange];
+            source.Play();
+        }
     }
 
     public void StopSounds()
@@ -49,33 +78,32 @@ public class PlayerAudio : MonoBehaviour {
     }
     public void FireSound ()
     {
-        if (!source.isPlaying)
+        bool isFiring = false;
+        for (int i = 0; i < fireSound.Length; i++)
         {
-            bool isFiring = false;
-            for (int i = 0; i < fireSound.Length; i++)
+            if (source.clip == fireSound[i])
             {
-                if (source.clip == fireSound[i])
-                {
-                    isFiring = true;
-                }
+                isFiring = true;
             }
-            if (!isFiring) { 
-                int indexFireRange;
-                indexFireRange = Random.Range(0, fireSound.Length);
-                source.clip = fireSound[indexFireRange];
-                //source.PlayOneShot(fireSound[indexFireRange], 1f);
-                source.Play();
-            }
+        }
+        if (!isFiring) { 
+            int indexFireRange;
+            indexFireRange = Random.Range(0, fireSound.Length);
+            source.clip = fireSound[indexFireRange];
+            source.Play();
         }
     }
     public void ScoreSound()
     {
-        source.clip = scoreSound;
-        source.Play();
+        if (source.clip != scoreSound)
+        {
+            source.clip = scoreSound;
+            source.Play();
+        }
     }
     public void LostSound()
     {
-        if (source.isPlaying == false&&source.clip!=lostSound)
+        if (source.clip!=lostSound)
         {
             source.clip = lostSound;
             source.Play();
