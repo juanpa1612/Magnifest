@@ -15,12 +15,12 @@ public class ChargingUI : MonoBehaviour
     bool penalized;
     bool charging;
     bool fullyCharged;
-    bool pressingJoystick;
     bool isFiring;
     bool backToPos;
 
     Vector3 joystickVector;
     Vector3 lastPos;
+    Transform temp;
     PlayerMovement playerMove;
     PlayerAudio playerAudio;
     VFX vfxReference;
@@ -116,7 +116,6 @@ public class ChargingUI : MonoBehaviour
         //Carga Completa
         if (gameObject.transform.position == center.transform.position)
         {
-            transform.eulerAngles = Vector3.zero;
             charging = false;
             fullyCharged = true;
             chargingArrow.SetActive(true);
@@ -126,11 +125,8 @@ public class ChargingUI : MonoBehaviour
         }
         if (fullyCharged && !isFiring)
         {
+            
             //Apuntar
-                if (arrowDirectX == 0 && arrowDirectY == 0)
-                {
-                    pressingJoystick = false;
-                }
                 if (arrowDirectX != 0 || arrowDirectY != 0)
                 {
                     float angulo = Mathf.Atan2(arrowDirectX, arrowDirectY) * Mathf.Rad2Deg;
@@ -141,8 +137,8 @@ public class ChargingUI : MonoBehaviour
         //Fire
         if (isFiring)
         {
-            chargingArrow.SetActive(false);
             transform.Translate(-Vector3.forward * Time.deltaTime * fireSpeed);
+            chargingArrow.SetActive(false);
             vfxReference.StartChargingParticle(false);
             vfxReference.StartShootingParticle(true);
             playerAudio.FireSound();
@@ -151,12 +147,15 @@ public class ChargingUI : MonoBehaviour
     public void Fire ()
     {
         if (fullyCharged)
+        {
             isFiring = true;
+        }
+            
     }
     public void ArrowDirection (float x, float y)
     {
         arrowDirectX = x * -1;
-        arrowDirectY = y;
+        arrowDirectY = y * -1;
     }
     private void OnTriggerEnter(Collider collision)
     {
