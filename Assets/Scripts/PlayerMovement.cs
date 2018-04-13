@@ -151,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
                 if (radiusDestiny > 68)
                 {
                     GetComponent<DeathScript>().enabled = true;
+                    GetComponent<DeathScript>().CollisionDeath();
                     chargingUI.enabled = false;
                     collision.GetComponentInChildren<VFX>().Score();
                     collision.GetComponent<PlayerAudio>().ScoreSound();

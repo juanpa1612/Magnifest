@@ -13,15 +13,41 @@ public class DeathScript : MonoBehaviour
     public static event RingOut isOut;
     bool subLive;
     PlayerAudio playerAudio;
+    float overChargeRepawnTime;
+
+
     private void Start()
     {
-        state = 2;
+        overChargeRepawnTime = 1.5f;
         playerMove=gameObject.GetComponent<PlayerMovement>();
         playerAudio = GetComponent<PlayerAudio>();
     }
 
+    public void OverChargeDeath()
+    {
+        playerAudio.LostSound();
+        transform.position = new Vector3(1000, 1000, 1000);
+        state = 1;
+
+    }
+
+    public void CollisionDeath()
+    {
+        state = 2;
+    }
+
     void Update()
     {
+        if (state == 1)
+        {
+            overChargeRepawnTime -= Time.deltaTime;
+            if (overChargeRepawnTime <= 0)
+            {
+                state = 3;
+                overChargeRepawnTime = 1.5f;
+            }
+        }
+
         //Salir del Ring
         if (state == 2)
         {

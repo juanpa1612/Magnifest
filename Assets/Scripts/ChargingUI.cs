@@ -8,6 +8,8 @@ public class ChargingUI : MonoBehaviour
     [SerializeField] GameObject chargingArrow;
     [SerializeField] float fireSpeed;
 
+    Center centerScript;
+
     float penaltyTime;
     float arrowDirectX;
     float arrowDirectY;
@@ -24,6 +26,7 @@ public class ChargingUI : MonoBehaviour
     PlayerMovement playerMove;
     PlayerAudio playerAudio;
     VFX vfxReference;
+    DeathScript deathScript;
 
     public bool Charging
     {
@@ -42,6 +45,7 @@ public class ChargingUI : MonoBehaviour
 
     private void Start()
     {
+        centerScript = center.GetComponent<Center>();
         playerAudio = GetComponent<PlayerAudio>();
         playerMove = GetComponent<PlayerMovement>();
         vfxReference = GetComponentInChildren<VFX>();
@@ -116,12 +120,31 @@ public class ChargingUI : MonoBehaviour
         //Carga Completa
         if (gameObject.transform.position == center.transform.position)
         {
+            centerScript.SetBusy(true);
             charging = false;
             fullyCharged = true;
             chargingArrow.SetActive(true);
 
-            if (chargingTime < 10)
+            if (chargingTime < 5)
+            {
                 chargingTime += Time.deltaTime;
+            }
+            else
+            {
+                deathScript.enabled = true;
+                deathScript.OverChargeDeath();
+                fullyCharged = false;
+                chargingArrow.SetActive(false);
+                centerScript.SetBusy(false);
+                this.enabled = false;
+            }
+        }
+        else if (Vector3.Distance(transform.position,center.transform.position)<3f)
+        {
+            if (centerScript.GetBusy())
+            {
+                StopCharging();
+            }
         }
         if (fullyCharged && !isFiring)
         {
@@ -148,6 +171,7 @@ public class ChargingUI : MonoBehaviour
     {
         if (fullyCharged)
         {
+            centerScript.SetBusy(false);
             isFiring = true;
         }
             
