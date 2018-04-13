@@ -109,9 +109,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public void ChangeRing (bool addOrSub)
     {
-		playerAudio.RingChangeSound ();
+
         if (addOrSub && radius < 65 && !changeRing)
         {
+            playerAudio.RingChangeSound(timeRingMax);
             radiusDestiny = radius + valueIncRad;
             radiusOrigin = radius;
             startTime = Time.time;
@@ -119,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (!addOrSub && radius > 18 && !changeRing)
         {
+            playerAudio.RingChangeSound(timeRingMax);
             radiusDestiny = radius - valueIncRad;
             radiusOrigin = radius;
             startTime = Time.time;
@@ -141,8 +143,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 collided = true;
                 playerAudio.CollisionSound();
-                radiusDestiny += collision.gameObject.GetComponent<PlayerMovement>().radius;
                 radiusOrigin = radius;
+                radiusDestiny = collision.gameObject.GetComponent<PlayerMovement>().radius + radius;
                 startTime = Time.time;
                 changeRing = true;
                 //transform.rotation = collision.gameObject.transform.rotation;
@@ -155,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
                     //playerAudio.LostSound();
                     this.enabled = false;
                 }
-                //Camera Shake
+                //Camera Shake & Control Vibration
                 if (onHit != null)
                     onHit();
             }

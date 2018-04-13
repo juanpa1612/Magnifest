@@ -10,6 +10,9 @@ public class PlayerAudio : MonoBehaviour {
     [SerializeField] AudioClip[] fireSound;
     [SerializeField] AudioClip scoreSound;
     [SerializeField] AudioClip lostSound;
+    public AnimationCurve volumeCurve;
+    float evaluateVolume;
+   
     // Use this for initialization
     void Start () {
         source = GetComponent<AudioSource>();
@@ -53,23 +56,14 @@ public class PlayerAudio : MonoBehaviour {
         }
     }
 
-    public void RingChangeSound()
+    public void RingChangeSound(float timeRingMax)
     {
-        bool ringChanging = false;
-        for (int i = 0; i<ringChangeSound.Length; i++)
-        {
-            if(source.clip == ringChangeSound[i])
-            {
-                ringChanging = true;
-            }
-        }
-        if (!ringChanging)
-        {
             int indexRingChange;
             indexRingChange = Random.Range(0, ringChangeSound.Length);
             source.clip = ringChangeSound[indexRingChange];
+            source.time = 0.2f;
             source.Play();
-        }
+        
     }
 
     public void StopSounds()
@@ -112,6 +106,17 @@ public class PlayerAudio : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-		
+        /*
+        if (source.clip != null && source.isPlaying)
+        {
+            evaluateVolume += Time.deltaTime;
+            source.volume = volumeCurve.Evaluate(evaluateVolume / source.clip.length);
+        }
+        
+        if (!source.isPlaying)
+        {
+            evaluateVolume = 0;
+        }
+        */
 	}
 }

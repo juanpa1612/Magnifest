@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.084645025, g: 0.15108702, b: 0.18374142, a: 1}
+  m_IndirectSpecularColor: {r: 0.12617037, g: 0.22069693, b: 0.26797208, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -385,15 +385,45 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1139bd00ff3abcd49b62b7916e24fa79, type: 3}
   - {fileID: 8300000, guid: 732207fd02a0aa34db69feb777d99d9a, type: 3}
   ringChangeSound:
-  - {fileID: 8300000, guid: 404f84d819c8ee140accf55894f004ae, type: 3}
-  - {fileID: 8300000, guid: 139b3369fd83426488e891602a7e4f18, type: 3}
-  - {fileID: 8300000, guid: f3c6600a6cc13de4bbb12578ac967564, type: 3}
+  - {fileID: 8300000, guid: a85887fbf4efe10489ca5541f58319ae, type: 3}
+  - {fileID: 8300000, guid: d9242849cede4b44da271cd79479f890, type: 3}
+  - {fileID: 8300000, guid: 58cb1edaa2f4a814da07ef920519d592, type: 3}
   fireSound:
   - {fileID: 8300000, guid: 9d35cfaa2178c93459c013f767ed3fa7, type: 3}
   - {fileID: 8300000, guid: 21138d3210cddd04e9b9de47e4b0b2dc, type: 3}
   - {fileID: 8300000, guid: 4b9622742858eb0499c324648c3f1cf7, type: 3}
   scoreSound: {fileID: 8300000, guid: 57acddbcc0e241a4ea2e7e58d893410b, type: 3}
   lostSound: {fileID: 8300000, guid: 1522c3dffc092af4ca2a68fb73f5b7dd, type: 3}
+  volumeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.15074843
+      value: 0.99485666
+      inSlope: -0.01965105
+      outSlope: -0.01965105
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.47022521
+      value: 0.99919516
+      inSlope: 0.012739281
+      outSlope: 0.012739281
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9916382
+      value: -0.012500763
+      inSlope: -0.050412364
+      outSlope: -0.050412364
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!82 &75750490
 AudioSource:
   m_ObjectHideFlags: 0
@@ -21851,6 +21881,36 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4b9622742858eb0499c324648c3f1cf7, type: 3}
   scoreSound: {fileID: 8300000, guid: 57acddbcc0e241a4ea2e7e58d893410b, type: 3}
   lostSound: {fileID: 8300000, guid: 1522c3dffc092af4ca2a68fb73f5b7dd, type: 3}
+  volumeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: -0.016578674
+      value: -0.0063171387
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.15074843
+      value: 0.99485666
+      inSlope: -0.01965105
+      outSlope: -0.01965105
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.47022521
+      value: 0.99919516
+      inSlope: 0.012739281
+      outSlope: 0.012739281
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9916382
+      value: -0.012500763
+      inSlope: -0.050412364
+      outSlope: -0.050412364
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!82 &671369808
 AudioSource:
   m_ObjectHideFlags: 0
@@ -32537,15 +32597,45 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1139bd00ff3abcd49b62b7916e24fa79, type: 3}
   - {fileID: 8300000, guid: 732207fd02a0aa34db69feb777d99d9a, type: 3}
   ringChangeSound:
-  - {fileID: 8300000, guid: 404f84d819c8ee140accf55894f004ae, type: 3}
-  - {fileID: 8300000, guid: 139b3369fd83426488e891602a7e4f18, type: 3}
-  - {fileID: 8300000, guid: f3c6600a6cc13de4bbb12578ac967564, type: 3}
+  - {fileID: 8300000, guid: a85887fbf4efe10489ca5541f58319ae, type: 3}
+  - {fileID: 8300000, guid: d9242849cede4b44da271cd79479f890, type: 3}
+  - {fileID: 8300000, guid: 58cb1edaa2f4a814da07ef920519d592, type: 3}
   fireSound:
   - {fileID: 8300000, guid: 9d35cfaa2178c93459c013f767ed3fa7, type: 3}
   - {fileID: 8300000, guid: 21138d3210cddd04e9b9de47e4b0b2dc, type: 3}
   - {fileID: 8300000, guid: 4b9622742858eb0499c324648c3f1cf7, type: 3}
   scoreSound: {fileID: 8300000, guid: 57acddbcc0e241a4ea2e7e58d893410b, type: 3}
   lostSound: {fileID: 8300000, guid: 1522c3dffc092af4ca2a68fb73f5b7dd, type: 3}
+  volumeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.15074843
+      value: 0.99485666
+      inSlope: -0.01965105
+      outSlope: -0.01965105
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.47022521
+      value: 0.99919516
+      inSlope: 0.012739281
+      outSlope: 0.012739281
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9916382
+      value: -0.012500763
+      inSlope: -0.050412364
+      outSlope: -0.050412364
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!82 &806433483
 AudioSource:
   m_ObjectHideFlags: 0
@@ -57734,7 +57824,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1813112696
+  randomSeed: 2093243622
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -64626,7 +64716,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1137948429
+  randomSeed: -548654772
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -68088,7 +68178,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -627076223
+  randomSeed: 1756028618
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -71520,7 +71610,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1979064103
+  randomSeed: -482942789
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -78485,7 +78575,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 583479899
+  randomSeed: 1471483774
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -96091,15 +96181,45 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1139bd00ff3abcd49b62b7916e24fa79, type: 3}
   - {fileID: 8300000, guid: 732207fd02a0aa34db69feb777d99d9a, type: 3}
   ringChangeSound:
-  - {fileID: 8300000, guid: 404f84d819c8ee140accf55894f004ae, type: 3}
-  - {fileID: 8300000, guid: 139b3369fd83426488e891602a7e4f18, type: 3}
-  - {fileID: 8300000, guid: f3c6600a6cc13de4bbb12578ac967564, type: 3}
+  - {fileID: 8300000, guid: a85887fbf4efe10489ca5541f58319ae, type: 3}
+  - {fileID: 8300000, guid: d9242849cede4b44da271cd79479f890, type: 3}
+  - {fileID: 8300000, guid: 58cb1edaa2f4a814da07ef920519d592, type: 3}
   fireSound:
   - {fileID: 8300000, guid: 9d35cfaa2178c93459c013f767ed3fa7, type: 3}
   - {fileID: 8300000, guid: 21138d3210cddd04e9b9de47e4b0b2dc, type: 3}
   - {fileID: 8300000, guid: 4b9622742858eb0499c324648c3f1cf7, type: 3}
   scoreSound: {fileID: 8300000, guid: 57acddbcc0e241a4ea2e7e58d893410b, type: 3}
   lostSound: {fileID: 8300000, guid: 1522c3dffc092af4ca2a68fb73f5b7dd, type: 3}
+  volumeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.15074843
+      value: 0.99485666
+      inSlope: -0.01965105
+      outSlope: -0.01965105
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.47022521
+      value: 0.99919516
+      inSlope: 0.012739281
+      outSlope: 0.012739281
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9916382
+      value: -0.012500763
+      inSlope: -0.050412364
+      outSlope: -0.050412364
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!82 &1600645191
 AudioSource:
   m_ObjectHideFlags: 0
@@ -96167,7 +96287,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:

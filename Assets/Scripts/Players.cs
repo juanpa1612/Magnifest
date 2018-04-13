@@ -17,7 +17,8 @@ public class Players : MonoBehaviour
     PlayerIndex index1, index2, index3, index4;
     GamePadState prevState1, prevState2, prevState3, prevState4;
     GamePadState state1, state2, state3, state4;
-    
+    float vibrationTime;
+
     public enum InputNumber
     {
         Player1,
@@ -37,6 +38,7 @@ public class Players : MonoBehaviour
         index2 = PlayerIndex.Two;
         index3 = PlayerIndex.Three;
         index4 = PlayerIndex.Four;
+        //PlayerMovement.onHit += ControllerVibration;
 	}
 	
 	void Update ()
@@ -227,5 +229,33 @@ public class Players : MonoBehaviour
         chargingUI.ArrowDirection(Input.GetAxis("LeftJoystick2Horizontal"), Input.GetAxis("LeftJoystick2Vertical"));
         */
         #endregion
+    }
+    public void ControllerVibration()
+    {
+        switch (inputNumber)
+        {
+            case InputNumber.Player1:
+                Debug.Log("Vibración");
+                vibrationTime = 2f;
+                if (vibrationTime > 0)
+                {
+                    GamePad.SetVibration(index1, 0, 0.5f);
+                }
+                break;
+            case InputNumber.Player2:
+                Debug.Log("Vibración2");
+                vibrationTime = 2f;
+                if (vibrationTime > 0)
+                {
+                    GamePad.SetVibration(index1, 0, 0.5f);
+                }
+                break;
+            case InputNumber.Player3:
+                break;
+            case InputNumber.Player4:
+                break;
+            default:
+                break;
+        }
     }
 }
