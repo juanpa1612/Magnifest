@@ -6,6 +6,7 @@ TagManager:
   tags:
   - AI
   - LastRing
+  - Center
   layers:
   - Default
   - TransparentFX

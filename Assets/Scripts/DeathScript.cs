@@ -18,13 +18,14 @@ public class DeathScript : MonoBehaviour
 
     private void Start()
     {
-        overChargeRepawnTime = 1.5f;
+        overChargeRepawnTime = 2.5f;
         playerMove=gameObject.GetComponent<PlayerMovement>();
         playerAudio = GetComponent<PlayerAudio>();
     }
 
     public void OverChargeDeath()
     {
+        playerAudio = GetComponent<PlayerAudio>();
         playerAudio.LostSound();
         transform.position = new Vector3(1000, 1000, 1000);
         state = 1;

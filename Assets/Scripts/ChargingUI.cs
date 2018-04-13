@@ -48,7 +48,18 @@ public class ChargingUI : MonoBehaviour
         centerScript = center.GetComponent<Center>();
         playerAudio = GetComponent<PlayerAudio>();
         playerMove = GetComponent<PlayerMovement>();
+        deathScript = GetComponent<DeathScript>();
         vfxReference = GetComponentInChildren<VFX>();
+        chargingTime = 0;
+        penalized = false;
+        joystickVector = Vector3.zero;
+        penaltyTime = 0;
+        charging = false;
+        fullyCharged = false;
+    }
+
+    public void Reset()
+    {
         chargingTime = 0;
         penalized = false;
         joystickVector = Vector3.zero;
@@ -115,17 +126,17 @@ public class ChargingUI : MonoBehaviour
         }
         if (charging)
         {
+            playerMove.enabled = false;
             transform.position = Vector3.MoveTowards(transform.position, center.transform.position, 1.5f);
         }
         //Carga Completa
         if (gameObject.transform.position == center.transform.position)
         {
-            centerScript.SetBusy(true);
             charging = false;
             fullyCharged = true;
             chargingArrow.SetActive(true);
-
-            if (chargingTime < 5)
+            
+            if (chargingTime < 3.5f)
             {
                 chargingTime += Time.deltaTime;
             }
@@ -136,16 +147,20 @@ public class ChargingUI : MonoBehaviour
                 fullyCharged = false;
                 chargingArrow.SetActive(false);
                 centerScript.SetBusy(false);
+                chargingTime = 0;
                 this.enabled = false;
             }
-        }
-        else if (Vector3.Distance(transform.position,center.transform.position)<3f)
+        }/*
+        else if (Vector3.Distance(transform.position,center.transform.position)<0.2f)
         {
+            Debug.Log("Entro1");
             if (centerScript.GetBusy())
             {
                 StopCharging();
+                Debug.Log("Entro2");
             }
         }
+        */
         if (fullyCharged && !isFiring)
         {
             
@@ -194,6 +209,17 @@ public class ChargingUI : MonoBehaviour
             penaltyTime = 3f;
             penalized = true;
             vfxReference.StartShootingParticle(false);
+        }
+        if (collision.CompareTag("Center"))
+        {
+            if (centerScript.GetBusy())
+            {
+                StopCharging();
+            }
+            else
+            {
+                centerScript.SetBusy(true);
+            }
         }
     }
 }
