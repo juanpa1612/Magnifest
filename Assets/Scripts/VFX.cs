@@ -8,6 +8,7 @@ public class VFX : MonoBehaviour
     ParticleSystem scoreParticle;
     ParticleSystem chargeParticle;
     ParticleSystem shootTrail;
+	ParticleSystem auraCD;
     ParticleSystem[] particles;
 
 	void Start ()
@@ -23,7 +24,10 @@ public class VFX : MonoBehaviour
                 chargeParticle = item;
             if (item.name == "ShootTrail")
                 shootTrail = item;
+			if (item.name == "AuraCoolDown")
+				auraCD = item;
         }
+
 	}
 	
 	void Update ()
@@ -52,6 +56,13 @@ public class VFX : MonoBehaviour
             scoreParticle.Play();
 
     }
+
+	public void StartAuraParticles(bool state) {
+		if (state)
+			auraCD.Play ();
+		if (!state)
+			auraCD.Stop();
+	}
     public void ShakeCamera ()
     {
         CameraShaker.Instance.ShakeOnce(2f, 5f, .5f, 1f);

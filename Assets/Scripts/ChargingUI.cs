@@ -66,6 +66,7 @@ public class ChargingUI : MonoBehaviour
         penaltyTime = 0;
         charging = false;
         fullyCharged = false;
+
     }
 
     public float GetChargingTime()
@@ -82,6 +83,7 @@ public class ChargingUI : MonoBehaviour
             playerAudio.ChannelingSound();
             vfxReference.StartChargingParticle(true);
             vfxReference.StartShootingParticle(false);
+			vfxReference.StartAuraParticles (false);
         }
     }
     public void StopCharging ()
@@ -95,15 +97,20 @@ public class ChargingUI : MonoBehaviour
             chargingArrow.SetActive(false);
             playerAudio.StopSounds();
             vfxReference.StartChargingParticle(false);
+			vfxReference.StartAuraParticles (true);
+
+			vfxReference.StartAuraParticles (false);
         }
     }
     private void Update()
     {
         if (penalized)
         {
+			
             penaltyTime -= Time.deltaTime;
             if (penaltyTime <= 0)
-            {
+            {		
+				//vfxReference.StartAuraParticles (true);
                 penalized = false;
             }
         }
@@ -209,6 +216,7 @@ public class ChargingUI : MonoBehaviour
             penaltyTime = 3f;
             penalized = true;
             vfxReference.StartShootingParticle(false);
+			vfxReference.StartAuraParticles (true);
         }
         if (collision.CompareTag("Center"))
         {
