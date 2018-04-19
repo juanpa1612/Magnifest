@@ -21,6 +21,7 @@ public class DeathScript : MonoBehaviour
         overChargeRepawnTime = 2.5f;
         playerMove=gameObject.GetComponent<PlayerMovement>();
         playerAudio = GetComponent<PlayerAudio>();
+        
     }
 
     public void OverChargeDeath()
@@ -45,7 +46,7 @@ public class DeathScript : MonoBehaviour
             if (overChargeRepawnTime <= 0)
             {
                 state = 3;
-                overChargeRepawnTime = 1.5f;
+                overChargeRepawnTime = 2.5f;
             }
         }
 
@@ -54,6 +55,10 @@ public class DeathScript : MonoBehaviour
         {
             playerAudio.LostSound();
             transform.Translate(Vector3.forward * 5);
+            if (Vector3.Distance(transform.position, Center.position) > 1500)
+            {
+                state = 3;
+            }
             if (isOut != null)
                 isOut();
         }
@@ -75,11 +80,6 @@ public class DeathScript : MonoBehaviour
                 subLive = false;
                 this.enabled = false;
             }
-        }
-
-        if(Vector3.Distance(transform.position, Center.position)>1500)
-        {
-            state = 3;
         }
 
     }

@@ -7,6 +7,7 @@ public class ChargingUI : MonoBehaviour
     [SerializeField] GameObject center;
     [SerializeField] GameObject chargingArrow;
     [SerializeField] float fireSpeed;
+    [SerializeField] GameObject colliderBack;
 
     Center centerScript;
 
@@ -66,6 +67,7 @@ public class ChargingUI : MonoBehaviour
         penaltyTime = 0;
         charging = false;
         fullyCharged = false;
+        backToPos = false;
 
     }
 
@@ -80,6 +82,7 @@ public class ChargingUI : MonoBehaviour
             playerMove.enabled = false;
             charging = true;
             lastPos = transform.position;
+            //colliderBack.transform.position = transform.position;
             playerAudio.ChannelingSound();
             vfxReference.StartChargingParticle(true);
             vfxReference.StartShootingParticle(false);
@@ -118,6 +121,7 @@ public class ChargingUI : MonoBehaviour
         //Carga Incompleta
         if (backToPos)
         {
+            
             if (transform.position != lastPos)
             {
                 transform.LookAt(lastPos);
@@ -128,8 +132,17 @@ public class ChargingUI : MonoBehaviour
                 transform.position = lastPos;
                 playerMove.enabled = true;
                 backToPos = false;
+                vfxReference.StartAuraParticles(true);
             }
             playerAudio.FireSound();
+            /*
+            if (transform.position != colliderBack.transform.position)
+            {
+                transform.LookAt(colliderBack.transform.position);
+                transform.Translate(Vector3.forward * Time.deltaTime * fireSpeed);
+            }
+            */
+
         }
         if (charging)
         {
@@ -228,6 +241,14 @@ public class ChargingUI : MonoBehaviour
             {
                 centerScript.SetBusy(true);
             }
-        }
+        }/*
+        if (collision.CompareTag("ColliderBack") && collision.gameObject == colliderBack)
+        {
+            backToPos = false;
+            transform.position = colliderBack.transform.position;
+            colliderBack.transform.position = new Vector3(2000, 2000, 2000);
+            playerMove.enabled = true;
+            vfxReference.StartAuraParticles(true);
+        }*/
     }
 }

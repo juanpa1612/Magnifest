@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using XInputDotNetPure;
 
 [RequireComponent(typeof(PlayerMovement))]
@@ -78,6 +79,13 @@ public class Players : MonoBehaviour
                 {
                     chargingUI.Fire();
                 }
+                //Scene Reset
+                if (prevState1.Buttons.Back == ButtonState.Released && state1.Buttons.Back == ButtonState.Pressed)
+                {
+                    SceneManager.LoadScene("PlayerSelection");
+                    Time.timeScale = 1;
+                }
+                    
                 chargingUI.ArrowDirection(state1.ThumbSticks.Left.X, state1.ThumbSticks.Left.Y);
                 #endregion
                 break;
@@ -114,6 +122,11 @@ public class Players : MonoBehaviour
                     chargingUI.Fire();
                 }
                 chargingUI.ArrowDirection(state2.ThumbSticks.Left.X, state2.ThumbSticks.Left.Y);
+                if (prevState2.Buttons.Back == ButtonState.Released && state2.Buttons.Back == ButtonState.Pressed)
+                {
+                    SceneManager.LoadScene("PlayerSelection");
+                    Time.timeScale = 1;
+                }
                 #endregion
                 break;
 
@@ -149,6 +162,11 @@ public class Players : MonoBehaviour
                     chargingUI.Fire();
                 }
                 chargingUI.ArrowDirection(state3.ThumbSticks.Left.X, state3.ThumbSticks.Left.Y);
+                if (prevState3.Buttons.Back == ButtonState.Released && state3.Buttons.Back == ButtonState.Pressed)
+                {
+                    SceneManager.LoadScene("PlayerSelection");
+                    Time.timeScale = 1;
+                }
                 #endregion
                 break;
 
@@ -184,6 +202,11 @@ public class Players : MonoBehaviour
                     chargingUI.Fire();
                 }
                 chargingUI.ArrowDirection(state4.ThumbSticks.Left.X, state4.ThumbSticks.Left.Y);
+                if (prevState4.Buttons.Back == ButtonState.Released && state4.Buttons.Back == ButtonState.Pressed)
+                {
+                    SceneManager.LoadScene("PlayerSelection");
+                    Time.timeScale = 1;
+                }
                 #endregion
                 break;
         }

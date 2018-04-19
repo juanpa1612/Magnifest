@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
         changeRing = false;
         radiusDestiny = 0;
         chargingUI = GetComponent<ChargingUI>();
-        chargingUI.Reset();
 		playerAudio = GetComponent<PlayerAudio> ();
 	}
 
@@ -66,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         changeRing = false;
         radiusDestiny = 0;
         chargingUI.enabled = true;
+        chargingUI.Reset();
     }
 
     void Update ()
