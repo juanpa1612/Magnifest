@@ -81,8 +81,8 @@ public class ChargingUI : MonoBehaviour
         {
             playerMove.enabled = false;
             charging = true;
-            lastPos = transform.position;
-            //colliderBack.transform.position = transform.position;
+            //lastPos = transform.position;
+            colliderBack.transform.position = transform.position;
             playerAudio.ChannelingSound();
             vfxReference.StartChargingParticle(true);
             vfxReference.StartShootingParticle(false);
@@ -98,7 +98,7 @@ public class ChargingUI : MonoBehaviour
             penaltyTime = 3f;
             penalized = true;
             chargingArrow.SetActive(false);
-            playerAudio.StopSounds();
+            //playerAudio.StopSounds();
             vfxReference.StartChargingParticle(false);
 			vfxReference.StartAuraParticles (true);
 
@@ -121,7 +121,7 @@ public class ChargingUI : MonoBehaviour
         //Carga Incompleta
         if (backToPos)
         {
-            
+            /*
             if (transform.position != lastPos)
             {
                 transform.LookAt(lastPos);
@@ -134,14 +134,15 @@ public class ChargingUI : MonoBehaviour
                 backToPos = false;
                 vfxReference.StartAuraParticles(true);
             }
+            */
             playerAudio.FireSound();
-            /*
+            
             if (transform.position != colliderBack.transform.position)
             {
                 transform.LookAt(colliderBack.transform.position);
                 transform.Translate(Vector3.forward * Time.deltaTime * fireSpeed);
             }
-            */
+            
 
         }
         if (charging)
@@ -152,6 +153,7 @@ public class ChargingUI : MonoBehaviour
         //Carga Completa
         if (gameObject.transform.position == center.transform.position)
         {
+            colliderBack.transform.position = new Vector3(2000, 2000, 2000);
             charging = false;
             fullyCharged = true;
             chargingArrow.SetActive(true);
@@ -241,14 +243,22 @@ public class ChargingUI : MonoBehaviour
             {
                 centerScript.SetBusy(true);
             }
-        }/*
+        }
+        
+    }
+
+    private void OnTriggerStay(Collider collision)
+    {
         if (collision.CompareTag("ColliderBack") && collision.gameObject == colliderBack)
         {
-            backToPos = false;
-            transform.position = colliderBack.transform.position;
-            colliderBack.transform.position = new Vector3(2000, 2000, 2000);
-            playerMove.enabled = true;
-            vfxReference.StartAuraParticles(true);
-        }*/
+            if (backToPos)
+            {
+                backToPos = false;
+                transform.position = colliderBack.transform.position;
+                colliderBack.transform.position = new Vector3(2000, 2000, 2000);
+                playerMove.enabled = true;
+                vfxReference.StartAuraParticles(true);
+            }
+        }
     }
 }
