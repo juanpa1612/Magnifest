@@ -68,7 +68,8 @@ public class ChargingUI : MonoBehaviour
         charging = false;
         fullyCharged = false;
         backToPos = false;
-
+        isFiring = false;
+        vfxReference.StartChargingParticle(false);
     }
 
     public float GetChargingTime()
@@ -166,7 +167,7 @@ public class ChargingUI : MonoBehaviour
             {
                 deathScript.enabled = true;
                 deathScript.OverChargeDeath();
-                fullyCharged = false;
+                //fullyCharged = false;
                 chargingArrow.SetActive(false);
                 centerScript.SetBusy(false);
                 chargingTime = 0;
