@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
 
         for (int i = 0; i < playersList.Count; i++)
         {
-            if (playersList[i].GetComponent<PlayerMovement>().GetLives() <= 0)
+            if (playersList[i].GetComponent<PlayerMovement>().GetLifes() <= 0)
             {
                 playersList.RemoveAt(i);
             }

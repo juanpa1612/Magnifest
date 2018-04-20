@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float timeRingMax;
 
-    int lives;
+    int lifes;
 
     float startTime;
     float timeOnTransition;
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         
         timeOnTransition = 0;
         percentageRingChange = 0;
-        lives = 3;
+        lifes = 3;
         percentageRingChange = timeRingMax;
         time = 0;
         //radius = valueIncRad;
@@ -48,14 +48,14 @@ public class PlayerMovement : MonoBehaviour
 		playerAudio = GetComponent<PlayerAudio> ();
 	}
 
-    public int GetLives()
+    public int GetLifes()
     {
-        return lives;
+        return lifes;
     }
 
-    public void subLives()
+    public void subLifes()
     {
-        lives--;
+        lifes--;
     }
 
     public void Reset()

@@ -18,9 +18,12 @@ public class PlayersUI : MonoBehaviour
     ChargingUI chargingP3;
     [SerializeField]
     ChargingUI chargingP4;
+    [SerializeField] GameObject[] uiLifes;
     float maxPenaltyTime = 3f;
 
     [SerializeField] GameObject[] players;
+
+    DeathScript[] deathScripts;
     Vector3[] playersPosition;
     Vector3 offset;
     void Start ()
@@ -31,6 +34,11 @@ public class PlayersUI : MonoBehaviour
         slidersPlayers[3].maxValue = 3;
         playersPosition = new Vector3[4];
         offset = new Vector3(0, 10, 0);
+        deathScripts = new DeathScript[4];
+        for (int i = 0; i < players.Length; i++)
+        {
+            deathScripts[i] = players[i].GetComponent<DeathScript>();
+        }
     }
 	
 
@@ -50,10 +58,17 @@ public class PlayersUI : MonoBehaviour
         chargingImages[1].transform.position = Camera.main.WorldToScreenPoint(playersPosition[1] + offset);
         chargingImages[2].transform.position = Camera.main.WorldToScreenPoint(playersPosition[2] + offset);
         chargingImages[3].transform.position = Camera.main.WorldToScreenPoint(playersPosition[3] + offset);
-
+        /*
         chargingImages[0].fillAmount = chargingP1.PenaltyTime/maxPenaltyTime;
         chargingImages[1].fillAmount = chargingP2.PenaltyTime / maxPenaltyTime;
         chargingImages[2].fillAmount = chargingP3.PenaltyTime / maxPenaltyTime;
         chargingImages[3].fillAmount = chargingP4.PenaltyTime / maxPenaltyTime;
+        */
+
+    }
+
+    public void UILife(int player, int lifes)
+    {
+        uiLifes[player].GetComponentsInChildren<Image>()[lifes].gameObject.SetActive(false);
     }
 }

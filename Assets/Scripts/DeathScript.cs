@@ -8,13 +8,20 @@ public class DeathScript : MonoBehaviour
     PlayerMovement playerMove;
 
     [SerializeField] Transform Center;
-
+    [SerializeField] PlayersUI playersUI;
     public delegate void RingOut();
     public static event RingOut isOut;
     bool subLive;
     PlayerAudio playerAudio;
     float overChargeRespawnTime;
 
+    public bool SubLife
+    {
+        get
+        {
+            return subLive;
+        }
+    }
 
     private void Start()
     {
@@ -49,7 +56,6 @@ public class DeathScript : MonoBehaviour
                 overChargeRespawnTime = 2.5f;
             }
         }
-        Debug.Log(overChargeRespawnTime);
         //Salir del Ring
         if (state == 2)
         {
@@ -66,12 +72,14 @@ public class DeathScript : MonoBehaviour
         else if (state == 3)
         {
             transform.position = new Vector3(1000, 1000, 1000);
-            if (!subLive)
+            if (!SubLife)
             {
-                playerMove.subLives();
+                playerMove.subLifes();
                 subLive = true;
+                playersUI.UILife((int)gameObject.GetComponent<Players>().inputNumber, playerMove.GetLifes());
+                
             }
-            if (playerMove.GetLives() > 0)
+            if (playerMove.GetLifes() > 0)
             {
                 transform.position = new Vector3(17, 0, 0);
                 playerMove.enabled = true;
