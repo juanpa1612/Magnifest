@@ -169,7 +169,7 @@ public class ChargingUI : MonoBehaviour
                 deathScript.OverChargeDeath();
                 //fullyCharged = false;
                 chargingArrow.SetActive(false);
-                centerScript.SetBusy(false);
+                //centerScript.SetBusy(false);
                 chargingTime = 0;
                 this.enabled = false;
             }

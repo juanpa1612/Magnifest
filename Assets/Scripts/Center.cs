@@ -5,7 +5,7 @@ using UnityEngine;
 public class Center : MonoBehaviour {
     bool busy;
     int countCol;
-    
+    float busyTime;
     public bool GetBusy()
     {
         return busy;
@@ -19,11 +19,12 @@ public class Center : MonoBehaviour {
 	void Start () {
         busy = false;
         countCol = 0;
+        busyTime = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (countCol == 0)
+        if (countCol == 0 && busy)
         {
             busy = false;
         }
