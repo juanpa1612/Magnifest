@@ -60,7 +60,6 @@
      <Compile Include="Assets\Effects\EZ Camera Shake\Scripts\CameraShakePresets.cs" />
      <Compile Include="Assets\Effects\EZ Camera Shake\Scripts\CameraShaker.cs" />
      <Compile Include="Assets\Effects\EZ Camera Shake\Scripts\Utilities\CameraUtilities.cs" />
-     <Compile Include="Assets\GalaxyBox1\examplescene.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -140,7 +139,6 @@
      <None Include="Assets\PostProcessing\Editor Resources\UI\CurveBackground.shader" />
      <None Include="Assets\XInputDotNet\MITLicense.txt" />
      <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceReflection.shader" />
-     <None Include="Assets\GalaxyBox1\instructions.txt" />
      <None Include="Assets\Shaders&amp;Particles\09UmbralNormalVectorTexCol.shader" />
      <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\ACES.cginc" />

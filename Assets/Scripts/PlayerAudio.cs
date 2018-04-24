@@ -61,7 +61,7 @@ public class PlayerAudio : MonoBehaviour {
             int indexRingChange;
             indexRingChange = Random.Range(0, ringChangeSound.Length);
             source.clip = ringChangeSound[indexRingChange];
-            source.time = 0.2f;
+            //source.time = 0.2f;
             source.Play();
         
     }
