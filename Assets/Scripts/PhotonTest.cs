@@ -5,6 +5,7 @@ using UnityEngine;
 public class PhotonTest : Photon.PunBehaviour
 {
 
+    [SerializeField] GameObject[] players;
 
 	void Start ()
     {
@@ -28,5 +29,6 @@ public class PhotonTest : Photon.PunBehaviour
     public override void OnJoinedRoom()
     {
         Debug.Log("Me uní al cuarto");
+        PhotonNetwork.Instantiate("Scriptable Player 1", new Vector3 (17, 0, 0), Quaternion.identity, 0);
     }
 }
