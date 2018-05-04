@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2195684, g: 0.37084484, b: 0.44381094, a: 1}
+  m_IndirectSpecularColor: {r: 0.22068796, g: 0.37243065, b: 0.44563925, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -238,7 +238,7 @@ MonoBehaviour:
   - {fileID: 1753697906}
   - {fileID: 963636323}
   players:
-  - {fileID: 0}
+  - {fileID: 1314860818}
   - {fileID: 806433474}
   - {fileID: 1600645182}
   - {fileID: 75750481}
@@ -731,7 +731,6 @@ GameObject:
   m_Component:
   - component: {fileID: 205629226}
   - component: {fileID: 205629225}
-  - component: {fileID: 205629227}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -769,17 +768,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &205629227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 205629224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f49d1fae9eeb414e94f8a3c3ad10078, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &232636501
 GameObject:
   m_ObjectHideFlags: 0
@@ -2830,7 +2818,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 126120013
+  randomSeed: -927560791
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6277,7 +6265,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1587097429
+  randomSeed: -653597432
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9776,7 +9764,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -537281895
+  randomSeed: -2124167768
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13208,7 +13196,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1597886842
+  randomSeed: 1360228529
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -16985,7 +16973,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1802257015
+  randomSeed: -1162248192
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -20752,7 +20740,7 @@ MonoBehaviour:
   - {fileID: 968491240}
   - {fileID: 275835433}
   - {fileID: 115031507}
-  chargingP1: {fileID: 0}
+  chargingP1: {fileID: 1314860824}
   chargingP2: {fileID: 806433476}
   chargingP3: {fileID: 1600645184}
   chargingP4: {fileID: 75750483}
@@ -20762,7 +20750,7 @@ MonoBehaviour:
   - {fileID: 1151660452}
   - {fileID: 1538412618}
   players:
-  - {fileID: 0}
+  - {fileID: 1314860818}
   - {fileID: 806433474}
   - {fileID: 1600645182}
   - {fileID: 75750481}

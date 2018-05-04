@@ -30,5 +30,6 @@ public class PhotonTest : Photon.PunBehaviour
     {
         Debug.Log("Me uní al cuarto");
         PhotonNetwork.Instantiate("Scriptable Player 1", new Vector3 (17, 0, 0), Quaternion.identity, 0);
+        PhotonNetwork.Instantiate("Cube", new Vector3(-48, 5, 0), Quaternion.identity, 0);
     }
 }

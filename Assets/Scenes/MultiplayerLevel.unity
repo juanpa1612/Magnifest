@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08491785, g: 0.15151805, b: 0.18423903, a: 1}
+  m_IndirectSpecularColor: {r: 0.08298304, g: 0.14849442, b: 0.18074039, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2658,7 +2658,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 885712598
+  randomSeed: -476851374
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6105,7 +6105,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1188337561
+  randomSeed: 701375928
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9604,7 +9604,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 95536183
+  randomSeed: 1004628347
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13036,7 +13036,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -922527136
+  randomSeed: 313478808
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -16813,7 +16813,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1468810551
+  randomSeed: -161845343
   InitialModule:
     serializedVersion: 3
     enabled: 1

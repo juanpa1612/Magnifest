@@ -50,7 +50,6 @@ public class ChargingUI : MonoBehaviour
         playerAudio = GetComponent<PlayerAudio>();
         playerMove = GetComponent<PlayerMovement>();
         deathScript = GetComponent<DeathScript>();
-        vfxReference = GetComponentInChildren<VFX>();
         chargingTime = 0;
         penalized = false;
         joystickVector = Vector3.zero;
@@ -108,6 +107,10 @@ public class ChargingUI : MonoBehaviour
     }
     private void Update()
     {
+        if (vfxReference == null)
+        {
+            vfxReference = GetComponentInChildren<VFX>();
+        }
         if (penalized)
         {
 			
