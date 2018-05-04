@@ -7,7 +7,7 @@ public class DeathScript : MonoBehaviour
     private int state;
     PlayerMovement playerMove;
 
-    [SerializeField] Transform Center;
+    Transform Center;
     [SerializeField] PlayersUI playersUI;
     public delegate void RingOut();
     public static event RingOut isOut;
@@ -25,6 +25,10 @@ public class DeathScript : MonoBehaviour
 
     private void Start()
     {
+        if (Center == null)
+        {
+            Center = GameObject.FindGameObjectWithTag("Center").transform;
+        }
         overChargeRespawnTime = 2.5f;
         playerMove=gameObject.GetComponent<PlayerMovement>();
         playerAudio = GetComponent<PlayerAudio>();

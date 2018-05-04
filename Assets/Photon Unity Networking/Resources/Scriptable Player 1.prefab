@@ -346,7 +346,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8d1850ebcb96444856b8db9421072c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {fileID: 1707447055684116, guid: 0abcf66851ab3e64a8b8d2ae91c81667, type: 2}
   chargingArrow: {fileID: 1255450272156832}
   fireSpeed: 90
   colliderBack: {fileID: 1576190200034144, guid: e72ecbfcc761fac459d51df6207af1ff,

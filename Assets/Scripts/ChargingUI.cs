@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChargingUI : MonoBehaviour
 {
-    [SerializeField] GameObject center;
+    GameObject center;
     [SerializeField] GameObject chargingArrow;
     [SerializeField] float fireSpeed;
     [SerializeField] GameObject colliderBack;
@@ -46,6 +46,10 @@ public class ChargingUI : MonoBehaviour
 
     private void Start()
     {
+       if(center == null)
+        {
+            center = GameObject.FindGameObjectWithTag("Center");
+        }
         centerScript = center.GetComponent<Center>();
         playerAudio = GetComponent<PlayerAudio>();
         playerMove = GetComponent<PlayerMovement>();
@@ -56,6 +60,7 @@ public class ChargingUI : MonoBehaviour
         penaltyTime = 0;
         charging = false;
         fullyCharged = false;
+
     }
 
     public void Reset()
