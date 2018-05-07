@@ -29,6 +29,8 @@ GameObject:
   - component: {fileID: 114005370359950898}
   - component: {fileID: 114205039263981502}
   - component: {fileID: 114417239662102394}
+  - component: {fileID: 114767176274364466}
+  - component: {fileID: 114101988871912552}
   m_Layer: 0
   m_Name: Scriptable Player 2
   m_TagString: Player
@@ -231,17 +233,28 @@ MonoBehaviour:
   group: 0
   OwnerShipWasTransfered: 0
   prefixBackup: -1
-  synchronization: 2
+  synchronization: 3
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114205039263981502}
+  - {fileID: 114101988871912552}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &114101988871912552
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757064764353072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2550cdad2e62548978e258e666e324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114205039263981502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -389,8 +402,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1cf5f04648c994fa6dce55aeb5ccc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Center: {fileID: 0}
   playersUI: {fileID: 0}
+--- !u!114 &114767176274364466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757064764353072}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c032e620d41b954da5e50c166d19873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114826480892385558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -402,7 +425,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8d1850ebcb96444856b8db9421072c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {fileID: 1707447055684116, guid: 0abcf66851ab3e64a8b8d2ae91c81667, type: 2}
   chargingArrow: {fileID: 1819218078308938}
   fireSpeed: 90
   colliderBack: {fileID: 1868469141777202, guid: 74417662d2e5144439ee4c4de5785a46,

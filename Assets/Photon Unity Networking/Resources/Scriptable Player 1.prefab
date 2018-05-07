@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 114013553639228506}
   - component: {fileID: 114843456919400542}
   - component: {fileID: 114843506066218596}
+  - component: {fileID: 114046993217041990}
   m_Layer: 0
   m_Name: Scriptable Player 1
   m_TagString: Player
@@ -282,6 +283,17 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &114046993217041990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1684955218395792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2550cdad2e62548978e258e666e324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114509957593639192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -293,7 +305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1cf5f04648c994fa6dce55aeb5ccc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Center: {fileID: 0}
   playersUI: {fileID: 0}
 --- !u!114 &114719044673790786
 MonoBehaviour:
@@ -307,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angularVelocity: 2
-  radius: 34
+  radius: 17
   time: 0
   valueIncRad: 17
   timeRingMax: 0.1
@@ -330,7 +341,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1684955218395792}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c032e620d41b954da5e50c166d19873, type: 3}
   m_Name: 
@@ -365,12 +376,12 @@ MonoBehaviour:
   group: 0
   OwnerShipWasTransfered: 0
   prefixBackup: -1
-  synchronization: 2
+  synchronization: 3
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114843506066218596}
+  - {fileID: 114046993217041990}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
