@@ -9,8 +9,8 @@ public class PhotonTest : Photon.PunBehaviour
 
 	void Start ()
     {
-        PhotonNetwork.sendRate = 60;
-        PhotonNetwork.sendRateOnSerialize = 30;
+        PhotonNetwork.sendRate = 180;
+        PhotonNetwork.sendRateOnSerialize = 120;
 
         PhotonNetwork.ConnectUsingSettings("Alpha_V01");
 	}

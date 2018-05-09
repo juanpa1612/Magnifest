@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08298304, g: 0.14849442, b: 0.18074039, a: 1}
+  m_IndirectSpecularColor: {r: 0.21956769, g: 0.37084496, b: 0.44380987, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -354,7 +354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8d1850ebcb96444856b8db9421072c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {fileID: 1616263849}
   chargingArrow: {fileID: 454577719}
   fireSpeed: 90
   colliderBack: {fileID: 1219264389}
@@ -385,7 +384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1cf5f04648c994fa6dce55aeb5ccc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Center: {fileID: 1616263852}
   playersUI: {fileID: 1325504726}
 --- !u!135 &75750486
 SphereCollider:
@@ -2658,7 +2656,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -476851374
+  randomSeed: 209111695
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6105,7 +6103,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 701375928
+  randomSeed: -252443719
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9604,7 +9602,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1004628347
+  randomSeed: -109223591
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13036,7 +13034,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 313478808
+  randomSeed: 1762445658
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -16813,7 +16811,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -161845343
+  randomSeed: 1618470352
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -20665,7 +20663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8d1850ebcb96444856b8db9421072c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {fileID: 1616263849}
   chargingArrow: {fileID: 634754168}
   fireSpeed: 90
   colliderBack: {fileID: 1082320628}
@@ -20696,7 +20693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1cf5f04648c994fa6dce55aeb5ccc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Center: {fileID: 1616263852}
   playersUI: {fileID: 1325504726}
 --- !u!135 &1600645187
 SphereCollider:
@@ -20877,11 +20873,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!1 &1616263849 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1707447055684116, guid: 0abcf66851ab3e64a8b8d2ae91c81667,
-    type: 2}
-  m_PrefabInternal: {fileID: 464251652}
 --- !u!4 &1616263852 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4951677708045430, guid: 0abcf66851ab3e64a8b8d2ae91c81667,
