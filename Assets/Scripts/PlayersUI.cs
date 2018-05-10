@@ -11,13 +11,13 @@ public class PlayersUI : MonoBehaviour
     Image[] chargingImages;
 
     [SerializeField]
-    ChargingUI chargingP1;
+    Charging chargingP1;
     [SerializeField]
-    ChargingUI chargingP2;
+    Charging chargingP2;
     [SerializeField]
-    ChargingUI chargingP3;
+    Charging chargingP3;
     [SerializeField]
-    ChargingUI chargingP4;
+    Charging chargingP4;
     [SerializeField] GameObject[] uiLifes;
     float maxPenaltyTime = 3f;
 

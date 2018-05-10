@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargingUI : MonoBehaviour
+public class Charging : MonoBehaviour
 {
     GameObject center;
     [SerializeField] GameObject chargingArrow;
@@ -16,7 +16,7 @@ public class ChargingUI : MonoBehaviour
     float arrowDirectY;
     float chargingTime;
     bool penalized;
-    bool charging;
+    bool isCharging;
     bool fullyCharged;
     bool isFiring;
     bool backToPos;
@@ -29,11 +29,11 @@ public class ChargingUI : MonoBehaviour
     VFX vfxReference;
     DeathScript deathScript;
 
-    public bool Charging
+    public bool IsCharging
     {
         get
         {
-            return charging;
+            return isCharging;
         }
     }
     public float PenaltyTime
@@ -58,7 +58,7 @@ public class ChargingUI : MonoBehaviour
         penalized = false;
         joystickVector = Vector3.zero;
         penaltyTime = 0;
-        charging = false;
+        isCharging = false;
         fullyCharged = false;
 
     }
@@ -69,7 +69,7 @@ public class ChargingUI : MonoBehaviour
         penalized = false;
         joystickVector = Vector3.zero;
         penaltyTime = 0;
-        charging = false;
+        isCharging = false;
         fullyCharged = false;
         backToPos = false;
         isFiring = false;
@@ -82,10 +82,10 @@ public class ChargingUI : MonoBehaviour
     }
     public void StartCharging ()
     {
-        if (!charging && !penalized && !isFiring && !fullyCharged)
+        if (!isCharging && !penalized && !isFiring && !fullyCharged)
         {
             playerMove.enabled = false;
-            charging = true;
+            isCharging = true;
             //lastPos = transform.position;
             colliderBack.transform.position = transform.position;
             playerAudio.ChannelingSound();
@@ -96,10 +96,10 @@ public class ChargingUI : MonoBehaviour
     }
     public void StopCharging ()
     {
-        if (charging && !fullyCharged)
+        if (isCharging && !fullyCharged)
         {
             backToPos = true;
-            charging = false;
+            isCharging = false;
             penaltyTime = 3f;
             penalized = true;
             chargingArrow.SetActive(false);
@@ -154,7 +154,7 @@ public class ChargingUI : MonoBehaviour
             
 
         }
-        if (charging)
+        if (isCharging)
         {
             playerMove.enabled = false;
             transform.position = Vector3.MoveTowards(transform.position, center.transform.position, 1.5f);
@@ -163,7 +163,7 @@ public class ChargingUI : MonoBehaviour
         if (gameObject.transform.position == center.transform.position)
         {
             colliderBack.transform.position = new Vector3(2000, 2000, 2000);
-            charging = false;
+            isCharging = false;
             fullyCharged = true;
             chargingArrow.SetActive(true);
             

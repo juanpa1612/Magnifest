@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 using XInputDotNetPure;
 
 [RequireComponent(typeof(PlayerMovement))]
-[RequireComponent(typeof(ChargingUI))]
+[RequireComponent(typeof(Charging))]
 [RequireComponent(typeof(DeathScript))]
 public class Players : MonoBehaviour
 {
     PlayerMovement playerMove;
-    ChargingUI chargingUI;
+    Charging chargingUI;
     DeathScript deathScript;
 
     [SerializeField] ScriptablePlayer player;
@@ -32,7 +32,7 @@ public class Players : MonoBehaviour
 	void Start ()
     {
         playerMove = GetComponent<PlayerMovement>();
-        chargingUI = GetComponent<ChargingUI>();
+        chargingUI = GetComponent<Charging>();
         deathScript = GetComponent<DeathScript>();
         GameObject.Instantiate(player.actualSkin,transform.position,transform.rotation,gameObject.transform);
         index1 = PlayerIndex.One;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.21956769, g: 0.37084496, b: 0.44380987, a: 1}
+  m_IndirectSpecularColor: {r: 0.2258985, g: 0.37974444, b: 0.45394057, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1cf5f04648c994fa6dce55aeb5ccc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersUI: {fileID: 1325504726}
+  playersUI: {fileID: 0}
 --- !u!135 &75750486
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2656,7 +2656,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 209111695
+  randomSeed: 1960559023
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6103,7 +6103,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -252443719
+  randomSeed: -174375848
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9602,7 +9602,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -109223591
+  randomSeed: -235733017
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13034,7 +13034,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1762445658
+  randomSeed: 297026936
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -16811,7 +16811,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1618470352
+  randomSeed: -1133667220
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -20306,7 +20306,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1325504724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e7d35c17b634ef409a95d55273e5eb7, type: 3}
+  m_Script: {fileID: 11500000, guid: c2f3210e4fd76f04083a950824146699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slidersPlayers:
@@ -20319,12 +20319,14 @@ MonoBehaviour:
   - {fileID: 968491240}
   - {fileID: 275835433}
   - {fileID: 115031507}
-  chargingP1: {fileID: 114911045987410238, guid: d23435b44ec50634c9e7d5448a890691,
+  chargingP1: {fileID: 114281112842823400, guid: d23435b44ec50634c9e7d5448a890691,
     type: 2}
-  chargingP2: {fileID: 114826480892385558, guid: 10c557713874c174383777e9b91cd622,
+  chargingP2: {fileID: 114065837707178846, guid: 10c557713874c174383777e9b91cd622,
     type: 2}
-  chargingP3: {fileID: 1600645184}
-  chargingP4: {fileID: 75750483}
+  chargingP3: {fileID: 114065837707178846, guid: 29461da143aa3ce42b3d7d5bca11e51d,
+    type: 2}
+  chargingP4: {fileID: 114065837707178846, guid: daccdb54e102df546a6f7aea99b0fc3c,
+    type: 2}
   uiLifes:
   - {fileID: 1187433376}
   - {fileID: 610091349}
@@ -20333,8 +20335,8 @@ MonoBehaviour:
   players:
   - {fileID: 1684955218395792, guid: d23435b44ec50634c9e7d5448a890691, type: 2}
   - {fileID: 1757064764353072, guid: 10c557713874c174383777e9b91cd622, type: 2}
-  - {fileID: 1600645182}
-  - {fileID: 75750481}
+  - {fileID: 1757064764353072, guid: 29461da143aa3ce42b3d7d5bca11e51d, type: 2}
+  - {fileID: 1757064764353072, guid: daccdb54e102df546a6f7aea99b0fc3c, type: 2}
 --- !u!1001 &1427090499
 Prefab:
   m_ObjectHideFlags: 0
@@ -20693,7 +20695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1cf5f04648c994fa6dce55aeb5ccc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersUI: {fileID: 1325504726}
+  playersUI: {fileID: 0}
 --- !u!135 &1600645187
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     float startTime;
     float timeOnTransition;
-    ChargingUI chargingUI;
+    Charging chargingUI;
     PlayerAudio playerAudio;
 
     public delegate void HitAction();
@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         direction = false;
         changeRing = false;
         radiusDestiny = 0;
-        chargingUI = GetComponent<ChargingUI>();
+        chargingUI = GetComponent<Charging>();
 		playerAudio = GetComponent<PlayerAudio> ();
 	}
 
@@ -139,8 +139,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !collided && (!collision.GetComponent<PlayerMovement>().enabled))
         {
-            if (collision.GetComponent<ChargingUI>().Charging == false && !collision.GetComponent<DeathScript>().enabled 
-                && !chargingUI.Charging)
+            if (collision.GetComponent<Charging>().IsCharging == false && !collision.GetComponent<DeathScript>().enabled 
+                && !chargingUI.IsCharging)
             {
                 collided = true;
                 playerAudio.CollisionSound();

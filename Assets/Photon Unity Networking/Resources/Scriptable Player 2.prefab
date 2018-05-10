@@ -21,16 +21,16 @@ GameObject:
   - component: {fileID: 4359689162116162}
   - component: {fileID: 54884399082705690}
   - component: {fileID: 135061706962749722}
-  - component: {fileID: 114608628092094884}
-  - component: {fileID: 114835852721411370}
-  - component: {fileID: 114826480892385558}
   - component: {fileID: 82216357083293770}
   - component: {fileID: 114306166376714032}
   - component: {fileID: 114005370359950898}
   - component: {fileID: 114205039263981502}
-  - component: {fileID: 114417239662102394}
   - component: {fileID: 114767176274364466}
   - component: {fileID: 114101988871912552}
+  - component: {fileID: 114417239662102394}
+  - component: {fileID: 114044722410708848}
+  - component: {fileID: 114065837707178846}
+  - component: {fileID: 114985052166323294}
   m_Layer: 0
   m_Name: Scriptable Player 2
   m_TagString: Player
@@ -244,6 +244,37 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &114044722410708848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757064764353072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc1113b6b8f1e53448e591046ca399fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angularVelocity: 2
+  radius: 34
+  time: 0
+  valueIncRad: 17
+  timeRingMax: 0.1
+--- !u!114 &114065837707178846
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757064764353072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53cb528a7ac3abf4bb6bd9dee646af37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargingArrow: {fileID: 1819218078308938}
+  fireSpeed: 90
+  colliderBack: {fileID: 1868469141777202, guid: 74417662d2e5144439ee4c4de5785a46,
+    type: 2}
 --- !u!114 &114101988871912552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -391,18 +422,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: bde8317e6c8b72544b3b034612ab6052, type: 2}
   inputNumber: 0
---- !u!114 &114608628092094884
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1757064764353072}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff1cf5f04648c994fa6dce55aeb5ccc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playersUI: {fileID: 0}
 --- !u!114 &114767176274364466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -414,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c032e620d41b954da5e50c166d19873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114826480892385558
+--- !u!114 &114985052166323294
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -422,29 +441,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1757064764353072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab8d1850ebcb96444856b8db9421072c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c70f1638b79f0d4ba9290e43611b840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargingArrow: {fileID: 1819218078308938}
-  fireSpeed: 90
-  colliderBack: {fileID: 1868469141777202, guid: 74417662d2e5144439ee4c4de5785a46,
-    type: 2}
---- !u!114 &114835852721411370
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1757064764353072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce91935b445d39c47b3226f03e402155, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  angularVelocity: 2
-  radius: 34
-  time: 0
-  valueIncRad: 17
-  timeRingMax: 0.1
+  playersUI: {fileID: 0}
 --- !u!135 &135061706962749722
 SphereCollider:
   m_ObjectHideFlags: 1

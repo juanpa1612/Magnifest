@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using XInputDotNetPure;
 
-[RequireComponent(typeof(PlayerMovement))]
-[RequireComponent(typeof(ChargingUI))]
-[RequireComponent(typeof(DeathScript))]
-public class PlayersMultiplayer : Photon.PunBehaviour
+[RequireComponent(typeof(PlayerMovementOnline))]
+[RequireComponent(typeof(ChargingOnline))]
+[RequireComponent(typeof(DeathScriptOnline))]
+public class PlayersOnline : Photon.PunBehaviour
 {
-    PlayerMovement playerMove;
-    ChargingUI chargingUI;
-    DeathScript deathScript;
+    PlayerMovementOnline playerMove;
+    ChargingOnline chargingUI;
+    DeathScriptOnline deathScript;
 
     [SerializeField] ScriptablePlayer player;
 
@@ -35,9 +35,9 @@ public class PlayersMultiplayer : Photon.PunBehaviour
         {
             Destroy(this);
         }
-        playerMove = GetComponent<PlayerMovement>();
-        chargingUI = GetComponent<ChargingUI>();
-        deathScript = GetComponent<DeathScript>();
+        playerMove = GetComponent<PlayerMovementOnline>();
+        chargingUI = GetComponent<ChargingOnline>();
+        deathScript = GetComponent<DeathScriptOnline>();
         GameObject.Instantiate(player.actualSkin,transform.position,transform.rotation,gameObject.transform);
         index1 = PlayerIndex.One;
         index2 = PlayerIndex.Two;
