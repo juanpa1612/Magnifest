@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91aecf43958bba545860c8eaee63126e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: bde8317e6c8b72544b3b034612ab6052, type: 2}
+  player: {fileID: 11400000, guid: cb42e83c872d1694dae9d3bc0d5fb554, type: 2}
   inputNumber: 0
 --- !u!114 &114767176274364466
 MonoBehaviour:
@@ -444,7 +444,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c70f1638b79f0d4ba9290e43611b840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersUI: {fileID: 0}
 --- !u!135 &135061706962749722
 SphereCollider:
   m_ObjectHideFlags: 1

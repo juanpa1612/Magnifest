@@ -31,10 +31,6 @@ public class PlayersOnline : Photon.PunBehaviour
     
 	void Start ()
     {
-        if (!photonView.isMine)
-        {
-            Destroy(this);
-        }
         playerMove = GetComponent<PlayerMovementOnline>();
         chargingUI = GetComponent<ChargingOnline>();
         deathScript = GetComponent<DeathScriptOnline>();
@@ -48,6 +44,8 @@ public class PlayersOnline : Photon.PunBehaviour
 	
 	void Update ()
     {
+        if (photonView.isMine)
+        {
             if (state1.ThumbSticks.Left.X > 0.8f)
             {
                 playerMove.ChangeDirection(true);
@@ -86,6 +84,7 @@ public class PlayersOnline : Photon.PunBehaviour
             chargingUI.ArrowDirection(state1.ThumbSticks.Left.X, state1.ThumbSticks.Left.Y);
             prevState1 = state1;
             state1 = GamePad.GetState(index1);
+        }
     }
     
 }

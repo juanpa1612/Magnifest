@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/MultiplayerLevel.unity
+- path: Assets/Scenes/PlayerSelectionOnline.unity
   isLoaded: 1
   isActive: 1

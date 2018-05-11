@@ -5,7 +5,9 @@ using UnityEngine;
 public class PhotonTest : Photon.PunBehaviour
 {
 
-    [SerializeField] GameObject[] players;
+    [SerializeField] ScriptablePlayer[] players;
+    [SerializeField]
+    PlayerSelectionOnline pSelection;
 
 	void Start ()
     {
@@ -32,7 +34,9 @@ public class PhotonTest : Photon.PunBehaviour
     public override void OnJoinedRoom()
     {
         Debug.Log("Me uní al cuarto");
-        PhotonNetwork.Instantiate("Scriptable Player " + PhotonNetwork.playerList.Length, new Vector3 (17, 0, 0), Quaternion.identity, 0);
+        PhotonNetwork.Instantiate("Scriptable Player " + PlayerSelectionOnline.onlineNumber, new Vector3 (17, 0, 0), Quaternion.identity, 0);
+        //players[PhotonNetwork.playerList.Length].actualSkin = pSelection.skinsReference.skins[pSelection.actualSkin[1]];
         PhotonNetwork.Instantiate("Cube", new Vector3(-48, 5, 0), Quaternion.identity, 0);
+        Debug.Log(PhotonNetwork.playerList.Length);
     }
 }
