@@ -68,31 +68,32 @@ public class PlayerSelectionOnline : Photon.PunBehaviour
 
         if (mainMenu.skinSelection.alpha == 1)
         {
-            if (prevState1.Buttons.A == ButtonState.Released && state1.Buttons.A == ButtonState.Pressed && !playerJoined[0])
-            {
-                PlayerJoin(0);
-            }
-            if (prevState2.Buttons.A == ButtonState.Released && state2.Buttons.A == ButtonState.Pressed && !playerJoined[1])
-            {
-                PlayerJoin(1);
-            }
-            if (prevState3.Buttons.A == ButtonState.Released && state3.Buttons.A == ButtonState.Pressed && !playerJoined[2])
-            {
-                PlayerJoin(2);
-            }
-            if (prevState4.Buttons.A == ButtonState.Released && state4.Buttons.A == ButtonState.Pressed && !playerJoined[3])
-            {
-                PlayerJoin(3);
-            }
+            //if (prevState1.Buttons.A == ButtonState.Released && state1.Buttons.A == ButtonState.Pressed && !playerJoined[0])
+            //{
+            //    PlayerJoin(PhotonNetwork.player.ID);
+            //}
+            //if (prevState2.Buttons.A == ButtonState.Released && state2.Buttons.A == ButtonState.Pressed && !playerJoined[1])
+            //{
+            //    PlayerJoin(1);
+            //}
+            //if (prevState3.Buttons.A == ButtonState.Released && state3.Buttons.A == ButtonState.Pressed && !playerJoined[2])
+            //{
+            //    PlayerJoin(2);
+            //}
+            //if (prevState4.Buttons.A == ButtonState.Released && state4.Buttons.A == ButtonState.Pressed && !playerJoined[3])
+            //{
+            //    PlayerJoin(3);
+            //}
         }
         #region Inputs Joystick 1
         if (prevState1.ThumbSticks.Left.X != 1 && state1.ThumbSticks.Left.X == 1)
         {
-            SkinMovement(true, 0);
+            SkinMovement(true, PhotonNetwork.player.ID-1);
+            Debug.Log("Analogo");
         }
         if (prevState1.ThumbSticks.Left.X != -1 && state1.ThumbSticks.Left.X == -1)
         {
-            SkinMovement(false, 0);
+            SkinMovement(false, PhotonNetwork.player.ID-1);
         }
         #endregion
         #region Inputs Joystick 2
@@ -127,13 +128,13 @@ public class PlayerSelectionOnline : Photon.PunBehaviour
         #endregion
         #region Players Are Ready
         if (prevState1.Buttons.A == ButtonState.Released && state1.Buttons.A == ButtonState.Pressed && playerJoined[0])
-            PlayersReady(0);
-        if (prevState2.Buttons.A == ButtonState.Released && state2.Buttons.A == ButtonState.Pressed && playerJoined[1])
-            PlayersReady(1);
-        if (prevState3.Buttons.A == ButtonState.Released && state3.Buttons.A == ButtonState.Pressed && playerJoined[2])
-            PlayersReady(2);
-        if (prevState4.Buttons.A == ButtonState.Released && state4.Buttons.A == ButtonState.Pressed && playerJoined[3])
-            PlayersReady(3);
+            PlayersReady(PhotonNetwork.player.ID);
+        //if (prevState2.Buttons.A == ButtonState.Released && state2.Buttons.A == ButtonState.Pressed && playerJoined[1])
+        //    PlayersReady(1);
+        //if (prevState3.Buttons.A == ButtonState.Released && state3.Buttons.A == ButtonState.Pressed && playerJoined[2])
+        //    PlayersReady(2);
+        //if (prevState4.Buttons.A == ButtonState.Released && state4.Buttons.A == ButtonState.Pressed && playerJoined[3])
+        //    PlayersReady(3);
         #endregion
         #region Players Cancel
         if (prevState1.Buttons.B == ButtonState.Released && state1.Buttons.B == ButtonState.Pressed && playerJoined[0])
@@ -153,10 +154,10 @@ public class PlayerSelectionOnline : Photon.PunBehaviour
     [PunRPC]
     public void PlayersReady(int playerNumber)
     {
-        scriptablePlayers[PhotonNetwork.playerList.Length].actualSkin = skinsReference.skins[ActualSkin[playerNumber]];
+        scriptablePlayers[playerNumber].actualSkin = skinsReference.skins[ActualSkin[playerNumber]];
         playerReady[playerNumber] = true;
         skinsPlayers[playerNumber].GetComponent<VFX>().Score();
-        Debug.Log(PhotonNetwork.playerList.Length);
+        Debug.Log(PhotonNetwork.player.ID);
     }
     void OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo message)
     {
@@ -212,8 +213,12 @@ public class PlayerSelectionOnline : Photon.PunBehaviour
                 ActualSkin[playerNumber]--;
 
             GameObject lastSkin = skinsPlayers[playerNumber];
-            lastSkin.SetActive(false);
-            skinsPlayers[playerNumber] = Instantiate(skinsReference.skins[ActualSkin[playerNumber]], initialPos[playerNumber], Quaternion.identity);
+            //lastSkin.SetActive(false);
+            PhotonNetwork.Destroy(lastSkin);
+            skinsPlayers[playerNumber] = PhotonNetwork.Instantiate(skinsReference.skins[ActualSkin[playerNumber]].name, initialPos[playerNumber], Quaternion.identity,0);
+            Debug.Log(skinsReference.skins[ActualSkin[playerNumber]].name);
+
+            //skinsPlayers[playerNumber] = Instantiate(skinsReference.skins[ActualSkin[playerNumber]], initialPos[playerNumber], Quaternion.identity);
             skinsPlayers[playerNumber].SetActive(true);
         }
     }

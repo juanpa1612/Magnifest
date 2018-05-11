@@ -5,7 +5,8 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] CanvasGroup main;
-    
+    [SerializeField]
+    GameObject[] initialSkins;
     public CanvasGroup skinSelection;
     bool startReady;
     Vector3 posB;
@@ -28,15 +29,15 @@ public class MainMenu : MonoBehaviour
 
 	void Update ()
     {
-        if (!startReady)
-        {
-            if (Input.anyKeyDown)
-                startReady = true;
-        }
+
         if (startReady)
         {
             main.alpha -= Time.deltaTime;
             skinSelection.alpha += Time.deltaTime;
         }
 	}
+    public void MenuAlpha ()
+    {
+        startReady = true;
+    }
 }
