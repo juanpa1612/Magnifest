@@ -21,7 +21,8 @@ public class PlayerSelectionOnline : Photon.PunBehaviour
     bool[] playerReady;
     public static int onlineNumber;
     Vector3[] initialPos;
-
+    GameObject [] initialSkins;
+    bool firstMove;
     public int[] ActualSkin
     {
         get
@@ -45,12 +46,21 @@ public class PlayerSelectionOnline : Photon.PunBehaviour
 
         playerReady = new bool[4];
         playerJoined = new bool[4];
-
+        firstMove = true;
         initialPos = new Vector3[4];
-        for (int i = 0; i < initialPos.Length; i++)
+        initialPos[0] = new Vector3(-18,1,49);
+        initialPos[1] = new Vector3(18, 1, 49);
+        initialPos[2] = new Vector3(-18, -19, 49);
+        initialPos[3] = new Vector3(18, -19, 49);
+        initialSkins = new GameObject[4];
+        for (int i = 0; i < initialSkins.Length; i++)
         {
-            initialPos[i] = skinsPlayers[i].transform.position;
+            initialSkins[i] = skinsPlayers[i];
         }
+        //for (int i = 0; i < initialPos.Length; i++)
+        //{
+        //    initialPos[i] = skinsPlayers[i].transform.position;
+        //}
 
         onlineNumber = PhotonNetwork.playerList.Length;
     }
@@ -179,32 +189,49 @@ public class PlayerSelectionOnline : Photon.PunBehaviour
     }
     public void PlayerJoin(int playerNumber)
     {
+        foreach (var item in PhotonNetwork.playerList)
+        {
+            Debug.Log(item.ID);
+        }
         switch (playerNumber)
         {
             case 0:
                 playerJoined[playerNumber] = true;
-                skinsPlayers[0].SetActive(true);
+                //skinsPlayers[0].SetActive(true);
+                skinsPlayers[0] = PhotonNetwork.Instantiate(skinsReference.skins[0].name, initialPos[0], Quaternion.identity, 0);
                 txtsToJoin[0].CrossFadeAlpha(0, 1, true);
                 break;
             case 1:
                 playerJoined[playerNumber] = true;
-                skinsPlayers[1].SetActive(true);
+                //skinsPlayers[1].SetActive(true);
+                skinsPlayers[1] = PhotonNetwork.Instantiate(skinsReference.skins[0].name, initialPos[1], Quaternion.identity, 0);
                 txtsToJoin[1].CrossFadeAlpha(0, 1, true);
                 break;
             case 2:
                 playerJoined[playerNumber] = true;
-                skinsPlayers[2].SetActive(true);
+                //skinsPlayers[2].SetActive(true);
+                skinsPlayers[2] = PhotonNetwork.Instantiate(skinsReference.skins[0].name, initialPos[2], Quaternion.identity, 0);
                 txtsToJoin[2].CrossFadeAlpha(0, 1, true);
                 break;
             case 3:
                 playerJoined[playerNumber] = true;
-                skinsPlayers[3].SetActive(true);
+                //skinsPlayers[3].SetActive(true);
+                skinsPlayers[3] = PhotonNetwork.Instantiate(skinsReference.skins[0].name, initialPos[3], Quaternion.identity, 0);
                 txtsToJoin[3].CrossFadeAlpha(0, 1, true);
                 break;
         }
     }
     public void SkinMovement(bool right, int playerNumber)
     {
+
+        if (firstMove)
+        {
+            firstMove = false;
+            initialSkins[0].transform.position = new Vector3(-18, -82, 49);
+            initialSkins[1].transform.position = new Vector3(18, -82, 49);
+            initialSkins[2].transform.position = new Vector3(-18, -82, 49);
+            initialSkins[3].transform.position = new Vector3(-18, -82, 49);
+        }
         if (playerJoined[playerNumber])
         {
             if (right && ActualSkin[playerNumber] < skinsPlayers.Length - 1)
@@ -216,8 +243,6 @@ public class PlayerSelectionOnline : Photon.PunBehaviour
             //lastSkin.SetActive(false);
             PhotonNetwork.Destroy(lastSkin);
             skinsPlayers[playerNumber] = PhotonNetwork.Instantiate(skinsReference.skins[ActualSkin[playerNumber]].name, initialPos[playerNumber], Quaternion.identity,0);
-            Debug.Log(skinsReference.skins[ActualSkin[playerNumber]].name);
-
             //skinsPlayers[playerNumber] = Instantiate(skinsReference.skins[ActualSkin[playerNumber]], initialPos[playerNumber], Quaternion.identity);
             skinsPlayers[playerNumber].SetActive(true);
         }
