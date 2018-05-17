@@ -138,7 +138,7 @@ public class PlayerSelectionOnline : Photon.PunBehaviour
         #endregion
         #region Players Are Ready
         if (prevState1.Buttons.A == ButtonState.Released && state1.Buttons.A == ButtonState.Pressed && playerJoined[0])
-            PlayersReady(PhotonNetwork.player.ID);
+            PlayersReady(PhotonNetwork.player.ID-1);
         //if (prevState2.Buttons.A == ButtonState.Released && state2.Buttons.A == ButtonState.Pressed && playerJoined[1])
         //    PlayersReady(1);
         //if (prevState3.Buttons.A == ButtonState.Released && state3.Buttons.A == ButtonState.Pressed && playerJoined[2])
@@ -157,9 +157,7 @@ public class PlayerSelectionOnline : Photon.PunBehaviour
             PlayersCancel(3);
         #endregion
         if (prevState1.Buttons.Start == ButtonState.Released && state1.Buttons.Start == ButtonState.Pressed)
-            SceneManager.LoadScene("MultiplayerLevel");
-        if (prevState2.Buttons.Start == ButtonState.Released && state2.Buttons.Start == ButtonState.Pressed)
-            SceneManager.LoadScene("MultiplayerLevel");
+            PhotonNetwork.LoadLevel("MultiplayerLevel");
     }
     [PunRPC]
     public void PlayersReady(int playerNumber)

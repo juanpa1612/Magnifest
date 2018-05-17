@@ -43,6 +43,8 @@ public class PlayerSelectionX : MonoBehaviour
         {
             initialPos[i] = skinsPlayers[i].transform.position;
         }
+
+        mainMenu.MenuAlpha();
     }
 
     void Update()

@@ -67,7 +67,7 @@ public class AI : MonoBehaviour {
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Player")&&!choque&&(!collision.GetComponent<PlayerMovement>().enabled) && collision.GetComponent<Charging>().IsCharging == false)
+        if (collision.CompareTag("Player")&&!choque&&(!collision.GetComponent<PlayerMovement>().enabled) && collision.GetComponent<ChargingUI>().IsCharging == false)
         {
             choque = true;
             rDest += collision.gameObject.GetComponent<PlayerMovement>().radius + r;
