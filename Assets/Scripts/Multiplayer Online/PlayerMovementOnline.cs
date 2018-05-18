@@ -122,7 +122,6 @@ public class PlayerMovementOnline : Photon.PunBehaviour
             }
         }
         
-       
     }
     public void ChangeRing (bool addOrSub)
     {

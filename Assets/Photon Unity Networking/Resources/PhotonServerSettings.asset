@@ -38,4 +38,5 @@ MonoBehaviour:
   - RequestForPickupTimes
   - PlayersReady
   - UpdateSkins
+  - ChangeScene
   DisableAutoOpenWizard: 1

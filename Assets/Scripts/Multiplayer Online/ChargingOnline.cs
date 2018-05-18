@@ -7,7 +7,7 @@ public class ChargingOnline : MonoBehaviour
 
     [SerializeField] GameObject chargingArrow;
     [SerializeField] float fireSpeed;
-    [SerializeField] GameObject colliderBack;
+    GameObject colliderBack;
 
     Center centerScript;
     GameObject center;
@@ -47,6 +47,7 @@ public class ChargingOnline : MonoBehaviour
 
     private void Start()
     {
+        colliderBack = GameObject.Find("ColliderPlayer" + PhotonNetwork.player.ID);
        if(center == null)
         {
             center = GameObject.FindGameObjectWithTag("Center");
