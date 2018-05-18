@@ -37,4 +37,5 @@ MonoBehaviour:
   - RequestForPickupItems
   - RequestForPickupTimes
   - PlayersReady
+  - UpdateSkins
   DisableAutoOpenWizard: 1

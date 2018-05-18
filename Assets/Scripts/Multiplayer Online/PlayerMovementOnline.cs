@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-public class PlayerMovementOnline : MonoBehaviour
+using System;
+public class PlayerMovementOnline : Photon.PunBehaviour
 {
 
     public float angularVelocity;
@@ -47,8 +48,23 @@ public class PlayerMovementOnline : MonoBehaviour
         radiusDestiny = 0;
         chargingUI = GetComponent<ChargingOnline>();
 		playerAudio = GetComponent<PlayerAudio> ();
-	}
 
+        if (photonView.isMine)
+        {
+            int actualSkinIndex = Array.IndexOf(GetComponent<PlayersOnline>().Player.skinsReference.skins,
+                GetComponent<PlayersOnline>().Player.actualSkin);
+
+            GetComponent<PhotonView>().RPC("UpdateSkins", PhotonTargets.All, PhotonNetwork.player.ID, actualSkinIndex);
+        }
+	}
+    [PunRPC]
+    public void UpdateSkins(int playerID,int actualSkinIndex)
+    {
+        GameObject playerToUpdate = GameObject.Find("Scriptable Player " + playerID + "(Clone)");
+
+        playerToUpdate.GetComponent<PlayersOnline>().Player.actualSkin = 
+            GetComponent<PlayersOnline>().Player.skinsReference.skins[actualSkinIndex];
+    }
     public int GetLifes()
     {
         return lifes;

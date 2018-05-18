@@ -28,8 +28,16 @@ public class PlayersOnline : Photon.PunBehaviour
         Player4
     }
     public InputNumber inputNumber;
-    
-	void Start ()
+
+    public ScriptablePlayer Player
+    {
+        get
+        {
+            return player;
+        }
+    }
+
+    void Start ()
     {
         playerMove = GetComponent<PlayerMovementOnline>();
         chargingUI = GetComponent<ChargingOnline>();
