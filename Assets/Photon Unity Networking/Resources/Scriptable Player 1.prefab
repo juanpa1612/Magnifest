@@ -338,9 +338,9 @@ MonoBehaviour:
     DrawErrorGizmo: 1
   m_RotationModel:
     SynchronizeEnabled: 1
-    InterpolateOption: 1
+    InterpolateOption: 2
     InterpolateRotateTowardsSpeed: 180
-    InterpolateLerpSpeed: 5
+    InterpolateLerpSpeed: 20
   m_ScaleModel:
     SynchronizeEnabled: 0
     InterpolateOption: 0
@@ -367,6 +367,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 114918518876233502}
+  - {fileID: 114223165560747728}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
