@@ -237,8 +237,8 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114823456845431322}
   - {fileID: 114044722410708848}
+  - {fileID: 114823456845431322}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -255,7 +255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1113b6b8f1e53448e591046ca399fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angularVelocity: 2
   radius: 34
   time: 0
   valueIncRad: 17

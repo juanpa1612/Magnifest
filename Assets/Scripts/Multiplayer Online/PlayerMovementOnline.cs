@@ -3,10 +3,11 @@ using System;
 public class PlayerMovementOnline : Photon.PunBehaviour
 {
 
-    public float angularVelocity;
+    
     public float radius;
     public float time;
 
+    float angularVelocity;
     float radiusDestiny;
     float radiusOrigin;
     bool singlePulsePad;
@@ -23,12 +24,12 @@ public class PlayerMovementOnline : Photon.PunBehaviour
     float timeRingMax;
 
     int lifes;
-
+    bool collidable;
     float startTime;
     float timeOnTransition;
-    ChargingOnline chargingUI;
+    ChargingOnline chargingOnline;
     PlayerAudio playerAudio;
-
+    DeathScriptOnline deathScriptOnline;
     public delegate void HitAction();
     public static event HitAction onHit;
 
@@ -46,8 +47,9 @@ public class PlayerMovementOnline : Photon.PunBehaviour
         direction = false;
         changeRing = false;
         radiusDestiny = 0;
-        chargingUI = GetComponent<ChargingOnline>();
+        chargingOnline = GetComponent<ChargingOnline>();
 		playerAudio = GetComponent<PlayerAudio> ();
+        deathScriptOnline = GetComponent<DeathScriptOnline>();
 
         if (photonView.isMine)
         {
@@ -81,11 +83,27 @@ public class PlayerMovementOnline : Photon.PunBehaviour
         time = 0;
         changeRing = false;
         radiusDestiny = 0;
-        chargingUI.enabled = true;
-        chargingUI.Reset();
+        chargingOnline.enabled = true;
+        chargingOnline.Reset();
     }
-
-    void Update ()
+    private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            stream.SendNext(radius);
+            stream.SendNext(time);
+            stream.SendNext(radiusDestiny);
+            stream.SendNext(collidable);
+        }
+        else
+        {
+            radius = (float)stream.ReceiveNext();
+            time = (float)stream.ReceiveNext();
+            radiusDestiny = (float)stream.ReceiveNext();
+            collidable = (bool)stream.ReceiveNext();
+        }
+    }
+    void Update()
     {
         transform.LookAt(2 * transform.position - Vector3.zero);
         transform.position = new Vector3(Mathf.Cos(angularVelocity * time), 0, Mathf.Sin(angularVelocity * time)) * radius;
@@ -152,23 +170,22 @@ public class PlayerMovementOnline : Photon.PunBehaviour
     }
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Player") && !collided && (!collision.GetComponent<PlayerMovementOnline>().enabled))
+        if (collision.CompareTag("Player"))
         {
-            if (collision.GetComponent<ChargingOnline>().IsCharging == false && !collision.GetComponent<DeathScriptOnline>().enabled 
-                && !chargingUI.IsCharging)
+            collidable = NetworkCollision();
+            if (collision.GetComponent<ChargingOnline>().ICanHit() && collidable)
             {
                 collided = true;
                 playerAudio.CollisionSound();
                 radiusOrigin = radius;
                 radiusDestiny = collision.gameObject.GetComponent<PlayerMovementOnline>().radius + radius;
                 startTime = Time.time;
-                changeRing = true;
-                //transform.rotation = collision.gameObject.transform.rotation;
+                changeRing = true; ;
                 if (radiusDestiny > 68)
                 {
-                    GetComponent<DeathScriptOnline>().enabled = true;
-                    GetComponent<DeathScriptOnline>().CollisionDeath();
-                    chargingUI.enabled = false;
+                    deathScriptOnline.enabled = true;
+                    deathScriptOnline.CollisionDeath();
+                    chargingOnline.enabled = false;
                     collision.GetComponentInChildren<VFX>().Score();
                     collision.GetComponent<PlayerAudio>().ScoreSound();
                     //playerAudio.LostSound();
@@ -179,5 +196,13 @@ public class PlayerMovementOnline : Photon.PunBehaviour
                     onHit();
             }
         }
+    }
+    public bool NetworkCollision ()
+    {
+        if (!collided && !chargingOnline.IsCharging)
+        {
+            return true;
+        }
+        return false;
     }
 }

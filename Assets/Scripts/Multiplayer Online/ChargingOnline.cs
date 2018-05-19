@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargingOnline : MonoBehaviour
+public class ChargingOnline : Photon.PunBehaviour
 {
 
     [SerializeField] GameObject chargingArrow;
@@ -21,7 +21,7 @@ public class ChargingOnline : MonoBehaviour
     bool fullyCharged;
     bool isFiring;
     bool backToPos;
-
+    bool canHit;
     Vector3 joystickVector;
     Vector3 lastPos;
     Transform temp;
@@ -42,6 +42,14 @@ public class ChargingOnline : MonoBehaviour
         get
         {
             return penaltyTime;
+        }
+    }
+
+    public bool CanHit
+    {
+        get
+        {
+            return canHit;
         }
     }
 
@@ -255,7 +263,8 @@ public class ChargingOnline : MonoBehaviour
                 centerScript.SetBusy(true);
             }
         }
-        
+        if (collision.CompareTag("Player"))
+            canHit = ICanHit();
     }
 
     private void OnTriggerStay(Collider collision)
@@ -270,6 +279,25 @@ public class ChargingOnline : MonoBehaviour
                 playerMove.enabled = true;
                 vfxReference.StartAuraParticles(true);
             }
+        }
+    }
+    public bool ICanHit ()
+    {
+        if (!playerMove.enabled && !isCharging && !deathScript.enabled)
+            return true;
+        else
+            return false;
+    }
+    //PhotonView
+    private void OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            stream.SendNext(canHit);
+        }
+        else
+        {
+            canHit = (bool)stream.ReceiveNext();
         }
     }
 }
