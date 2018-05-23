@@ -19,6 +19,7 @@ public class PlayersOnline : Photon.PunBehaviour
     GamePadState prevState1, prevState2, prevState3, prevState4;
     GamePadState state1, state2, state3, state4;
     float vibrationTime;
+    bool chargingTest;
 
     public enum InputNumber
     {
@@ -52,6 +53,8 @@ public class PlayersOnline : Photon.PunBehaviour
 	
 	void Update ()
     {
+
+        chargingTest = chargingUI.isCharging;
         if (photonView.isMine)
         {
             if (state1.ThumbSticks.Left.X > 0.8f)

@@ -7,6 +7,7 @@ public class PlayerMovementOnline : Photon.PunBehaviour
     public float radius;
     public float time;
 
+
     float angularVelocity;
     float radiusDestiny;
     float radiusOrigin;
@@ -18,6 +19,14 @@ public class PlayerMovementOnline : Photon.PunBehaviour
     [SerializeField] float valueIncRad;
     
     private bool collided;
+    public bool Collided
+    {
+        get
+        {
+            return collided;
+        }
+    }
+
     private float recoveryTime;
 
     [SerializeField]
@@ -33,9 +42,9 @@ public class PlayerMovementOnline : Photon.PunBehaviour
     public delegate void HitAction();
     public static event HitAction onHit;
 
+
     void Start()
     {
-        
         timeOnTransition = 0;
         percentageRingChange = 0;
         lifes = 3;
@@ -94,6 +103,8 @@ public class PlayerMovementOnline : Photon.PunBehaviour
             stream.SendNext(time);
             stream.SendNext(radiusDestiny);
             stream.SendNext(collidable);
+            stream.SendNext(collided);
+            
         }
         else
         {
@@ -101,10 +112,17 @@ public class PlayerMovementOnline : Photon.PunBehaviour
             time = (float)stream.ReceiveNext();
             radiusDestiny = (float)stream.ReceiveNext();
             collidable = (bool)stream.ReceiveNext();
+            collided = (bool)stream.ReceiveNext();
+           
         }
     }
     void Update()
     {
+       
+        Debug.Log("El puede pegar? " + chargingOnline.canHit);
+        
+        
+
         transform.LookAt(2 * transform.position - Vector3.zero);
         transform.position = new Vector3(Mathf.Cos(angularVelocity * time), 0, Mathf.Sin(angularVelocity * time)) * radius;
         //Collision
@@ -172,8 +190,9 @@ public class PlayerMovementOnline : Photon.PunBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collidable = NetworkCollision();
-            if (collision.GetComponent<ChargingOnline>().ICanHit() && collidable)
+            
+            //collidable = NetworkCollision();
+            if (collision.GetComponent<ChargingOnline>().canHit && chargingOnline.CanBeHit())
             {
                 collided = true;
                 playerAudio.CollisionSound();
@@ -197,12 +216,14 @@ public class PlayerMovementOnline : Photon.PunBehaviour
             }
         }
     }
+    /*
     public bool NetworkCollision ()
     {
-        if (!collided && !chargingOnline.IsCharging)
+        if (!collided && !chargingOnline.isCharging)
         {
             return true;
         }
         return false;
     }
+    */
 }

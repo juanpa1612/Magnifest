@@ -12,16 +12,18 @@ public class ChargingOnline : Photon.PunBehaviour
     Center centerScript;
     GameObject center;
 
+    PhotonView pv; 
+
     float penaltyTime;
     float arrowDirectX;
     float arrowDirectY;
     float chargingTime;
     bool penalized;
-    bool isCharging;
+    public bool isCharging;
     bool fullyCharged;
     bool isFiring;
     bool backToPos;
-    bool canHit;
+    public bool canHit;
     Vector3 joystickVector;
     Vector3 lastPos;
     Transform temp;
@@ -30,6 +32,7 @@ public class ChargingOnline : Photon.PunBehaviour
     VFX vfxReference;
     DeathScriptOnline deathScript;
 
+    /*
     public bool IsCharging
     {
         get
@@ -37,6 +40,7 @@ public class ChargingOnline : Photon.PunBehaviour
             return isCharging;
         }
     }
+    */
     public float PenaltyTime
     {
         get
@@ -55,6 +59,7 @@ public class ChargingOnline : Photon.PunBehaviour
 
     private void Start()
     {
+        pv = GetComponent<PhotonView>();
         colliderBack = GameObject.Find("ColliderPlayer" + PhotonNetwork.player.ID);
        if(center == null)
         {
@@ -120,8 +125,11 @@ public class ChargingOnline : Photon.PunBehaviour
 			vfxReference.StartAuraParticles (false);
         }
     }
-    private void Update()
+    public void Update()
     {
+
+
+        canHit = ICanHit();
         if (vfxReference == null)
         {
             vfxReference = GetComponentInChildren<VFX>();
@@ -263,8 +271,8 @@ public class ChargingOnline : Photon.PunBehaviour
                 centerScript.SetBusy(true);
             }
         }
-        if (collision.CompareTag("Player"))
-            canHit = ICanHit();
+        //if (collision.CompareTag("Player"))
+            //canHit = ICanHit();
     }
 
     private void OnTriggerStay(Collider collision)
@@ -288,16 +296,32 @@ public class ChargingOnline : Photon.PunBehaviour
         else
             return false;
     }
+    public bool CanBeHit()
+    {
+        if (!playerMove.Collided && !isCharging)
+            return true;
+        else
+            return false;
+    }
     //PhotonView
     private void OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.isWriting)
         {
-            stream.SendNext(canHit);
+            if (pv.isMine)
+            {
+                stream.SendNext(canHit);
+                stream.SendNext(isCharging);
+            }
+           
         }
         else
         {
-            canHit = (bool)stream.ReceiveNext();
+            if (!pv.isMine)
+            {
+                canHit = (bool)stream.ReceiveNext();
+                isCharging = (bool)stream.ReceiveNext();
+            }          
         }
     }
 }

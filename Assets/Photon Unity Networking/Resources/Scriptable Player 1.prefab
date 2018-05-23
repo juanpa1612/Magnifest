@@ -256,6 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chargingArrow: {fileID: 1255450272156832}
   fireSpeed: 90
+  isCharging: 0
 --- !u!114 &114705957836255032
 MonoBehaviour:
   m_ObjectHideFlags: 1

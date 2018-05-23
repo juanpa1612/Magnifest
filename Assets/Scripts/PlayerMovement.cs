@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float valueIncRad;
     
     private bool collided;
+
     private float recoveryTime;
 
     [SerializeField]
