@@ -239,6 +239,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114044722410708848}
   - {fileID: 114823456845431322}
+  - {fileID: 114065837707178846}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -272,6 +273,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chargingArrow: {fileID: 1819218078308938}
   fireSpeed: 90
+  isCharging: 0
+  canHit: 0
+  canBeHit: 0
 --- !u!114 &114101988871912552
 MonoBehaviour:
   m_ObjectHideFlags: 1

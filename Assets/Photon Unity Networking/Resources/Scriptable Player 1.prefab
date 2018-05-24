@@ -257,6 +257,8 @@ MonoBehaviour:
   chargingArrow: {fileID: 1255450272156832}
   fireSpeed: 90
   isCharging: 0
+  canHit: 0
+  canBeHit: 0
 --- !u!114 &114705957836255032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -368,6 +370,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114223165560747728}
   - {fileID: 114918518876233502}
+  - {fileID: 114281112842823400}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

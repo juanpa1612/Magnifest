@@ -108,7 +108,7 @@ MonoBehaviour:
   m_MinSize: {x: 583, y: 342}
   m_MaxSize: {x: 12008, y: 8042}
   vertical: 1
-  controlID: 38
+  controlID: 52
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_MinSize: {x: 583, y: 342}
   m_MaxSize: {x: 12008, y: 8042}
   vertical: 0
-  controlID: 39
+  controlID: 53
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_MinSize: {x: 306, y: 342}
   m_MaxSize: {x: 8006, y: 8042}
   vertical: 1
-  controlID: 71
+  controlID: 54
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_MinSize: {x: 306, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 119
+  controlID: 55
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -251,8 +251,8 @@ MonoBehaviour:
     y: 401
     width: 1086
     height: 330
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 17}
@@ -395,9 +395,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 96d7e6ff
-    m_LastClickedID: -1648746
-    m_ExpandedIDs: 5ad8e6ff082ce7ffea2ce7ff8830e7ffac30e7ff66d6e7ff2cd7e7ffaedae7ffb6dae7ffacfae7ff6efbe7fff0fee7fff8fee7ff0c7de8ff2ab0e9ff90c9e9ff70cae9fff2cde9fffacde9ff823feaff943febffe8a4ebff284decffa6e4ecff020eedffba71edff20aaedffb8e3edffba1feeff1296eeffa644efffa2f0f1ff94f7f1ff74fbf1ffa6cef2ff80d8f2ff46d9f2ffc8dcf2ffd0dcf2ff8c17f5ff7c23f5ff4224f5ffe027f5ff0428f5ff5262f5ffaa44f8ffeec6f9ff9cd1f9ff8cd2f9ff12d6f9ff1ed6f9ff263ffaffb8f0faff66f9faff46fafaffc2fdfaffcafdfaffc201fbff5a02fbffdc05fbffe405fbff6899fbff8aabfbff6aacfbffecaffbfff4affbff1262fcff5edafcffa09efdff3200ffffea31ffff92e5fffffef3ffff0000000050ba0000
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: e205fbffa806fbff0a09fbff1209fbffaa1bfbff6e1cfbffd01efbffd81efbff18f1fbfffafbfbffdefcfbff5efffbff84fffbff4c67fcffe2aefdffccb6fdffaeb7fdff10bafdff18bafdff4eb1ffff08bbffffeabbffff50beffff5cbeffffc2caffff40d4ffff22d5ffff84d7ffff8cd7ffff20dfffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -563,19 +563,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts/Multiplayer Online
+    - Assets/Photon Unity Networking/Resources
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts/Multiplayer Online
+  - Assets/Photon Unity Networking/Resources
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\Administrador\Music\Planet-Bang
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 140}
-    m_SelectedIDs: 6c3c0000
-    m_LastClickedID: 15468
-    m_ExpandedIDs: 00000000e8390000ec3900004c3a00005c3a0000003b0000143b00004c3b00008e3e0000903e0000923e0000943e0000963e0000983e00009a3e00009c3e00009e3e0000a03e0000a23e0000a43e0000a63e0000a83e0000aa3e0000ac3e0000ae3e0000b03e000000ca9a3bffffff7f
+    m_SelectedIDs: 2a3b0000
+    m_LastClickedID: 15146
+    m_ExpandedIDs: 00000000ba3a0000be3a0000f43a0000fe3a00006c3b0000783b0000963b0000523e0000543e0000563e0000583e00005a3e00005c3e00005e3e0000603e0000623e0000643e0000663e0000683e00006a3e00006c3e00006e3e0000703e0000723e0000743e000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -603,7 +603,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e8390000ec3900004c3a0000003b0000143b00008e3e0000903e0000923e0000943e0000963e0000983e00009a3e00009c3e00009e3e0000a03e0000a23e0000a43e0000a63e0000a83e0000aa3e0000ac3e0000ae3e0000b03e0000
+    m_ExpandedIDs: 00000000ba3a0000be3a0000f43a0000fe3a00006c3b0000783b0000963b0000523e0000543e0000563e0000583e00005a3e00005c3e00005e3e0000603e0000623e0000643e0000663e0000683e00006a3e00006c3e00006e3e0000703e0000723e0000743e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

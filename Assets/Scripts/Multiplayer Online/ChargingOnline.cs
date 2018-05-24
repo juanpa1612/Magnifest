@@ -24,6 +24,7 @@ public class ChargingOnline : Photon.PunBehaviour
     bool isFiring;
     bool backToPos;
     public bool canHit;
+    public bool canBeHit;
     Vector3 joystickVector;
     Vector3 lastPos;
     Transform temp;
@@ -46,14 +47,6 @@ public class ChargingOnline : Photon.PunBehaviour
         get
         {
             return penaltyTime;
-        }
-    }
-
-    public bool CanHit
-    {
-        get
-        {
-            return canHit;
         }
     }
 
@@ -128,8 +121,13 @@ public class ChargingOnline : Photon.PunBehaviour
     public void Update()
     {
 
+        if (pv.isMine)
+        {
+            canHit = ICanHit();
+            canBeHit = CanBeHit();
 
-        canHit = ICanHit();
+        
+
         if (vfxReference == null)
         {
             vfxReference = GetComponentInChildren<VFX>();
@@ -230,6 +228,7 @@ public class ChargingOnline : Photon.PunBehaviour
             vfxReference.StartShootingParticle(true);
             playerAudio.FireSound();
         }
+        }
     }
     public void Fire ()
     {
@@ -298,10 +297,10 @@ public class ChargingOnline : Photon.PunBehaviour
     }
     public bool CanBeHit()
     {
-        if (!playerMove.Collided && !isCharging)
-            return true;
-        else
-            return false;
+            if (!playerMove.Collided && !isCharging)
+                return true;
+            else
+                return false;   
     }
     //PhotonView
     private void OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo info)
@@ -309,18 +308,20 @@ public class ChargingOnline : Photon.PunBehaviour
         if (stream.isWriting)
         {
             if (pv.isMine)
-            {
+            {               
                 stream.SendNext(canHit);
                 stream.SendNext(isCharging);
+                stream.SendNext(canBeHit);
             }
            
         }
         else
         {
             if (!pv.isMine)
-            {
+            {               
                 canHit = (bool)stream.ReceiveNext();
                 isCharging = (bool)stream.ReceiveNext();
+                canBeHit = (bool)stream.ReceiveNext();
             }          
         }
     }

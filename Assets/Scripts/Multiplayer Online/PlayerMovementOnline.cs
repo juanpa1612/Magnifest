@@ -16,6 +16,8 @@ public class PlayerMovementOnline : Photon.PunBehaviour
     bool changeRing;
     float percentageRingChange;
 
+    PhotonView pv;
+
     [SerializeField] float valueIncRad;
     
     private bool collided;
@@ -33,7 +35,6 @@ public class PlayerMovementOnline : Photon.PunBehaviour
     float timeRingMax;
 
     int lifes;
-    bool collidable;
     float startTime;
     float timeOnTransition;
     ChargingOnline chargingOnline;
@@ -45,6 +46,8 @@ public class PlayerMovementOnline : Photon.PunBehaviour
 
     void Start()
     {
+        pv = GetComponent<PhotonView>();
+
         timeOnTransition = 0;
         percentageRingChange = 0;
         lifes = 3;
@@ -99,33 +102,40 @@ public class PlayerMovementOnline : Photon.PunBehaviour
     {
         if (stream.isWriting)
         {
-            stream.SendNext(radius);
-            stream.SendNext(time);
-            stream.SendNext(radiusDestiny);
-            stream.SendNext(collidable);
-            stream.SendNext(collided);
-            
+            if (pv.isMine)
+            {
+                stream.SendNext(radius);
+                stream.SendNext(time);
+                stream.SendNext(radiusDestiny);
+                stream.SendNext(collided);
+            }
         }
         else
         {
-            radius = (float)stream.ReceiveNext();
-            time = (float)stream.ReceiveNext();
-            radiusDestiny = (float)stream.ReceiveNext();
-            collidable = (bool)stream.ReceiveNext();
-            collided = (bool)stream.ReceiveNext();
-           
+            if (!pv.isMine)
+            {
+                radius = (float)stream.ReceiveNext();
+                time = (float)stream.ReceiveNext();
+                radiusDestiny = (float)stream.ReceiveNext();
+                collided = (bool)stream.ReceiveNext();
+            }       
         }
     }
     void Update()
     {
        
-        Debug.Log("El puede pegar? " + chargingOnline.canHit);
+       // Debug.Log("El puede pegar? " + chargingOnline.canHit);
         
         
 
         transform.LookAt(2 * transform.position - Vector3.zero);
         transform.position = new Vector3(Mathf.Cos(angularVelocity * time), 0, Mathf.Sin(angularVelocity * time)) * radius;
         //Collision
+
+        if (pv.isMine)
+        {
+
+        
         if (collided)
         {
             recoveryTime -= Time.deltaTime;
@@ -157,7 +167,7 @@ public class PlayerMovementOnline : Photon.PunBehaviour
                 radius=Mathf.Round(radius);
             }
         }
-        
+        }
     }
     public void ChangeRing (bool addOrSub)
     {
@@ -192,14 +202,14 @@ public class PlayerMovementOnline : Photon.PunBehaviour
         {
             
             //collidable = NetworkCollision();
-            if (collision.GetComponent<ChargingOnline>().canHit && chargingOnline.CanBeHit())
+            if (collision.GetComponent<ChargingOnline>().canHit && chargingOnline.canBeHit)
             {
                 collided = true;
                 playerAudio.CollisionSound();
                 radiusOrigin = radius;
                 radiusDestiny = collision.gameObject.GetComponent<PlayerMovementOnline>().radius + radius;
                 startTime = Time.time;
-                changeRing = true; ;
+                changeRing = true;
                 if (radiusDestiny > 68)
                 {
                     deathScriptOnline.enabled = true;
