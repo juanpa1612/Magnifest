@@ -27,7 +27,6 @@ public class VFX : MonoBehaviour
 			if (item.name == "AuraCoolDown")
 				auraCD = item;
         }
-
 	}
 	
 	void Update ()

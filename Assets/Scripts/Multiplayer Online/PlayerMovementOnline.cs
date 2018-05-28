@@ -108,6 +108,7 @@ public class PlayerMovementOnline : Photon.PunBehaviour
                 stream.SendNext(time);
                 stream.SendNext(radiusDestiny);
                 stream.SendNext(collided);
+                stream.SendNext(lifes);
             }
         }
         else
@@ -118,55 +119,51 @@ public class PlayerMovementOnline : Photon.PunBehaviour
                 time = (float)stream.ReceiveNext();
                 radiusDestiny = (float)stream.ReceiveNext();
                 collided = (bool)stream.ReceiveNext();
+                lifes = (int)stream.ReceiveNext();
             }       
         }
     }
     void Update()
     {
-       
-       // Debug.Log("El puede pegar? " + chargingOnline.canHit);
-        
-        
+
+        // Debug.Log("El puede pegar? " + chargingOnline.canHit);
 
         transform.LookAt(2 * transform.position - Vector3.zero);
         transform.position = new Vector3(Mathf.Cos(angularVelocity * time), 0, Mathf.Sin(angularVelocity * time)) * radius;
         //Collision
-
         if (pv.isMine)
         {
+            if (collided)
+            {
+                recoveryTime -= Time.deltaTime;
+                if (recoveryTime <= 0)
+                {
+                    collided = false;
+                    recoveryTime = 2f;
+                }
+            }
+            if (!direction)
+            {
+                time += Time.deltaTime;
+            }
+            else
+            {
+                time -= Time.deltaTime;
+            }
 
-        
-        if (collided)
-        {
-            recoveryTime -= Time.deltaTime;
-            if (recoveryTime <= 0)
+            if (changeRing)
             {
-                collided = false;
-                recoveryTime = 2f;
+                timeOnTransition = Time.time - startTime;
+                percentageRingChange = timeOnTransition / timeRingMax;
+                radius = Mathf.Lerp(radiusOrigin, radiusDestiny, percentageRingChange);
+                if (timeOnTransition >= timeRingMax)
+                {
+                    changeRing = false;
+                    percentageRingChange = 0;
+                    timeOnTransition = 0;
+                    radius = Mathf.Round(radius);
+                }
             }
-        }
-        if (!direction)
-        {
-            time += Time.deltaTime;
-        }
-        else
-        {
-            time -= Time.deltaTime;
-        }
-        
-        if (changeRing)
-        {
-            timeOnTransition = Time.time - startTime;
-            percentageRingChange = timeOnTransition / timeRingMax; 
-            radius = Mathf.Lerp(radiusOrigin, radiusDestiny, percentageRingChange);
-            if (timeOnTransition>=timeRingMax)
-            {
-                changeRing = false;
-                percentageRingChange=0;
-                timeOnTransition = 0;
-                radius=Mathf.Round(radius);
-            }
-        }
         }
     }
     public void ChangeRing (bool addOrSub)

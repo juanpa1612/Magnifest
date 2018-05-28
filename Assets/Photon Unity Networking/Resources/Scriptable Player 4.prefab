@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 114306166376714032}
   - component: {fileID: 114005370359950898}
   - component: {fileID: 114767176274364466}
-  - component: {fileID: 114101988871912552}
   - component: {fileID: 114417239662102394}
   - component: {fileID: 114044722410708848}
   - component: {fileID: 114065837707178846}
@@ -237,7 +236,7 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114101988871912552}
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -254,7 +253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1113b6b8f1e53448e591046ca399fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angularVelocity: 2
   radius: 68
   time: 0
   valueIncRad: 17
@@ -272,17 +270,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chargingArrow: {fileID: 1819218078308938}
   fireSpeed: 90
---- !u!114 &114101988871912552
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1757064764353072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c2550cdad2e62548978e258e666e324, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  isCharging: 0
+  canHit: 0
+  canBeHit: 0
 --- !u!114 &114306166376714032
 MonoBehaviour:
   m_ObjectHideFlags: 1

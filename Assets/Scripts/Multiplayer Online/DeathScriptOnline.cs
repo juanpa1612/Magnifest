@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeathScriptOnline : MonoBehaviour
+public class DeathScriptOnline : Photon.PunBehaviour
 {
 
     PlayerMovementOnline playerMove;
@@ -33,7 +33,7 @@ public class DeathScriptOnline : MonoBehaviour
             Center = GameObject.FindGameObjectWithTag("Center").transform;
         }
         overChargeRespawnTime = 2.5f;
-        playerMove=gameObject.GetComponent<PlayerMovementOnline>();
+        playerMove = gameObject.GetComponent<PlayerMovementOnline>();
         playerAudio = GetComponent<PlayerAudio>();
         playersUI = GameObject.Find("Players UI").GetComponent<PlayersUIOnline>();
     }
@@ -50,6 +50,18 @@ public class DeathScriptOnline : MonoBehaviour
     public void CollisionDeath()
     {
         state = 2;
+    }
+
+    private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            stream.SendNext(state);
+        }
+        else
+        {
+            state = (int)stream.ReceiveNext();
+        }
     }
 
     void Update()

@@ -62,13 +62,13 @@ public class ChargingOnline : Photon.PunBehaviour
         playerAudio = GetComponent<PlayerAudio>();
         playerMove = GetComponent<PlayerMovementOnline>();
         deathScript = GetComponent<DeathScriptOnline>();
+        vfxReference = GetComponentInChildren<VFX>();
         chargingTime = 0;
         penalized = false;
         joystickVector = Vector3.zero;
         penaltyTime = 0;
         isCharging = false;
         fullyCharged = false;
-
     }
 
     public void Reset()
