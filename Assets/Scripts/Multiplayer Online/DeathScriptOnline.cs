@@ -95,7 +95,7 @@ public class DeathScriptOnline : Photon.PunBehaviour
             {
                 playerMove.subLifes();
                 subLive = true;
-                playersUI.UILife((int)gameObject.GetComponent<PlayersOnline>().inputNumber, playerMove.GetLifes());
+                playersUI.UILife(PhotonNetwork.player.ID-1, playerMove.GetLifes());
                 
             }
             if (playerMove.GetLifes() > 0)

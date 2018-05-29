@@ -120,46 +120,34 @@ public class ChargingOnline : Photon.PunBehaviour
     }
     public void Update()
     {
-
         if (pv.isMine)
         {
             canHit = ICanHit();
             canBeHit = CanBeHit();
-
-        
+        }
 
         if (vfxReference == null)
         {
             vfxReference = GetComponentInChildren<VFX>();
         }
-        if (penalized)
+        if (pv.isMine)
         {
-			
-            penaltyTime -= Time.deltaTime;
-            if (penaltyTime <= 0)
-            {		
-				//vfxReference.StartAuraParticles (true);
-                penalized = false;
+            if (penalized)
+            {
+
+                penaltyTime -= Time.deltaTime;
+                if (penaltyTime <= 0)
+                {
+                    //vfxReference.StartAuraParticles (true);
+                    penalized = false;
+                }
             }
         }
+
 
         //Carga Incompleta
         if (backToPos)
         {
-            /*
-            if (transform.position != lastPos)
-            {
-                transform.LookAt(lastPos);
-                transform.Translate(Vector3.forward * Time.deltaTime * fireSpeed);
-            }
-            if (Vector3.Distance(transform.position, lastPos) < 0.5f)
-            {
-                transform.position = lastPos;
-                playerMove.enabled = true;
-                backToPos = false;
-                vfxReference.StartAuraParticles(true);
-            }
-            */
             playerAudio.FireSound();
             
             if (transform.position != colliderBack.transform.position)
@@ -176,38 +164,31 @@ public class ChargingOnline : Photon.PunBehaviour
             transform.position = Vector3.MoveTowards(transform.position, center.transform.position, 1.5f);
         }
         //Carga Completa
-        if (gameObject.transform.position == center.transform.position)
+        if (pv.isMine)
         {
-            colliderBack.transform.position = new Vector3(2000, 2000, 2000);
-            isCharging = false;
-            fullyCharged = true;
-            chargingArrow.SetActive(true);
-            
-            if (chargingTime < 3.5f)
+            if (gameObject.transform.position == center.transform.position)
             {
-                chargingTime += Time.deltaTime;
-            }
-            else
-            {
-                deathScript.enabled = true;
-                deathScript.OverChargeDeath();
-                //fullyCharged = false;
-                chargingArrow.SetActive(false);
-                //centerScript.SetBusy(false);
-                chargingTime = 0;
-                this.enabled = false;
-            }
-        }/*
-        else if (Vector3.Distance(transform.position,center.transform.position)<0.2f)
-        {
-            Debug.Log("Entro1");
-            if (centerScript.GetBusy())
-            {
-                StopCharging();
-                Debug.Log("Entro2");
+                colliderBack.transform.position = new Vector3(2000, 2000, 2000);
+                isCharging = false;
+                fullyCharged = true;
+                chargingArrow.SetActive(true);
+
+                if (chargingTime < 3.5f)
+                {
+                    chargingTime += Time.deltaTime;
+                }
+                else
+                {
+                    deathScript.enabled = true;
+                    deathScript.OverChargeDeath();
+                    //fullyCharged = false;
+                    chargingArrow.SetActive(false);
+                    //centerScript.SetBusy(false);
+                    chargingTime = 0;
+                    this.enabled = false;
+                }
             }
         }
-        */
         if (fullyCharged && !isFiring)
         {
             
@@ -228,7 +209,7 @@ public class ChargingOnline : Photon.PunBehaviour
             vfxReference.StartShootingParticle(true);
             playerAudio.FireSound();
         }
-        }
+        
     }
     public void Fire ()
     {
