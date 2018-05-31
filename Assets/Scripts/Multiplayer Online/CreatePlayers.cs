@@ -5,7 +5,7 @@ using UnityEngine;
 public class CreatePlayers : Photon.PunBehaviour
 {
     Vector3[] spawnPositions;
-
+    [SerializeField] GameControllerOnline gcOnline;
 	void Start ()
     {
         spawnPositions = new Vector3[4];
@@ -16,7 +16,8 @@ public class CreatePlayers : Photon.PunBehaviour
 
         PhotonNetwork.Instantiate("Scriptable Player " + PhotonNetwork.player.ID, 
         spawnPositions[PhotonNetwork.player.ID], Quaternion.identity, 0);
-
+        gcOnline.GetComponent<PhotonView>().RPC("AddPlayerToList", PhotonTargets.All, PhotonNetwork.player.ID);
+        //gcOnline.AddPlayerToList(PhotonNetwork.player.ID);
     }
 	
 

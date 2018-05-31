@@ -287,23 +287,18 @@ public class ChargingOnline : Photon.PunBehaviour
     private void OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.isWriting)
-        {
-            if (pv.isMine)
-            {               
+        {             
                 stream.SendNext(canHit);
                 stream.SendNext(isCharging);
                 stream.SendNext(canBeHit);
-            }
-           
+                stream.SendNext(penaltyTime);
         }
         else
-        {
-            if (!pv.isMine)
-            {               
+        {            
                 canHit = (bool)stream.ReceiveNext();
                 isCharging = (bool)stream.ReceiveNext();
                 canBeHit = (bool)stream.ReceiveNext();
-            }          
+                penaltyTime = (float)stream.ReceiveNext();      
         }
     }
 }

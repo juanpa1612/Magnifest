@@ -39,4 +39,7 @@ MonoBehaviour:
   - PlayersReady
   - UpdateSkins
   - ChangeScene
+  - AddPlayerToList
+  - RemovePlayerFromList
+  - ResetGame
   DisableAutoOpenWizard: 1

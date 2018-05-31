@@ -2,11 +2,8 @@
 using System;
 public class PlayerMovementOnline : Photon.PunBehaviour
 {
-
-    
     public float radius;
     public float time;
-
 
     float angularVelocity;
     float radiusDestiny;
@@ -102,25 +99,19 @@ public class PlayerMovementOnline : Photon.PunBehaviour
     {
         if (stream.isWriting)
         {
-            if (pv.isMine)
-            {
-                stream.SendNext(radius);
-                stream.SendNext(time);
-                stream.SendNext(radiusDestiny);
-                stream.SendNext(collided);
-                stream.SendNext(lifes);
-            }
+            stream.SendNext(radius);
+            stream.SendNext(time);
+            stream.SendNext(radiusDestiny);
+            stream.SendNext(collided);
+            stream.SendNext(lifes);
         }
         else
         {
-            if (!pv.isMine)
-            {
-                radius = (float)stream.ReceiveNext();
-                time = (float)stream.ReceiveNext();
-                radiusDestiny = (float)stream.ReceiveNext();
-                collided = (bool)stream.ReceiveNext();
-                lifes = (int)stream.ReceiveNext();
-            }       
+            radius = (float)stream.ReceiveNext();
+            time = (float)stream.ReceiveNext();
+            radiusDestiny = (float)stream.ReceiveNext();
+            collided = (bool)stream.ReceiveNext();
+            lifes = (int)stream.ReceiveNext();    
         }
     }
     void Update()

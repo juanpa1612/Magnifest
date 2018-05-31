@@ -9,7 +9,7 @@ public class DeathScriptOnline : Photon.PunBehaviour
     PlayerAudio playerAudio;
     Transform Center;
     PlayersUIOnline playersUI;
-
+    GameControllerOnline gcOnline;
     public delegate void RingOut();
     public static event RingOut isOut;
 
@@ -36,6 +36,7 @@ public class DeathScriptOnline : Photon.PunBehaviour
         playerMove = gameObject.GetComponent<PlayerMovementOnline>();
         playerAudio = GetComponent<PlayerAudio>();
         playersUI = GameObject.Find("Players UI").GetComponent<PlayersUIOnline>();
+        gcOnline = GameObject.Find("GameController").GetComponent<GameControllerOnline>();
     }
 
     public void OverChargeDeath()
@@ -106,6 +107,10 @@ public class DeathScriptOnline : Photon.PunBehaviour
                 state = 0;
                 subLive = false;
                 this.enabled = false;
+            }
+            if (playerMove.GetLifes() == 0 && photonView.isMine)
+            {
+                gcOnline.GetComponent<PhotonView>().RPC("RemovePlayerFromList", PhotonTargets.All, PhotonNetwork.player.ID);
             }
         }
 

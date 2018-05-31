@@ -31,8 +31,8 @@ public class PlayersUIOnline : MonoBehaviour
         chargingScripts = new ChargingOnline[4];
 
     }
-	
-	void Update ()
+
+    void Update()
     {
         for (int i = 0; i < players.Length; i++)
         {
@@ -73,13 +73,13 @@ public class PlayersUIOnline : MonoBehaviour
         //slidersPlayers[1].value = chargingP2.PenaltyTime;
         //slidersPlayers[2].value = chargingP3.PenaltyTime;
         //slidersPlayers[3].value = chargingP4.PenaltyTime;
-
-        /*
-        chargingImages[0].fillAmount = chargingP1.PenaltyTime/maxPenaltyTime;
-        chargingImages[1].fillAmount = chargingP2.PenaltyTime / maxPenaltyTime;
-        chargingImages[2].fillAmount = chargingP3.PenaltyTime / maxPenaltyTime;
-        chargingImages[3].fillAmount = chargingP4.PenaltyTime / maxPenaltyTime;
-        */
+        for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
+        {
+            if (players[i] != null)
+            {
+                chargingImages[i].fillAmount = chargingScripts[i].PenaltyTime / maxPenaltyTime;
+            }
+        }
     }
 
     public void UILife(int player, int lifes)

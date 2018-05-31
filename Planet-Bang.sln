@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planet-Bang", "Planet-Bang.csproj", "{931B0406-B07F-695D-7C76-26D7E79E1662}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planet-Bang.Plugins", "Planet-Bang.Plugins.csproj", "{B351A92B-33BF-2F77-19E8-0FD5821475AB}"

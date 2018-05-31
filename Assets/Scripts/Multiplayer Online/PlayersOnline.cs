@@ -12,7 +12,7 @@ public class PlayersOnline : Photon.PunBehaviour
     PlayerMovementOnline playerMove;
     ChargingOnline chargingUI;
     DeathScriptOnline deathScript;
-
+    GameControllerOnline gcOnline;
     [SerializeField] ScriptablePlayer player;
 
     PlayerIndex index1, index2, index3, index4;
@@ -43,6 +43,7 @@ public class PlayersOnline : Photon.PunBehaviour
         playerMove = GetComponent<PlayerMovementOnline>();
         chargingUI = GetComponent<ChargingOnline>();
         deathScript = GetComponent<DeathScriptOnline>();
+        gcOnline = GameObject.Find("GameController").GetComponent<GameControllerOnline>();
         GameObject.Instantiate(player.actualSkin,transform.position,transform.rotation,gameObject.transform);
         index1 = PlayerIndex.One;
         index2 = PlayerIndex.Two;
@@ -89,8 +90,7 @@ public class PlayersOnline : Photon.PunBehaviour
             //Scene Reset
             if (prevState1.Buttons.Back == ButtonState.Released && state1.Buttons.Back == ButtonState.Pressed)
             {
-                SceneManager.LoadScene("PlayerSelection");
-                Time.timeScale = 1;
+                gcOnline.GetComponent<PhotonView>().RPC("ResetGame", PhotonTargets.All);
             }
             chargingUI.ArrowDirection(state1.ThumbSticks.Left.X, state1.ThumbSticks.Left.Y);
             prevState1 = state1;
