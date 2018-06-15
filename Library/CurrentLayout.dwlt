@@ -108,7 +108,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 1
-  controlID: 134
+  controlID: 89
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 135
+  controlID: 90
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 61
+  controlID: 91
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 62
+  controlID: 92
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -391,9 +391,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 20360000
-    m_LastClickedID: 0
-    m_ExpandedIDs: f0fbffff00000000
+    m_SelectedIDs: be29ffff
+    m_LastClickedID: -54850
+    m_ExpandedIDs: c2b3ffff0ee9ffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -448,9 +448,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 17.199867, y: 2.4149737, z: 41.096397}
+    m_Target: {x: 28.91651, y: 7.8245134, z: 33.33602}
     speed: 2
-    m_Value: {x: 17.199867, y: 2.4149737, z: 41.096397}
+    m_Value: {x: 28.91651, y: 7.8245134, z: 33.33602}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -478,13 +478,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.055881586, y: 0.8207894, z: -0.08152467, w: -0.5626152}
+    m_Target: {x: 0.08717229, y: -0.89959055, z: 0.21045254, w: 0.3726226}
     speed: 2
-    m_Value: {x: -0.055881586, y: 0.8207894, z: -0.08152467, w: -0.5626152}
+    m_Value: {x: 0.08717229, y: -0.89959055, z: 0.21045254, w: 0.3726226}
   m_Size:
-    m_Target: 24.049725
+    m_Target: 41.288105
     speed: 2
-    m_Value: 24.049725
+    m_Value: 41.288105
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -558,20 +558,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Materials
+    - Assets/Textures
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Materials
+  - Assets/Textures
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\Camilo Villegas\Documents\Semestre 7\Taller VII\PlanetBang\Planet-Bang
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 91}
-    m_SelectedIDs: a00f0000
-    m_LastClickedID: 4000
-    m_ExpandedIDs: 000000000e0b00001a0b00009c0d00003e0e0000de350000e0350000e2350000e4350000e6350000e8350000ea350000ec350000ee350000f0350000f2350000f4350000f6350000f8350000fa350000fc350000fe3500000036000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 211}
+    m_SelectedIDs: 443f0000
+    m_LastClickedID: 16196
+    m_ExpandedIDs: 00000000b23d0000ba3d0000363f0000923f00001c4300001e43000020430000224300002443000026430000284300002a4300002c4300002e43000030430000324300003443000036430000384300003a4300003c4300003e43000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -599,7 +599,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000e0b00001a0b00009c0d00003e0e0000de350000e0350000e2350000e4350000e6350000e8350000ea350000ec350000ee350000f0350000f2350000f4350000f6350000f8350000fa350000fc350000fe35000000360000
+    m_ExpandedIDs: 00000000b23d0000ba3d0000923f00001c4300001e43000020430000224300002443000026430000284300002a4300002c4300002e43000030430000324300003443000036430000384300003a4300003c4300003e430000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -651,7 +651,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 71}
+    m_ScrollPosition: {x: 0, y: 285.5}
     m_GridSize: 16
   m_DirectoriesAreaWidth: 212
 --- !u!114 &18
